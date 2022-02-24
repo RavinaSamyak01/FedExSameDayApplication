@@ -1,0 +1,67 @@
+Total links are 52
+https://staging.fedexsameday.com/fdx_main.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx - OK
+https://staging.fedexsameday.com/fdx_ship.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx# - OK
+https://staging.fedexsameday.com/fdx_tracking.aspx - OK
+https://staging.fedexsameday.com/fdx_activeship.aspx - OK
+https://staging.fedexsameday.com/fdx_recdel.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx# - OK
+https://staging.fedexsameday.com/fdx_activeship.aspx - OK
+https://staging.fedexsameday.com/fdx_recdel.aspx - OK
+https://staging.fedexsameday.com/Invoice/fdx_invoicereprint.aspx - OK
+https://staging.fedexsameday.com/fdx_preference.aspx - OK
+https://staging.fedexsameday.com/fdx_login_edit.aspx - OK
+https://staging.fedexsameday.com/Address/fdx_addr_main.aspx - OK
+https://staging.fedexsameday.com/fdx_rpt_activity1.aspx - OK
+https://staging.fedexsameday.com/fdx_rpt_activity_custom_main.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx# - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx - OK
+http://www.fedex.com/us/services/terms/us.html - OK
+http://www.fedex.com/us/services/terms/us.html - OK
+https://about.van.fedex.com/ - OK
+https://about.van.fedex.com/our-story/company-structure/ - OK
+http://www.fedex.com/us/investorrelations/ - OK
+https://careers.fedex.com/fedex/ - OK
+https://about.van.fedex.com/blog/ - OK
+https://about.van.fedex.com/social-responsibility/csr-policy-statements/ - OK
+https://about.van.fedex.com/newsroom/global-english/ - OK
+http://www.fedex.com/us/customersupport/email/index.html - OK
+http://crossborder.fedex.com/us/ - OK
+http://www.fedex.com/us/sitemap.html - OK
+http://www.fedex.com/us/security/privacypolicy.html - OK
+
+23AUG
+
+Total links are 52
+https://staging.fedexsameday.com/fdx_main.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx - OK
+https://staging.fedexsameday.com/fdx_ship.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx# - OK
+https://staging.fedexsameday.com/fdx_tracking.aspx - OK
+https://staging.fedexsameday.com/fdx_activeship.aspx - OK
+https://staging.fedexsameday.com/fdx_recdel.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx# - OK
+https://staging.fedexsameday.com/fdx_activeship.aspx - OK
+https://staging.fedexsameday.com/fdx_recdel.aspx - OK
+https://staging.fedexsameday.com/Invoice/fdx_invoicereprint.aspx - OK
+https://staging.fedexsameday.com/fdx_preference.aspx - OK
+https://staging.fedexsameday.com/fdx_login_edit.aspx - OK
+https://staging.fedexsameday.com/Address/fdx_addr_main.aspx - OK
+https://staging.fedexsameday.com/fdx_rpt_activity1.aspx - OK
+https://staging.fedexsameday.com/fdx_rpt_activity_custom_main.aspx - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx# - OK
+https://staging.fedexsameday.com/fdx_quick_quote.aspx - OK
+http://www.fedex.com/us/services/terms/us.html - OK
+http://www.fedex.com/us/services/terms/us.html - OK
+https://about.van.fedex.com/ - OK
+https://about.van.fedex.com/our-story/company-structure/ - OK
+http://www.fedex.com/us/investorrelations/ - OK
+https://careers.fedex.com/fedex/ - OK
+https://about.van.fedex.com/blog/ - OK
+https://about.van.fedex.com/social-responsibility/csr-policy-statements/ - OK
+https://about.van.fedex.com/newsroom/global-english/ - OK
+http://www.fedex.com/us/customersupport/email/index.html - OK
+http://crossborder.fedex.com/us/ - OK
+http://www.fedex.com/us/sitemap.html - OK
+http://www.fedex.com/us/security/privacypolicy.html - OK
