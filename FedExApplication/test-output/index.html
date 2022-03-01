@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-FedExApplication" class="navigator-link">
-              <span class="suite-name border-failed">FedExApplication</span>
+              <span class="suite-name border-passed">FedExApplication</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,21 +90,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-FedExApplication" class="hide-methods failed suite-FedExApplication"> (hide)</a> <!-- hide-methods failed suite-FedExApplication -->
-                      <a href="#" panel-name="suite-FedExApplication" class="show-methods failed suite-FedExApplication"> (show)</a> <!-- show-methods failed suite-FedExApplication -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-FedExApplication" class="hide-methods passed suite-FedExApplication"> (hide)</a> <!-- hide-methods passed suite-FedExApplication -->
+                      <a href="#" panel-name="suite-FedExApplication" class="show-methods passed suite-FedExApplication"> (show)</a> <!-- show-methods passed suite-FedExApplication -->
                     </span>
-                    <div class="method-list-content failed suite-FedExApplication">
+                    <div class="method-list-content passed suite-FedExApplication">
                       <span>
-                        <img src="failed.png" width="3%"/>
+                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BaseClass" class="method navigator-link" hash-for-method="baseMethods">baseMethods</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-FedExApplication -->
+                    </div> <!-- method-list-content passed suite-FedExApplication -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -116,9 +116,9 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-FedExApplication" class="panel FedExApplication">
-          <div class="suite-FedExApplication-class-failed">
+          <div class="suite-FedExApplication-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="passed.png"/>
               <span class="class-name">com.fdxMasterScreens.BaseClass</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -127,32 +127,10 @@
                   <a name="baseMethods">
                   </a> <!-- baseMethods -->
                   <span class="method-name">baseMethods</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#Wuc_header1_lnkbtnLogout&quot;}
-  (Session info: chrome=98.0.4758.102)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.13.0&apos;, revision: &apos;2f0d292&apos;, time: &apos;2018-06-25T15:32:14.902Z&apos;
-System info: host: &apos;SIPL92&apos;, ip: &apos;192.168.113.6&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;16.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.102, chrome: {chromedriverVersion: 98.0.4758.80 (7f0488e8ba0d8..., userDataDir: C:\Users\RPRAJA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:54260}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 67ba818fd7fe1ff31cc2b840d6e2253f
-*** Element info: {Using=id, value=Wuc_header1_lnkbtnLogout}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:368)
-	at org.openqa.selenium.By$ById.findElement(By.java:188)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
-	at com.fdxMasterScreens.BaseClass.baseMethods(BaseClass.java:55)
-... Removed 29 stack frames
-</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-FedExApplication-class-failed -->
+          </div> <!-- suite-FedExApplication-class-passed -->
         </div> <!-- panel FedExApplication -->
         <div panel-name="test-xml-FedExApplication" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -209,12 +187,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'baseMethods')
 data.setCell(0, 2, 'com.fdxMasterScreens.BaseClass')
-data.setCell(0, 3, 7771);
+data.setCell(0, 3, 241229);
 window.suiteTableData['FedExApplication']= { tableData: data, tableDiv: 'times-div-FedExApplication'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 7 seconds</span>
+              <span class="suite-total-time">Total running time: 4 minutes</span>
               <div id="times-div-FedExApplication">
               </div> <!-- times-div-FedExApplication -->
             </div> <!-- times-div -->
@@ -246,14 +224,12 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">baseMethods</span>
-                <span class="method-start">11069 ms</span>
+                <span class="method-start">16384 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">end</span>
-                <span class="method-start">18914 ms</span>
+                <span class="method-start">257660 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
