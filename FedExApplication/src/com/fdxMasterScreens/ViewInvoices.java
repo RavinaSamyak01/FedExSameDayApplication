@@ -12,32 +12,31 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ViewInvoices extends BaseClass {
 
-	public static void viewInv() throws InterruptedException, IOException
-	{
-		driver.findElement(By.linkText("Manage")).click();		
-		Thread.sleep(2000);
-		
-		driver.findElement(By.linkText("View Invoices")).click();
-		
+	public static void viewInv() throws InterruptedException, IOException {
+		driver.findElement(By.linkText("Support")).click();
+		waitForVisibilityOfElement(By.linkText("Billing & Invoicing"), 0);
+		driver.findElement(By.linkText("Billing & Invoicing")).click();
+		waitForVisibilityOfElement(By.id("currentForm"), 0);
+
 		driver.findElement(By.id("dgRpt_lbExport_0")).click();
-		Thread.sleep(7000);
-		
-		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("C:\\Abhishek\\ABHISHEK SHARMA\\workspace\\FedExApplication\\src\\TestFiles\\InvoiceHistory.png"));
-        System.out.println("Invoice History display Proper !!!");
+		Thread.sleep(5000);
+
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\InvoiceHistory.png"));
+		System.out.println("Invoice History display Proper !!!");
 	}
-	public static void waitForVisibilityOfElement(By objLocator, long lTime)
-	{
+
+	public static void waitForVisibilityOfElement(By objLocator, long lTime) {
 		try {
-            WebDriverWait wait = new WebDriverWait(driver, lTime);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(objLocator));
-        } catch (Exception e) {
-        }
+			WebDriverWait wait = new WebDriverWait(driver, lTime);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(objLocator));
+		} catch (Exception e) {
+		}
 	}
-	
+
 	public static void waitForInVisibilityOfElement(By objLocator, long lTime) {
 
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(objLocator));
-    }
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(objLocator));
+	}
 }

@@ -23,34 +23,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CrudOperation {
+import com.fxoAutoDispatch.Email;
 
-	static WebDriver driver;
+import basePackage.BaseInit;
+
+public class CrudOperation extends BaseInit {
+
 	static StringBuilder msg = new StringBuilder();
 
-	public static void main(String[] args) throws Exception {
-
-		System.setProperty("webdriver.chrome.driver", "C:\\Abhishek\\ABHISHEK SHARMA\\workspace\\Driver\\chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		driver = new ChromeDriver(options);
-		options.addArguments("--test-type");
-		driver.manage().deleteAllCookies();
-
-		driver.manage().window().maximize();
-		driver.get("https://staging.fedexsameday.com"); // Enter URL
-
-		driver.findElement(By.id("logon_name")).clear();
-		driver.findElement(By.id("logon_name")).sendKeys("testsamyak10"); // Enter UserName
-
-		driver.findElement(By.id("logon_password")).clear();
-		driver.findElement(By.id("logon_password")).sendKeys("samyak10"); // Enter Password
-
-		driver.findElement(By.id("cmdLogin")).click(); // Click on Login
-		driver.getTitle();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+	public static void crudfOperations() throws Exception {
+		// --Login
+		login();
 
 		// Read data from Excel
-		File src = new File("C:\\Abhishek\\ABHISHEK SHARMA\\workspace\\FedExApplication\\src\\TestFiles\\CrudOperation.xlsx");
+		File src = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
 		FileInputStream fis = new FileInputStream(src);
 		Workbook workbook = WorkbookFactory.create(fis);
 		Sheet sh1 = workbook.getSheet("Sheet1");
@@ -58,24 +44,29 @@ public class CrudOperation {
 
 		for (int i = 1; i < 5; i++) {
 
-			driver.findElement(By.linkText("Ship")).click(); // Click on ship screen
+			WebDriverWait wait = new WebDriverWait(driver, 50);
+			// --click on shipping menu
+			driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
+			Thread.sleep(2000);
+			// --click on Create shipment
+			driver.findElement(By.linkText("Create a Shipment")).click();
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
 			driver.getTitle();
-			DataFormatter formatter = new DataFormatter();
 
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			DataFormatter formatter = new DataFormatter();
 
 			try {
 				if (driver.findElement(By.id("cmdChangePUAddr")).isDisplayed()) // If my preferences has setup From
 																				// Address
 				{
 					driver.findElement(By.id("cmdChangePUAddr")).click();
-					driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+					wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("pnlFullPUAddr")));
+
 				}
 			} catch (Exception e) {
 				System.out.println("No default address !!");
 			}
-			
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
 			String PUCompany = formatter.formatCellValue(sh1.getRow(i).getCell(0));
 			driver.findElement(By.xpath("//*[@id='pu_company']")).clear();
 			driver.findElement(By.xpath("//*[@id='pu_company']")).sendKeys(PUCompany); // Pickup Company
@@ -91,13 +82,11 @@ public class CrudOperation {
 			driver.findElement(By.xpath("//*[@id='pu_zip']")).clear();
 			driver.findElement(By.xpath("//*[@id='pu_zip']")).sendKeys(PUZip);
 			driver.findElement(By.xpath("//*[@id='pu_zip']")).sendKeys(Keys.TAB); // Pickup Zip code and tab
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			Thread.sleep(2000);
 
 			String PUPhone = formatter.formatCellValue(sh1.getRow(i).getCell(5));
 			driver.findElement(By.xpath("//*[@id='pu_phone']")).clear();
 			driver.findElement(By.xpath("//*[@id='pu_phone']")).sendKeys(PUPhone); // Pickup phone Number
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 			boolean pures = driver.findElement(By.id("Pu_Res")).isSelected();
 			if (pures == false) {
@@ -169,7 +158,7 @@ public class CrudOperation {
 
 			driver.findElement(By.id("chkSaveAddrTo")).click();
 
-			if(i==4) {
+			if (i == 4) {
 				JavascriptExecutor jse2 = (JavascriptExecutor) driver;
 				jse2.executeScript("window.scrollBy(0,-950)", "");
 				driver.findElement(By.id("lnkClearPU")).click();
@@ -184,8 +173,7 @@ public class CrudOperation {
 				driver.findElement(By.id("dl_quickcode")).sendKeys(Keys.TAB);
 				Thread.sleep(2000);
 			}
-			
-			
+
 			Thread.sleep(4000);
 
 			driver.findElement(By.id("anchor1xx")).click(); // click on calendar
@@ -196,14 +184,11 @@ public class CrudOperation {
 			Select select1 = new Select(driver.findElement(By.id("ddlReadyHour"))); // ready time selection
 			select1.selectByVisibleText("11");
 
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			select1 = new Select(driver.findElement(By.id("ddlReadyMinutes"))); // ready time min selection
 			select1.selectByVisibleText("30");
 
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			select1 = new Select(driver.findElement(By.xpath(".//*[@name='ddlReadyTimeType']"))); // AM/ PM selection
 			select1.selectByVisibleText("AM");
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			Thread.sleep(2000);
 
 			String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(13)); // Service ID compare from the
@@ -286,7 +271,6 @@ public class CrudOperation {
 			jse.executeScript("window.scrollBy(0,-850)", "");
 			driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
 			Thread.sleep(9000);
-			driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 			driver.findElement(By.id("declared_value")).clear();
 			driver.findElement(By.id("declared_value")).sendKeys("2000");
@@ -301,11 +285,8 @@ public class CrudOperation {
 				driver.findElement(By.id("dl_DoNotDeliver")).click();
 			}
 
-			
-			
 			driver.findElement(By.id("cmdSubmit")).click(); // Create job button
 			Thread.sleep(7000);
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 			boolean recalc = driver.findElement(By.id("lblRecalMsg")).isDisplayed();
 
@@ -316,17 +297,15 @@ public class CrudOperation {
 
 			// Service
 
-			File src1 = new File(
-					"C:\\Abhishek\\ABHISHEK SHARMA\\workspace\\FedExApplication\\src\\TestFiles\\CrudOperation.xlsx");
+			File src1 = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
 			workbook.write(fis1);
-			
+
 			if (serviceid.equals("PR")) // If match with PR, below code will execute
 			{
 
 				driver.findElement(By.id("chkPR")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 				String rate = driver.findElement(By.id("btnPR")).getText();
 				System.out.println(rate);
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
@@ -335,13 +314,13 @@ public class CrudOperation {
 
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
@@ -351,7 +330,6 @@ public class CrudOperation {
 			{
 
 				driver.findElement(By.id("chkS2")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnS2")).getText();
 				System.out.println(rate);
@@ -361,14 +339,14 @@ public class CrudOperation {
 
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
@@ -379,7 +357,6 @@ public class CrudOperation {
 				driver.findElement(By.id("chkSDRTS")).click();
 				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 				driver.findElement(By.id("chkEC")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 				String rate = driver.findElement(By.id("btnEC")).getText();
 				System.out.println(rate);
 				msg.append("EC Service - Actual Rate :" + rate + "\n");
@@ -388,14 +365,14 @@ public class CrudOperation {
 				sh2.getRow(i).createCell(16).setCellValue(rate);
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
@@ -404,7 +381,6 @@ public class CrudOperation {
 			else if (serviceid.equals("DR")) // If match with DR, below code will execute
 			{
 				driver.findElement(By.id("chkDR")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnDR")).getText();
 				System.out.println(rate);
@@ -415,11 +391,11 @@ public class CrudOperation {
 
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				} else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 			}
@@ -428,7 +404,6 @@ public class CrudOperation {
 			{
 
 				driver.findElement(By.id("chkDRV")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnDRV")).getText();
 				System.out.println(rate);
@@ -439,14 +414,14 @@ public class CrudOperation {
 
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
@@ -456,7 +431,6 @@ public class CrudOperation {
 			{
 
 				driver.findElement(By.id("chkAIR")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnAIR")).getText();
 				System.out.println(rate);
@@ -466,14 +440,14 @@ public class CrudOperation {
 				sh2.getRow(i).createCell(16).setCellValue(rate);
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
@@ -483,7 +457,6 @@ public class CrudOperation {
 			{
 
 				driver.findElement(By.id("chkSDC")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnSDC")).getText();
 				System.out.println(rate);
@@ -493,14 +466,14 @@ public class CrudOperation {
 				sh2.getRow(i).createCell(16).setCellValue(rate);
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					//workbook.write(fis1);
+					// workbook.write(fis1);
 					fis1.close();
 				}
 
@@ -510,7 +483,6 @@ public class CrudOperation {
 			{
 
 				driver.findElement(By.id("chkFRG")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnFRG")).getText();
 				System.out.println(rate);
@@ -518,8 +490,7 @@ public class CrudOperation {
 
 			}
 
-			
-			if (i==3) {
+			if (i == 3) {
 				driver.findElement(By.id("chkSaveDim")).click();
 				Thread.sleep(1000);
 				driver.findElement(By.id("txtprofilename")).sendKeys("PKG-Dim");
@@ -527,13 +498,12 @@ public class CrudOperation {
 				JavascriptExecutor jse1 = (JavascriptExecutor) driver;
 				jse1.executeScript("window.scrollBy(0,-700)", "");
 				driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
-				Thread.sleep(9000);
+				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
 			}
-			
-			
-			
+
 			driver.findElement(By.id("cmdSubmit")).click(); // Create job button
-			Thread.sleep(7000);
+			Thread.sleep(1000);
+
 			// If alert pop-up exist, than accept.
 
 			if (isAlertPresent()) {
@@ -541,8 +511,9 @@ public class CrudOperation {
 				alt.accept();
 			}
 
-			Thread.sleep(5000);
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
 			driver.getTitle();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
 			driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click(); // Confirm from Shipment Summary screen.
 
 			try {
@@ -562,9 +533,9 @@ public class CrudOperation {
 
 			// Send Email
 		}
-		String subject = "FedEx Crud operation Using SELENIUM";
+		String subject = "Selenium Automation Script:FedEx Crud operation";
 		try {
-			Email.sendMail("asharma@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("Ravina.prajapati@samyak.com", subject, msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(CrudOperation.class.getName()).log(Level.SEVERE, null, ex);
 		}

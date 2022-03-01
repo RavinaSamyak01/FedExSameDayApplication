@@ -23,11 +23,10 @@ public class BaseInit {
 		driver.get("https://staging.fedexsameday.com/");
 
 		// --login
-		login();
 
 	}
 
-	public void login() {
+	public static void login() {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
 		driver.findElement(By.id("Header_fdx_main_liLogin")).click();

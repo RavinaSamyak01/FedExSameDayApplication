@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="none" name="Failed suite [FedExApplication]">
+  <test parallel="none" name="Crud Operations(failed)">
+    <classes>
+      <class name="com.fdxMasterScreens.BaseClass">
+        <methods>
+          <include name="baseMethods"/>
+          <include name="startUp"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BaseClass -->
+    </classes>
+  </test> <!-- Crud Operations(failed) -->
+</suite> <!-- Failed suite [FedExApplication] -->

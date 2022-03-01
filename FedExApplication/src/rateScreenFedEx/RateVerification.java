@@ -16,15 +16,14 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import basePackage.BaseInit;
+import basePackage.Email;
 
 public class RateVerification extends BaseInit {
 	static StringBuilder msg = new StringBuilder();
@@ -32,6 +31,9 @@ public class RateVerification extends BaseInit {
 	@Test
 	public static void prService() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		// --login
+		login();
+
 		// --get the data
 		try {
 			File src = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
@@ -309,10 +311,10 @@ public class RateVerification extends BaseInit {
 
 		// Send Email
 
-		String subject = "STAGING : FedEx Rate/Quote Using SELENIUM";
+		String subject = "Selenium Automation Script: STAGING FedEx Rate/Quote";
 		try {
 			// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
-			Email.sendMail("ravina.prajapati@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com", subject, msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
 		}
