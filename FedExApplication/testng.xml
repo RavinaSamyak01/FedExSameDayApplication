@@ -18,9 +18,15 @@
 		</classes>
 	</test>-->
 
-	<test thread-count="5" name="Crud Operations">
+	<!-- <test thread-count="5" name="Master Screens">
 		<classes>
 			<class name="com.fdxMasterScreens.BaseClass"></class>
+		</classes>
+	</test>-->
+
+	<test thread-count="5" name="Crud Operations">
+		<classes>
+			<class name="shipmentFedExWebSite.CrudOperation"></class>
 		</classes>
 	</test>
 
