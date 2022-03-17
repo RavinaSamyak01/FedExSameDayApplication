@@ -1,28 +1,28 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="FedExApplication">
-	<!--<test thread-count="5" name="Rate Verification">
+	<test thread-count="5" name="Rate Verification">
 		<classes>
 			<class name="rateScreenFedEx.RateVerification"></class>
 		</classes>
-	</test> -->
-	<!-- <test thread-count="5" name="Shipment Creation">
+	</test>
+	<test thread-count="5" name="Shipment Creation">
 		<classes>
 			<class name="shipmentFedExWebSite.ShipmentCreation"></class>
 		</classes>
-	</test>-->
+	</test>
 
 
-	<!-- <test thread-count="5" name="Cheetah Order Processing">
+	<test thread-count="5" name="Cheetah Order Processing">
 		<classes>
 			<class name="shipmentFedExWebSite.CheetahOrderProcessing"></class>
 		</classes>
-	</test>-->
+	</test>
 
-	<!-- <test thread-count="5" name="Master Screens">
+	<test thread-count="5" name="Master Screens">
 		<classes>
 			<class name="com.fdxMasterScreens.BaseClass"></class>
 		</classes>
-	</test>-->
+	</test>
 
 	<test thread-count="5" name="Crud Operations">
 		<classes>
@@ -30,6 +30,11 @@
 		</classes>
 	</test>
 
+	<test thread-count="5" name="Broken Links">
+		<classes>
+			<class name="com.fdxMasterScreens.BrokenLinks"></class>
+		</classes>
+	</test>
 
 	<!-- NASmoke -->
 </suite> <!-- NASuite -->

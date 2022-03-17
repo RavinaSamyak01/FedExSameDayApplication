@@ -298,8 +298,10 @@ public class RateVerification extends BaseInit {
 			}
 			workbook.write(fis1);
 			fis1.close();
+
 		} catch (Exception e) {
 			System.out.println("Something went Wrong");
+
 		}
 
 		msg.append("Step1 : Enter URL : PASS" + "\n");
@@ -314,7 +316,8 @@ public class RateVerification extends BaseInit {
 		String subject = "Selenium Automation Script: STAGING FedEx Rate/Quote";
 		try {
 			// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
-			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+					msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
 		}

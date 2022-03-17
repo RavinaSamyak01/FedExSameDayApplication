@@ -453,7 +453,7 @@ public class ShipmentCreation extends BaseInit {
 		String subject = "Selenium Automation Script : STAGING FedEx Shipment Creation";
 		try {
 			// asharma@samyak.com,pgandhi@samyak.com,sdas@samyak.com,byagnik@samyak.com,pdoshi@samyak.com,kbrahmbhatt@samyak.com
-			Email.sendMail("Ravina.prajapati@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject, msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(ShipmentCreation.class.getName()).log(Level.SEVERE, null, ex);
 		}

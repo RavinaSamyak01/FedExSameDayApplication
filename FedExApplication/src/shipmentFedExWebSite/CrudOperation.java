@@ -292,261 +292,271 @@ public class CrudOperation extends BaseInit {
 			driver.findElement(By.id("cmdSubmit")).click(); // Create job button
 			Thread.sleep(5000);
 
-			boolean recalc = driver.findElement(By.id("lblRecalMsg")).isDisplayed();
-
-			if (recalc == true) {
-				driver.findElement(By.id("lnkCalculate")).click();
-				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
-			}
-
-			// Service
-
-			File src1 = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
-			FileOutputStream fis1 = new FileOutputStream(src1);
-			Sheet sh2 = workbook.getSheet("Sheet1");
-			workbook.write(fis1);
-
-			if (serviceid.equals("PR")) // If match with PR, below code will execute
-			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkPR")));
-				driver.findElement(By.id("chkPR")).click();
-				String rate = driver.findElement(By.id("btnPR")).getText();
-				System.out.println(rate);
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				msg.append("PR Service - Actual Rate :" + rate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-			}
-
-			else if (serviceid.equals("S2")) // If match with S2, below code will execute
-			{
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkS2")));
-				driver.findElement(By.id("chkS2")).click();
-
-				String rate = driver.findElement(By.id("btnS2")).getText();
-				System.out.println(rate);
-				msg.append("S2 Service - Actual Rate :" + rate + "\n");
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-
-				}
-
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-			}
-
-			else if (serviceid.equals("EC")) // If match with EC, below code will execute
-			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
-				driver.findElement(By.id("chkSDRTS")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-				driver.findElement(By.id("chkEC")).click();
-				String rate = driver.findElement(By.id("btnEC")).getText();
-				System.out.println(rate);
-				msg.append("EC Service - Actual Rate :" + rate + "\n");
-
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-
-				}
-
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-			}
-
-			else if (serviceid.equals("DR")) // If match with DR, below code will execute
-			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDR")));
-				driver.findElement(By.id("chkDR")).click();
-
-				String rate = driver.findElement(By.id("btnDR")).getText();
-				System.out.println(rate);
-				msg.append("DR Service - Actual Rate :" + rate + "\n");
-
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-				} else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-			}
-
-			else if (serviceid.equals("DRV")) // If match with DRV, below code will execute
-			{
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDRV")));
-				driver.findElement(By.id("chkDRV")).click();
-
-				String rate = driver.findElement(By.id("btnDRV")).getText();
-				System.out.println(rate);
-				msg.append("DRV Service - Actual Rate :" + rate + "\n");
-
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-
-				}
-
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-			}
-
-			else if (serviceid.equals("AIR")) // If match with AIR, below code will execute
-			{
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkAIR")));
-				driver.findElement(By.id("chkAIR")).click();
-
-				String rate = driver.findElement(By.id("btnAIR")).getText();
-				System.out.println(rate);
-				msg.append("AIR Service - Actual Rate :" + rate + "\n");
-
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-
-				}
-
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-			}
-
-			else if (serviceid.equals("SDC"))// If match with SDC, below code will execute
-			{
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDC")));
-				driver.findElement(By.id("chkSDC")).click();
-
-				String rate = driver.findElement(By.id("btnSDC")).getText();
-				System.out.println(rate);
-				msg.append("SDC Service - Actual Rate :" + rate + "\n");
-
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					// workbook.write(fis1);
-					fis1.close();
-
-				}
-
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					// workbook.write(fis1);
-					fis1.close();
-				}
-
-			}
-
-			else if (serviceid.equals("FRG")) // If match with FRG, below code will execute
-			{
-
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkFRG")));
-				driver.findElement(By.id("chkFRG")).click();
-
-				String rate = driver.findElement(By.id("btnFRG")).getText();
-				System.out.println(rate);
-				msg.append("FRG Service - Actual Rate :" + rate + "\n");
-
-			}
-
-			if (i == 3) {
-				driver.findElement(By.id("chkSaveDim")).click();
-				Thread.sleep(1000);
-				driver.findElement(By.id("txtprofilename")).sendKeys("PKG-Dim");
-				Thread.sleep(1000);
-				JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-				jse1.executeScript("window.scrollBy(0,-700)", "");
-				driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
-				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
-			}
-
-			driver.findElement(By.id("cmdSubmit")).click(); // Create job button
-			Thread.sleep(2000);
-
-			// If alert pop-up exist, than accept.
-
-			if (isAlertPresent()) {
-				Alert alt = driver.switchTo().alert();
-				alt.accept();
-			}
-
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
-			driver.getTitle();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
-			driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click(); // Confirm from Shipment Summary screen.
-
 			try {
-				String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText(); // Get Shipment
-																										// tracking
-																										// number and
-																										// store in
-																										// variable
-				System.out.println("Shipment Tracking # " + VoucherNum);
-				sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
-				workbook.write(fis1);
-				fis1.close();
-				msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
-			} catch (Exception e) {
-				System.out.println("Write voucher in excel is working !!");
-			}
+				boolean recalc = driver.findElement(By.id("lblRecalMsg")).isDisplayed();
 
+				if (recalc == true) {
+					driver.findElement(By.id("lnkCalculate")).click();
+					wait.until(
+							ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
+				}
+
+				// Service
+
+				File src1 = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
+				FileOutputStream fis1 = new FileOutputStream(src1);
+				Sheet sh2 = workbook.getSheet("Sheet1");
+				workbook.write(fis1);
+
+				if (serviceid.equals("PR")) // If match with PR, below code will execute
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkPR")));
+					driver.findElement(By.id("chkPR")).click();
+					String rate = driver.findElement(By.id("btnPR")).getText();
+					System.out.println(rate);
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					msg.append("PR Service - Actual Rate :" + rate + "\n");
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+				}
+
+				else if (serviceid.equals("S2")) // If match with S2, below code will execute
+				{
+
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkS2")));
+					driver.findElement(By.id("chkS2")).click();
+
+					String rate = driver.findElement(By.id("btnS2")).getText();
+					System.out.println(rate);
+					msg.append("S2 Service - Actual Rate :" + rate + "\n");
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+				}
+
+				else if (serviceid.equals("EC")) // If match with EC, below code will execute
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
+					driver.findElement(By.id("chkSDRTS")).click();
+					driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+					driver.findElement(By.id("chkEC")).click();
+					String rate = driver.findElement(By.id("btnEC")).getText();
+					System.out.println(rate);
+					msg.append("EC Service - Actual Rate :" + rate + "\n");
+
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+				}
+
+				else if (serviceid.equals("DR")) // If match with DR, below code will execute
+				{
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDR")));
+					driver.findElement(By.id("chkDR")).click();
+
+					String rate = driver.findElement(By.id("btnDR")).getText();
+					System.out.println(rate);
+					msg.append("DR Service - Actual Rate :" + rate + "\n");
+
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+					} else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+				}
+
+				else if (serviceid.equals("DRV")) // If match with DRV, below code will execute
+				{
+
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDRV")));
+					driver.findElement(By.id("chkDRV")).click();
+
+					String rate = driver.findElement(By.id("btnDRV")).getText();
+					System.out.println(rate);
+					msg.append("DRV Service - Actual Rate :" + rate + "\n");
+
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+				}
+
+				else if (serviceid.equals("AIR")) // If match with AIR, below code will execute
+				{
+
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkAIR")));
+					driver.findElement(By.id("chkAIR")).click();
+
+					String rate = driver.findElement(By.id("btnAIR")).getText();
+					System.out.println(rate);
+					msg.append("AIR Service - Actual Rate :" + rate + "\n");
+
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+				}
+
+				else if (serviceid.equals("SDC"))// If match with SDC, below code will execute
+				{
+
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDC")));
+					driver.findElement(By.id("chkSDC")).click();
+
+					String rate = driver.findElement(By.id("btnSDC")).getText();
+					System.out.println(rate);
+					msg.append("SDC Service - Actual Rate :" + rate + "\n");
+
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						// workbook.write(fis1);
+						fis1.close();
+
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						// workbook.write(fis1);
+						fis1.close();
+					}
+
+				}
+
+				else if (serviceid.equals("FRG")) // If match with FRG, below code will execute
+				{
+
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkFRG")));
+					driver.findElement(By.id("chkFRG")).click();
+
+					String rate = driver.findElement(By.id("btnFRG")).getText();
+					System.out.println(rate);
+					msg.append("FRG Service - Actual Rate :" + rate + "\n");
+
+				}
+
+				if (i == 3) {
+					driver.findElement(By.id("chkSaveDim")).click();
+					Thread.sleep(1000);
+					driver.findElement(By.id("txtprofilename")).sendKeys("PKG-Dim");
+					Thread.sleep(1000);
+					JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+					jse1.executeScript("window.scrollBy(0,-700)", "");
+					driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
+					wait.until(
+							ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
+				}
+
+				driver.findElement(By.id("cmdSubmit")).click(); // Create job button
+				Thread.sleep(2000);
+
+				// If alert pop-up exist, than accept.
+
+				if (isAlertPresent()) {
+					Alert alt = driver.switchTo().alert();
+					alt.accept();
+				}
+
+				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
+				driver.getTitle();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
+				driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click(); // Confirm from Shipment Summary
+																					// screen.
+
+				try {
+					String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText(); // Get
+																											// Shipment
+																											// tracking
+																											// number
+																											// and
+																											// store in
+																											// variable
+					System.out.println("Shipment Tracking # " + VoucherNum);
+					sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
+					workbook.write(fis1);
+					fis1.close();
+					msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
+				} catch (Exception e) {
+					System.out.println("Write voucher in excel is working !!");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Recalculate message is not displayed");
+			}
 			// Send Email
 		}
 		String subject = "Selenium Automation Script:FedEx Crud operation";
 		try {
-			basePackage.Email.sendMail("Ravina.prajapati@samyak.com", subject, msg.toString(), "");
+			basePackage.Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+					msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(CrudOperation.class.getName()).log(Level.SEVERE, null, ex);
 		}
