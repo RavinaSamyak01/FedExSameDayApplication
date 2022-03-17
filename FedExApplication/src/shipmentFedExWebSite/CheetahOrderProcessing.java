@@ -24,10 +24,10 @@ public class CheetahOrderProcessing extends BaseInit {
 	static StringBuilder msg = new StringBuilder();
 
 	@Test
-	public static void cheetahOrderPro() throws Exception {
+	public void cheetahOrderPro() throws Exception {
 
 		Robot r = new Robot();
-		r.keyPress(KeyEvent.VK_F11);
+		//r.keyPress(KeyEvent.VK_F11);
 
 		// driver.get("http://172.16.21.70:9077/publicServiceWebapplication/FlashWsV2.aspx");
 		driver.get("http://10.20.104.82:9077/publicServiceWebapplication/FlashWsV2.aspx");
@@ -42,7 +42,8 @@ public class CheetahOrderProcessing extends BaseInit {
 		Sheet sh1 = workbook.getSheet("Sheet1");
 		DataFormatter formatter = new DataFormatter();
 
-		for (int i = 1; i < 8; i++) {
+		// 8
+		for (int i = 1; i < 2; i++) {
 
 			if (i == 1) // Normal Order Processing
 			{
@@ -594,12 +595,12 @@ public class CheetahOrderProcessing extends BaseInit {
 
 		// asharma@samyak.com,pgandhi@samyak.com,sdas@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
 		try {
-			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+					msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(ShipmentCreation.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		driver.close();
 	}
 
 	public static void confirmEd() throws Exception // CONFIRMED

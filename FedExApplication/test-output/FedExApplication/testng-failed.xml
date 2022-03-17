@@ -3,73 +3,32 @@
 <suite parallel="none" name="Failed suite [FedExApplication]">
   <test parallel="none" name="Shipment Creation(failed)">
     <classes>
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <methods>
-          <include name="startUp"/>
-          <include name="end"/>
-        </methods>
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
       <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
           <include name="shipmentCreation"/>
         </methods>
       </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
-    </classes>
-  </test> <!-- Shipment Creation(failed) -->
-  <test parallel="none" name="Cheetah Order Processing(failed)">
-    <classes>
       <class name="shipmentFedExWebSite.CheetahOrderProcessing">
         <methods>
-          <include name="cheetahOrderPro"/>
+          <include name="startUp"/>
+          <include name="end"/>
         </methods>
       </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <methods>
-          <include name="startUp"/>
-          <include name="end"/>
-        </methods>
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
     </classes>
-  </test> <!-- Cheetah Order Processing(failed) -->
-  <test parallel="none" name="Master Screens(failed)">
-    <classes>
-      <class name="com.fdxMasterScreens.BaseClass">
-        <methods>
-          <include name="baseMethods"/>
-        </methods>
-      </class> <!-- com.fdxMasterScreens.BaseClass -->
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <methods>
-          <include name="startUp"/>
-          <include name="end"/>
-        </methods>
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
-    </classes>
-  </test> <!-- Master Screens(failed) -->
-  <test parallel="none" name="Crud Operations(failed)">
-    <classes>
-      <class name="shipmentFedExWebSite.CrudOperation">
-        <methods>
-          <include name="crudOperations"/>
-        </methods>
-      </class> <!-- shipmentFedExWebSite.CrudOperation -->
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <methods>
-          <include name="startUp"/>
-          <include name="end"/>
-        </methods>
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
-    </classes>
-  </test> <!-- Crud Operations(failed) -->
+  </test> <!-- Shipment Creation(failed) -->
   <test parallel="none" name="Broken Links(failed)">
     <classes>
       <class name="com.fdxMasterScreens.BrokenLinks">
         <methods>
-          <include name="startUp"/>
-          <include name="end"/>
           <include name="brokenLinks"/>
         </methods>
       </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
+        <methods>
+          <include name="startUp"/>
+          <include name="end"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
     </classes>
   </test> <!-- Broken Links(failed) -->
 </suite> <!-- Failed suite [FedExApplication] -->

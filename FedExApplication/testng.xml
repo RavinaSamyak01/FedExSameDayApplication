@@ -12,12 +12,6 @@
 	</test>
 
 
-	<test thread-count="5" name="Cheetah Order Processing">
-		<classes>
-			<class name="shipmentFedExWebSite.CheetahOrderProcessing"></class>
-		</classes>
-	</test>
-
 	<test thread-count="5" name="Master Screens">
 		<classes>
 			<class name="com.fdxMasterScreens.BaseClass"></class>
@@ -33,6 +27,11 @@
 	<test thread-count="5" name="Broken Links">
 		<classes>
 			<class name="com.fdxMasterScreens.BrokenLinks"></class>
+		</classes>
+	</test>
+	<test thread-count="5" name="Cheetah Order Processing">
+		<classes>
+			<class name="shipmentFedExWebSite.CheetahOrderProcessing"></class>
 		</classes>
 	</test>
 

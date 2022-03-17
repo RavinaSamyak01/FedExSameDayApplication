@@ -18,10 +18,7 @@ public class BaseClass extends BaseInit {
 	static StringBuilder msg = new StringBuilder();
 
 	@Test
-	public static void baseMethods() throws Exception, IOException {
-
-		// --Login
-		login();
+	public void baseMethods() throws Exception, IOException {
 
 		// --Shipment Tracking - Single/ multiple=Done
 		TrackShipment.trckShipment();
@@ -106,7 +103,8 @@ public class BaseClass extends BaseInit {
 		String subject = "Selenium Automation Script: STAGING FedEx Master Screens verification";
 		// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com,kbrahmbhatt@samyak.com
 		try {
-			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+					msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(ShipmentCreation.class.getName()).log(Level.SEVERE, null, ex);
 		}

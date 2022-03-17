@@ -17,7 +17,7 @@ public class BrokenLinks extends BaseInit {
 
 	@Test
 	public void brokenLinks() {
-		login();
+
 		List<WebElement> links = driver.findElements(By.tagName("a"));
 
 		System.out.println("Total links are " + links.size());

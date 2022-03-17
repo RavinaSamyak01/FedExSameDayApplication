@@ -24,14 +24,14 @@ public class BaseInit {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		// options.addArguments("headless");
-		options.addArguments("headless");
+		// options.addArguments("headless");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
 		options.addArguments("--proxy-bypass-list=*");
 		options.addArguments("--disable-extensions");
 		options.addArguments("--no-sandbox");
-		options.addArguments("--headless");
+		// options.addArguments("--headless");
 		options.addArguments("window-size=1366x788");
 		capabilities.setPlatform(Platform.ANY);
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -55,10 +55,14 @@ public class BaseInit {
 		System.out.println("Current height: " + newHeight);
 		System.out.println("Current width: " + newWidth);
 
+		// --Login
+		login();
+
 	}
 
-	public static void login() {
+	public void login() {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		driver.get("https://staging.fedexsameday.com/");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
 		driver.findElement(By.id("Header_fdx_main_liLogin")).click();
 		driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
@@ -68,6 +72,7 @@ public class BaseInit {
 		driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys("samyak10");
 
 		driver.findElement(By.id("Header_fdx_main_cmdMenuLogin")).click();
+		System.out.println("Login done");
 		driver.getTitle();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"fdx-o-grid\"]")));
 	}

@@ -29,13 +29,11 @@ public class RateVerification extends BaseInit {
 	static StringBuilder msg = new StringBuilder();
 
 	@Test
-	public static void prService() throws Exception {
+	public void prService() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
-		// --login
-		login();
-
 		// --get the data
 		try {
+			System.out.println("Rate Verification start");
 			File src = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
 			FileInputStream fis = new FileInputStream(src);
 			Workbook workbook = WorkbookFactory.create(fis);
@@ -45,7 +43,8 @@ public class RateVerification extends BaseInit {
 			File src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
-			for (int i = 1; i < 31; i++) {
+			//31
+			for (int i = 1; i <2 ; i++) {
 				driver.getTitle();
 				pause(1000);
 

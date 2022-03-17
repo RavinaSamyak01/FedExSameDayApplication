@@ -28,10 +28,8 @@ public class CrudOperation extends BaseInit {
 	static StringBuilder msg = new StringBuilder();
 
 	@Test
-	public static void crudOperations() throws Exception {
-		// --Login
-		login();
-
+	public void crudOperations() throws Exception {
+		
 		// Read data from Excel
 		File src = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
 		FileInputStream fis = new FileInputStream(src);
