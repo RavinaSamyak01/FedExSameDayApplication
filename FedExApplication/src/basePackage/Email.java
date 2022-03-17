@@ -17,8 +17,8 @@ public class Email {
 		Transport transport = null;
 		boolean success = false;
 
-		String fromAddress = "//ravina.prajapati@samyak.com";
-		String bccAddresses = "//ravina.prajapati@samyak.com";
+		String fromAddress = "ravina.prajapati@samyak.com";
+		String bccAddresses = "ravina.prajapati@samyak.com";
 		// "pdoshi@samyak.com,kunjan.modi@samyak.com,pgandhi@samyak.com,asharma@samyak.com
 		// asharma@samyak.com" ;
 		// String msg = " " ;

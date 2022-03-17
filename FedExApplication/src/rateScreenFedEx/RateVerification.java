@@ -44,7 +44,7 @@ public class RateVerification extends BaseInit {
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
 			//31
-			for (int i = 1; i <2 ; i++) {
+			for (int i = 1; i <31 ; i++) {
 				driver.getTitle();
 				pause(1000);
 
