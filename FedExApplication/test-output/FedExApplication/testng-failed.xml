@@ -16,19 +16,4 @@
       </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
     </classes>
   </test> <!-- Shipment Creation(failed) -->
-  <test parallel="none" name="Broken Links(failed)">
-    <classes>
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <methods>
-          <include name="brokenLinks"/>
-        </methods>
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
-      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
-        <methods>
-          <include name="startUp"/>
-          <include name="end"/>
-        </methods>
-      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
-    </classes>
-  </test> <!-- Broken Links(failed) -->
 </suite> <!-- Failed suite [FedExApplication] -->

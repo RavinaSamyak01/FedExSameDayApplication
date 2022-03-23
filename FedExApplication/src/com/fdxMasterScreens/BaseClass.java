@@ -24,22 +24,22 @@ public class BaseClass extends BaseInit {
 		TrackShipment.trckShipment();
 
 		// --View Invoice=Done
-		ViewInvoices.viewInv();
+		// ViewInvoices.viewInv();
 
 		// --My Preferences=Done
-		MyPreferences.myPref();
+		// MyPreferences.myPref();
 
 		// --My Profile=Done
-		MyProfile.myProfile();
+		// MyProfile.myProfile();
 
 		// --Address Book=Done
-		AddressBook.addrBook();
+		// AddressBook.addrBook();
 
 		// --Activity Report=Done, not found tracking number
-		ActivityReport.actReport();
+		// ActivityReport.actReport();
 
 		// --CustomDataDownload=DOne
-		CustomDataDownload.custmDataDown();
+		// CustomDataDownload.custmDataDown();
 
 		// --LogOut
 		/*
