@@ -16,6 +16,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -29,7 +31,8 @@ public class ShipmentCreation extends BaseInit {
 
 	@Test
 	public void shipmentCreation() throws Exception {
-	
+		Actions act = new Actions(driver);
+
 		// Read data from Excel
 		System.out.println("Starting Shipment Creation");
 		File src = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
@@ -38,7 +41,7 @@ public class ShipmentCreation extends BaseInit {
 		Sheet sh1 = workbook.getSheet("Sheet1");
 		// int rcount = sh1.getLastRowNum();
 
-		for (int i = 1; i < 26; i++) {
+		for (int i = 22; i < 26; i++) {
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			Thread.sleep(5000);
 			// --click on shipping menu
@@ -51,8 +54,9 @@ public class ShipmentCreation extends BaseInit {
 
 			DataFormatter formatter = new DataFormatter();
 
-			if (driver.getPageSource().contains("Change Address")) // If my preferences has setup From Address
-			{
+			if (driver.getPageSource().contains("Change Address")) {
+				// If my preferences has setup From Address
+
 				driver.findElement(By.id("cmdChangePUAddr")).click();
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("pnlFullPUAddr")));
 			}
@@ -180,9 +184,7 @@ public class ShipmentCreation extends BaseInit {
 				driver.findElement(By.id("order_by")).sendKeys("Abhishek Sharma");
 				driver.findElement(By.id("order_phone")).clear();
 				driver.findElement(By.id("order_phone")).sendKeys("1112223333");
-			}
-
-			else {
+			} else {
 
 				driver.findElement(By.id("rdbNo")).click();
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("multiship")));
@@ -235,9 +237,8 @@ public class ShipmentCreation extends BaseInit {
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
 			workbook.write(fis1);
-
-			if (serviceid.equals("PR")) // If match with PR, below code will execute
-			{
+			// If match with PR, below code will execute
+			if (serviceid.equals("PR")) {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkPR")));
 				driver.findElement(By.id("chkPR")).click();
@@ -259,9 +260,8 @@ public class ShipmentCreation extends BaseInit {
 				}
 
 			}
-
-			else if (serviceid.equals("S2")) // If match with S2, below code will execute
-			{
+			// If match with S2, below code will execute
+			else if (serviceid.equals("S2")) {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkS2")));
 				driver.findElement(By.id("chkS2")).click();
@@ -284,10 +284,7 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 
-			}
-
-			else if (serviceid.equals("EC")) // If match with EC, below code will execute
-			{
+			} else if (serviceid.equals("EC")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
 				driver.findElement(By.id("chkSDRTS")).click();
 				Thread.sleep(2000);
@@ -310,10 +307,7 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 
-			}
-
-			else if (serviceid.equals("DR")) // If match with DR, below code will execute
-			{
+			} else if (serviceid.equals("DR")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDR")));
 				driver.findElement(By.id("chkDR")).click();
 				Thread.sleep(2000);
@@ -332,11 +326,10 @@ public class ShipmentCreation extends BaseInit {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
 					fis1.close();
 				}
-			}
-
-			else if (serviceid.equals("DRV")) // If match with DRV, below code will execute
-			{
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDRV")));
+			} else if (serviceid.equals("DRV")) {
+				WebElement ship = driver.findElement(By.id("cmdSubmit"));
+				act.moveToElement(ship).build().perform();
+				Thread.sleep(7000);
 
 				driver.findElement(By.id("chkDRV")).click();
 				Thread.sleep(2000);
@@ -359,10 +352,7 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 
-			}
-
-			else if (serviceid.equals("AIR")) // If match with AIR, below code will execute
-			{
+			} else if (serviceid.equals("AIR")) {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkAIR")));
 				driver.findElement(By.id("chkAIR")).click();
@@ -385,10 +375,7 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 
-			}
-
-			else if (serviceid.equals("SDC"))// If match with SDC, below code will execute
-			{
+			} else if (serviceid.equals("SDC")) {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDC")));
 				driver.findElement(By.id("chkSDC")).click();
@@ -411,10 +398,7 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 
-			}
-
-			else if (serviceid.equals("FRG")) // If match with FRG, below code will execute
-			{
+			} else if (serviceid.equals("FRG")) {
 
 				driver.findElement(By.id("chkFRG")).click();
 				Thread.sleep(2000);
@@ -425,7 +409,9 @@ public class ShipmentCreation extends BaseInit {
 
 			}
 
-			driver.findElement(By.id("cmdSubmit")).click(); // Create job button
+			WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
+			act.moveToElement(SHipBTN).click().perform();
+			// Create job button
 			Thread.sleep(5000);
 			// If alert pop-up exist, than accept.
 

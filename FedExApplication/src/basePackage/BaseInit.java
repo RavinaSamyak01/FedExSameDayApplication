@@ -23,16 +23,15 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		// options.addArguments("headless");
-		// options.addArguments("headless");
+		// options.addArguments("--headless");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
 		options.addArguments("--proxy-bypass-list=*");
 		options.addArguments("--disable-extensions");
 		options.addArguments("--no-sandbox");
-		// options.addArguments("--headless");
-		options.addArguments("window-size=1366x788");
+		options.addArguments("--start-maximized");
+		// options.addArguments("window-size=1366x788");
 		capabilities.setPlatform(Platform.ANY);
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		driver = new ChromeDriver(options);
@@ -43,18 +42,6 @@ public class BaseInit {
 		System.out.println("Current height: " + height);
 		System.out.println("Current width: " + width);
 		System.out.println("window size==" + driver.manage().window().getSize());
-
-		// Set new size
-		Dimension newDimension = new Dimension(1366, 788);
-		driver.manage().window().setSize(newDimension);
-
-		// Getting
-		Dimension newSetDimension = driver.manage().window().getSize();
-		int newHeight = newSetDimension.getHeight();
-		int newWidth = newSetDimension.getWidth();
-		System.out.println("Current height: " + newHeight);
-		System.out.println("Current width: " + newWidth);
-
 		// --Login
 		login();
 
