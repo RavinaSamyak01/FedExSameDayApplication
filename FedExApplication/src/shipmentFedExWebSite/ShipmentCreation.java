@@ -327,29 +327,45 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 			} else if (serviceid.equals("DRV")) {
-				WebElement ship = driver.findElement(By.id("cmdSubmit"));
-				act.moveToElement(ship).build().perform();
-				Thread.sleep(7000);
+				WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
+				act.moveToElement(SHipBTN).click().perform();
+				Thread.sleep(10000);
 
-				driver.findElement(By.id("chkDRV")).click();
-				Thread.sleep(2000);
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
+					WebElement ACRestriction = driver.findElement(By.id("lblErrMessage"));
+					act.moveToElement(ACRestriction).build().perform();
+					if (ACRestriction.isDisplayed()) {
+						String ErrMsg = driver.findElement(By.id("lblErrMessage")).getText();
+						System.out.println("Validation Message is displayed==" + ErrMsg);
+						msg.append("Validation Message is displayed==" + ErrMsg + "\n");
+						System.out.println("Account is restricted, Please Active the account");
+						msg.append("Account is restricted, Please Active the account" + "\n");
 
-				String rate = driver.findElement(By.id("btnDRV")).getText();
-				System.out.println(rate);
-				msg.append("DRV Service - Actual Rate :" + rate + "\n");
+					}
 
-				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				} catch (Exception ACRestriction) {
+					driver.findElement(By.id("chkDRV")).click();
+					Thread.sleep(2000);
 
-				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
-					fis1.close();
+					String rate = driver.findElement(By.id("btnDRV")).getText();
+					System.out.println(rate);
+					msg.append("DRV Service - Actual Rate :" + rate + "\n");
 
-				}
+					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					sh2.getRow(i).createCell(16).setCellValue(rate);
 
-				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
-					fis1.close();
+					if (!rate.equals(ExpectedRate)) {
+						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						fis1.close();
+
+					}
+
+					else {
+						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						fis1.close();
+					}
+
 				}
 
 			} else if (serviceid.equals("AIR")) {
@@ -412,27 +428,42 @@ public class ShipmentCreation extends BaseInit {
 			WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
 			act.moveToElement(SHipBTN).click().perform();
 			// Create job button
-			Thread.sleep(5000);
-			// If alert pop-up exist, than accept.
+			Thread.sleep(10000);
 
-			if (isAlertPresent()) {
-				Alert alt = driver.switchTo().alert();
-				alt.accept();
+			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
+				WebElement ACRestriction = driver.findElement(By.id("lblErrMessage"));
+				act.moveToElement(ACRestriction).build().perform();
+				if (ACRestriction.isDisplayed()) {
+					String ErrMsg = driver.findElement(By.id("lblErrMessage")).getText();
+					System.out.println("Validation Message is displayed==" + ErrMsg);
+					msg.append("Validation Message is displayed==" + ErrMsg + "\n");
+					System.out.println("Account is restricted, Please Active the account");
+					msg.append("Account is restricted, Please Active the account" + "\n");
+
+				}
+
+			} catch (Exception ACRestriction) {
+				if (isAlertPresent()) {
+					Alert alt = driver.switchTo().alert();
+					alt.accept();
+				}
+				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
+				// Confirm from Shipment Summary screen.
+				driver.getTitle();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
+				driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click();
+				Thread.sleep(5000);
+
+				// Get Shipment tracking number and store in variable
+				String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText();
+				System.out.println("Shipment Tracking # " + VoucherNum);
+
+				msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
+				sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
+				fis1.close();
 			}
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
-			// Confirm from Shipment Summary screen.
-			driver.getTitle();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
-			driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click();
-			Thread.sleep(5000);
-
-			// Get Shipment tracking number and store in variable
-			String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText();
-			System.out.println("Shipment Tracking # " + VoucherNum);
-
-			msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
-			sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
-			fis1.close();
+			// If alert pop-up exist, than accept.
 
 			// Send Email
 		}

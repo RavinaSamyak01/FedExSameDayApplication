@@ -2,24 +2,24 @@
 <testng-results total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-24T11:54:45Z" name="Default suite" finished-at="2022-03-24T11:59:36Z" duration-ms="291024">
+  <suite started-at="2022-03-28T06:35:43Z" name="Default suite" finished-at="2022-03-28T06:42:27Z" duration-ms="403953">
     <groups>
     </groups>
-    <test started-at="2022-03-24T11:54:45Z" name="Default test" finished-at="2022-03-24T11:59:36Z" duration-ms="291024">
-      <class name="shipmentFedExWebSite.ShipmentCreation">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@68df9280]" started-at="2022-03-24T17:24:14Z" name="startUp" finished-at="2022-03-24T17:24:45Z" duration-ms="30883" status="PASS">
+    <test started-at="2022-03-28T06:35:43Z" name="Default test" finished-at="2022-03-28T06:42:27Z" duration-ms="403953">
+      <class name="shipmentFedExWebSite.CrudOperation">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.CrudOperation@12359a82]" started-at="2022-03-28T12:05:22Z" name="startUp" finished-at="2022-03-28T12:05:43Z" duration-ms="20455" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@68df9280]" started-at="2022-03-24T17:24:45Z" name="shipmentCreation" finished-at="2022-03-24T17:29:36Z" duration-ms="290999" status="PASS">
+        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@12359a82]" started-at="2022-03-28T12:05:43Z" name="crudOperations" finished-at="2022-03-28T12:12:27Z" duration-ms="403927" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- shipmentCreation -->
-        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@68df9280]" started-at="2022-03-24T17:29:36Z" name="end" finished-at="2022-03-24T17:29:37Z" duration-ms="821" status="PASS">
+        </test-method> <!-- crudOperations -->
+        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.CrudOperation@12359a82]" started-at="2022-03-28T12:12:27Z" name="end" finished-at="2022-03-28T12:12:28Z" duration-ms="919" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
-      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+      </class> <!-- shipmentFedExWebSite.CrudOperation -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -16,6 +16,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -29,7 +31,8 @@ public class CrudOperation extends BaseInit {
 
 	@Test
 	public void crudOperations() throws Exception {
-		
+		Actions act = new Actions(driver);
+
 		// Read data from Excel
 		File src = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
 		FileInputStream fis = new FileInputStream(src);
@@ -515,6 +518,22 @@ public class CrudOperation extends BaseInit {
 
 				driver.findElement(By.id("cmdSubmit")).click(); // Create job button
 				Thread.sleep(2000);
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
+					WebElement ACRestriction = driver.findElement(By.id("lblErrMessage"));
+					act.moveToElement(ACRestriction).build().perform();
+					if (ACRestriction.isDisplayed()) {
+						String ErrMsg = driver.findElement(By.id("lblErrMessage")).getText();
+						System.out.println("Validation Message is displayed==" + ErrMsg);
+						msg.append("Validation Message is displayed==" + ErrMsg + "\n");
+						System.out.println("Account is restricted, Please Active the account");
+						msg.append("Account is restricted, Please Active the account" + "\n");
+
+					}
+
+				} catch (Exception ACRestriction) {
+
+				}
 
 				// If alert pop-up exist, than accept.
 
