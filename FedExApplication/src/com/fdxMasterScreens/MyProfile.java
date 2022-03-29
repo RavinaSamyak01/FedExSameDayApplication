@@ -31,7 +31,7 @@ public class MyProfile extends BaseClass {
 		waitForVisibilityOfElement(By.id("lblErrMessage1"), 5);
 
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\MyProfile.png"));
+		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\MyProfile.png"));
 		System.out.println("My Profile Test Case Executed successfully !!!");
 	}
 

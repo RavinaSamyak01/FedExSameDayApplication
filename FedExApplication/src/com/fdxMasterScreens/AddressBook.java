@@ -116,13 +116,13 @@ public class AddressBook extends BaseInit {
 				opt1.selectByVisibleText("No, don't clear old addresses");
 
 				File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\AddressImport01.png"));
+				FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\AddressImport01.png"));
 
 				driver.findElement(By.id("cmdUpload")).click();
 				Thread.sleep(5000);
 
 				File scrFile1 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile1, new File(".\\src\\TestFiles\\AddressImport02.png"));
+				FileUtils.copyFile(scrFile1, new File(".\\src\\Screenshots\\AddressImport02.png"));
 				Thread.sleep(3000);
 				driver.findElement(By.id("cmdProcess")).click();
 				System.out.println("Address Import with Comma Delimeter : PASS");

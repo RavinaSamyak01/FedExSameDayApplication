@@ -34,7 +34,7 @@ public class TrackShipment extends BaseClass {
 				waitForVisibilityOfElement(By.xpath("//*[@id=\"pnlDetails\"]//table[3]"), 5);
 
 				File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\Single_ShipmentTracking.png"));
+				FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\Single_ShipmentTracking.png"));
 
 			}
 			if (i == 2) {
@@ -62,7 +62,7 @@ public class TrackShipment extends BaseClass {
 				waitForVisibilityOfElement(By.xpath("//*[@id=\"pnlDetails\"]//table[3]"), 5);
 
 				File scrFile2 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-				FileUtils.copyFile(scrFile2, new File(".\\src\\TestFiles\\Multiple_ShipmentTracking_2.png"));
+				FileUtils.copyFile(scrFile2, new File(".\\src\\Screenshots\\Multiple_ShipmentTracking_2.png"));
 
 			}
 		}

@@ -32,7 +32,7 @@ public class MyPreferences extends BaseClass {
 		waitForVisibilityOfElement(By.id("lblErrMessage1"), 5);
 
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\MyPreferences.png"));
+		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\MyPreferences.png"));
 		System.out.println("My Preferences Test Case Executed successfully !!!");
 
 	}

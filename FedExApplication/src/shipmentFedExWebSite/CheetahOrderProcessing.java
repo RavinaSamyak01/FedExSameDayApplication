@@ -1,7 +1,5 @@
 package shipmentFedExWebSite;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.logging.Level;
@@ -26,7 +24,6 @@ public class CheetahOrderProcessing extends BaseInit {
 	@Test
 	public void cheetahOrderPro() throws Exception {
 
-		Robot r = new Robot();
 		//r.keyPress(KeyEvent.VK_F11);
 
 		// driver.get("http://172.16.21.70:9077/publicServiceWebapplication/FlashWsV2.aspx");

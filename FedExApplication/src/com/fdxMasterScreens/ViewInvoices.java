@@ -22,7 +22,7 @@ public class ViewInvoices extends BaseClass {
 		Thread.sleep(5000);
 
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\InvoiceHistory.png"));
+		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\InvoiceHistory.png"));
 		System.out.println("Invoice History display Proper !!!");
 	}
 

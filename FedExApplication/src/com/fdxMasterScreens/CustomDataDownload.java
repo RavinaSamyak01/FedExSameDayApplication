@@ -75,7 +75,7 @@ public class CustomDataDownload extends BaseClass {
 		driver.findElement(By.id("imgbtnGenerate")).click();
 		Thread.sleep(5000);
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\CustomDataDownload.png"));
+		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\CustomDataDownload.png"));
 
 		System.out.println("Generate Report !! : PASS");
 		driver.findElement(By.id("Back")).click();
@@ -121,7 +121,7 @@ public class CustomDataDownload extends BaseClass {
 		driver.findElement(By.id("imgbtnGenerate")).click();
 		Thread.sleep(5000);
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\CustomDataDownload_AllColumns.png"));
+		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\CustomDataDownload_AllColumns.png"));
 
 		System.out.println("Generate Report with All Columns !! : PASS");
 	}

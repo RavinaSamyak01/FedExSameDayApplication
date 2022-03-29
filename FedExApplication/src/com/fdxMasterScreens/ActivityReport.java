@@ -49,7 +49,7 @@ public class ActivityReport extends BaseInit {
 		waitForVisibilityOfElement(By.id("cmdRpt"), 5);
 
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\ActivitySummary.png"));
+		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\ActivitySummary.png"));
 		System.out.println("Activity Summary Test Case Executed successfully !!!");
 
 		try {

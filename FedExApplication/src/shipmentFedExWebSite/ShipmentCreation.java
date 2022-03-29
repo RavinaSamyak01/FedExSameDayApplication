@@ -3,10 +3,14 @@ package shipmentFedExWebSite;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -41,9 +45,8 @@ public class ShipmentCreation extends BaseInit {
 		Sheet sh1 = workbook.getSheet("Sheet1");
 		// int rcount = sh1.getLastRowNum();
 
-		for (int i = 22; i < 26; i++) {
+		for (int i = 1; i < 26; i++) {
 			WebDriverWait wait = new WebDriverWait(driver, 50);
-			Thread.sleep(5000);
 			// --click on shipping menu
 			driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
 			Thread.sleep(2000);
@@ -159,7 +162,7 @@ public class ShipmentCreation extends BaseInit {
 			// Generate random numbers
 			Random rn = new Random();
 			int pval = Integer.parseInt(pieces);
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 			if (pval == 1) {
 				int ans;
 				if (serviceid.equals("FRG")) {
@@ -329,7 +332,7 @@ public class ShipmentCreation extends BaseInit {
 			} else if (serviceid.equals("DRV")) {
 				WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
 				act.moveToElement(SHipBTN).click().perform();
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 
 				try {
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
@@ -428,7 +431,7 @@ public class ShipmentCreation extends BaseInit {
 			WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
 			act.moveToElement(SHipBTN).click().perform();
 			// Create job button
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 
 			try {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
@@ -462,11 +465,78 @@ public class ShipmentCreation extends BaseInit {
 				msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
 				sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
 				fis1.close();
+
+				// --copy data to cheetah file
+				// --Initialize cheetah file
+				File src2 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+				FileInputStream fis3 = new FileInputStream(src2);
+				Workbook workbook1 = WorkbookFactory.create(fis3);
+				FileOutputStream fis2 = new FileOutputStream(src2);
+				Sheet sh3 = workbook1.getSheet("Sheet1");
+
+				if (i == 4) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 5) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 6) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 12) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 13) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 14) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 15) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 16) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i > 21) {
+					System.out.println("No need to add tracking after row 20");
+				} else {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					System.out.println("set the Tracking No");
+				}
+				workbook1.write(fis2);
+				fis2.close();
 			}
 			// If alert pop-up exist, than accept.
 
-			// Send Email
 		}
+
 		String subject = "Selenium Automation Script : STAGING FedEx Shipment Creation";
 		try {
 			// asharma@samyak.com,pgandhi@samyak.com,sdas@samyak.com,byagnik@samyak.com,pdoshi@samyak.com,kbrahmbhatt@samyak.com
@@ -503,5 +573,82 @@ public class ShipmentCreation extends BaseInit {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(objLocator));
+	}
+
+	public static void copyData() throws EncryptedDocumentException, InvalidFormatException, IOException {
+
+		// Read data from Excel
+		File srcCopy = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
+		FileInputStream fisCopy = new FileInputStream(srcCopy);
+		Workbook workbookCopy = WorkbookFactory.create(fisCopy);
+		Sheet CopySheet = workbookCopy.getSheet("Sheet1");
+		// int rcount = sh1.getLastRowNum();
+
+		// --Initialize cheetah file
+		File srcWrite = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+		FileInputStream FInwrite = new FileInputStream(srcWrite);
+		Workbook workbookWrite = WorkbookFactory.create(FInwrite);
+
+		File Outsrc = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+		FileOutputStream fisout = new FileOutputStream(Outsrc);
+		Sheet shout = workbookWrite.getSheet("Sheet1");
+		workbookWrite.write(fisout);
+
+		for (int i = 1; i < 15; i++) {
+			DataFormatter formatter = new DataFormatter();
+			// get trackingNo
+			String TrackingNo = formatter.formatCellValue(CopySheet.getRow(i).getCell(15));
+			System.out.println("Shipment Tracking No==" + TrackingNo);
+			System.out.println("get the Tracking No");
+
+			// set trackingNo
+			shout.getRow(i).createCell(2).setCellValue(TrackingNo);
+			System.out.println("Shipment Tracking No==" + TrackingNo);
+			System.out.println("set the Tracking No");
+			if (i == 4) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 5) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 6) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 12) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 13) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 14) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 15) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 16) {
+				// set trackingNo
+				shout.getRow(i).createCell(3).setCellValue(TrackingNo);
+				System.out.println("Shipment Tracking No==" + TrackingNo);
+				System.out.println("set the Tracking No in PackageNo");
+			}
+		}
+		fisout.close();
 	}
 }
