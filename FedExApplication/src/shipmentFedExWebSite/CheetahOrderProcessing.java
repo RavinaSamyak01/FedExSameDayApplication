@@ -10,6 +10,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,8 +25,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	@Test
 	public void cheetahOrderPro() throws Exception {
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
+		msg.append("Cheetah Order Processing Start - " + "\n\n");
 
-		//r.keyPress(KeyEvent.VK_F11);
+		// r.keyPress(KeyEvent.VK_F11);
 
 		// driver.get("http://172.16.21.70:9077/publicServiceWebapplication/FlashWsV2.aspx");
 		driver.get("http://10.20.104.82:9077/publicServiceWebapplication/FlashWsV2.aspx");
@@ -118,7 +123,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 5) // Pickup Exception
 			{
-
+				msg.append("CASE5: PickupException :- " + "\n");
 				int l = 5;
 				int m = 5;
 				String puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
@@ -156,6 +161,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- PAT : PASS " + "\n");
+						} else {
+							msg.append("      -- PAT : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
 
 					pickedUp();
 					pustatusUpdate();
@@ -201,6 +225,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- PPN : PASS " + "\n");
+						} else {
+							msg.append("      -- PPN : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
 
 					pickedUp();
 					pustatusUpdate();
@@ -243,6 +286,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 6) // Delivery Exception
 			{
+				msg.append("CASE6: DeliveryException :- " + "\n");
 
 				int n = 12;
 				int o = 12;
@@ -282,6 +326,25 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
 
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- DBA : PASS " + "\n");
+						} else {
+							msg.append("      -- DBA : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
 					deliverEd();
 					dlstatusUpdate();
 				}
@@ -323,6 +386,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- DCR : PASS " + "\n");
+						} else {
+							msg.append("      -- DCR : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
 
 					deliverEd();
 					dlstatusUpdate();
@@ -365,6 +447,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- DNO : PASS " + "\n");
+						} else {
+							msg.append("      -- DNO : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
 
 					deliverEd();
 					dlstatusUpdate();
@@ -407,6 +508,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- DRD : PASS " + "\n");
+						} else {
+							msg.append("      -- DRD : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
 
 					deliverEd();
 					dlstatusUpdate();
@@ -467,6 +587,26 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
 
+					// --Wait for status
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+					act.moveToElement(RespStatus).build().perform();
+					if (RespStatus.isDisplayed()) {
+						String ResponseStatus = RespStatus.getText();
+						System.out.println("Response Message==" + ResponseStatus + "\n");
+						if (ResponseStatus.contains("success")) {
+							msg.append("      -- SDRTS2 : PASS " + "\n");
+						} else {
+							msg.append("      -- SDRTS2 : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus+ "\n");
+
+						}
+					} else {
+						System.out.println("Response Message is not displayed");
+						msg.append("Response Message is not displayed");
+
+					}
+
 					deliverEd();
 					dlstatusUpdate();
 				}
@@ -474,6 +614,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 7) // WAIT TIME
 			{
+				msg.append("CASE7: WAIT TIME :- " + "\n");
 
 				int s = 18;
 				int t = 18;
@@ -498,6 +639,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					deliverEd();
 					dlstatusUpdate();
+					msg.append("      -- PICKUP_WAIT_TIME   : PASS " + "\n");
+
 				}
 
 				s++;
@@ -522,6 +665,8 @@ public class CheetahOrderProcessing extends BaseInit {
 					waitTimedl();
 					deliverEd();
 					dlstatusUpdate();
+					msg.append("      -- DELIVERY_WAIT_TIME : PASS " + "\n");
+
 				}
 
 				s++;
@@ -546,6 +691,8 @@ public class CheetahOrderProcessing extends BaseInit {
 					waitTimertn();
 					deliverEd();
 					dlstatusUpdate();
+					msg.append("      -- RETURN_WAIT_TIME   : PASS " + "\n\n");
+
 				}
 
 				s++;
@@ -565,26 +712,6 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 		System.out.println("Cheetah Process END----");
 
-		msg.append("Cheetah Order Processing Start - " + "\n\n");
-		msg.append("CASE1: NormalProcess       : PASS " + "\n");
-		msg.append("CASE2: Rejected            : PASS " + "\n");
-		msg.append("CASE3: PackageDetailChange : PASS " + "\n");
-		msg.append("CASE4: AddPackage          : PASS " + "\n");
-		msg.append("CASE5: PickupException :- " + "\n");
-		msg.append("      -- PAT : PASS " + "\n");
-		msg.append("      -- PPN : PASS " + "\n");
-		msg.append("CASE6: DeliveryException :- " + "\n");
-		msg.append("      -- DBA : PASS " + "\n");
-		msg.append("      -- DCR : PASS " + "\n");
-		msg.append("      -- DNO : PASS " + "\n");
-		msg.append("      -- DRD : PASS " + "\n");
-		msg.append("      -- SDRTS2 : PASS " + "\n");
-		msg.append("CASE7: WAIT TIME :- " + "\n");
-		msg.append("      -- PICKUP_WAIT_TIME   : PASS " + "\n");
-		msg.append("      -- DELIVERY_WAIT_TIME : PASS " + "\n");
-		msg.append("      -- RETURN_WAIT_TIME   : PASS " + "\n\n");
-		msg.append("Cheetah Order Processing Completed !! - " + "\n\n\n\n");
-
 		msg.append("Regards, - " + "\n");
 		msg.append("Selenium Automation" + "\n\n");
 		// Send Email
@@ -602,6 +729,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	public static void confirmEd() throws Exception // CONFIRMED
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtPkgTrackNum")).clear();
 		driver.findElement(By.id("MainContent_txtEventDescription")).clear();
@@ -617,11 +746,32 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("1");
 
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- Confirmed  : PASS " + "\n");
+			} else {
+				msg.append("      -- Confirmed   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 
 	}
 
 	public static void pickedUp() throws Exception // PICKEDUP
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
 		driver.findElement(By.id("MainContent_txtShipStatus")).sendKeys("PICKEDUP");
@@ -636,10 +786,31 @@ public class CheetahOrderProcessing extends BaseInit {
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		System.out.println("Pickedup Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- Pickedup  : PASS " + "\n");
+			} else {
+				msg.append("      -- Pickedup   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void pustatusUpdate() throws Exception // Status Update
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 		Thread.sleep(1000);
 
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
@@ -659,10 +830,31 @@ public class CheetahOrderProcessing extends BaseInit {
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		System.out.println("Pickup Status Update Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- Pickup Status Update  : PASS " + "\n");
+			} else {
+				msg.append("      -- Pickup Status Update   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void deliverEd() throws Exception // DELIVERED
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
 		driver.findElement(By.id("MainContent_txtShipStatus")).sendKeys("DELIVERED");
@@ -678,11 +870,32 @@ public class CheetahOrderProcessing extends BaseInit {
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		System.out.println("Delivered Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- Delivered  : PASS " + "\n");
+			} else {
+				msg.append("      -- Delivered   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 
 	}
 
 	public static void dlstatusUpdate() throws Exception // Status Update
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
 		driver.findElement(By.id("MainContent_txtShipStatus")).sendKeys("Status Update");
@@ -701,10 +914,32 @@ public class CheetahOrderProcessing extends BaseInit {
 
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		System.out.println("Delivery Status Update Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- Delivery Status Update  : PASS " + "\n");
+			} else {
+				msg.append("      -- Delivery Status Update   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
+
 	}
 
 	public static void rejectEd() throws Exception // REJECTED
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
 		driver.findElement(By.id("MainContent_txtShipStatus")).sendKeys("Rejected");
@@ -718,11 +953,32 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("1");
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		System.out.println("Job is Rejected from Cheetah Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- Rejected  : PASS " + "\n");
+			} else {
+				msg.append("      -- Rejected   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 
 	}
 
 	public static void packageDetailChange() throws Exception // PackageDetailChange
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 
 		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
 		FileInputStream fis = new FileInputStream(src);
@@ -747,10 +1003,31 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		Thread.sleep(1000);
 		System.out.println("Package Detail Change Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- PackageDetailChange  : PASS " + "\n");
+			} else {
+				msg.append("      -- PackageDetailChange   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void addPackage() throws Exception // Add Package
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 
 		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
 		FileInputStream fis = new FileInputStream(src);
@@ -774,10 +1051,31 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		Thread.sleep(1000);
 		System.out.println("New Package Added Done !!");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- AddPackage  : PASS " + "\n");
+			} else {
+				msg.append("      -- AddPackage   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void waitTimePu() throws Exception // PICKUP_WAIT_TIME
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 
 		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
 		FileInputStream fis = new FileInputStream(src);
@@ -802,10 +1100,31 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		Thread.sleep(1000);
 		System.out.println("PICKUP_WAIT_TIME Entered");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- PICKUP_WAIT_TIME   : PASS " + "\n");
+			} else {
+				msg.append("      -- PICKUP_WAIT_TIME   : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void waitTimedl() throws Exception // DELIVERY_WAIT_TIME
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 
 		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
 		FileInputStream fis = new FileInputStream(src);
@@ -830,10 +1149,31 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		Thread.sleep(1000);
 		System.out.println("DELIVERY_WAIT_TIME Entered");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- DELIVERY_WAIT_TIME : PASS " + "\n");
+			} else {
+				msg.append("      -- DELIVERY_WAIT_TIME : FAIL " + "\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void waitTimertn() throws Exception // RETURN_WAIT_TIME
 	{
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		Actions act = new Actions(driver);
 
 		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
 		FileInputStream fis = new FileInputStream(src);
@@ -858,6 +1198,25 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		Thread.sleep(1000);
 		System.out.println("RETURN_WAIT_TIME Entered");
+		// --Wait for status
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
+		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
+		act.moveToElement(RespStatus).build().perform();
+		if (RespStatus.isDisplayed()) {
+			String ResponseStatus = RespStatus.getText();
+			System.out.println("Response Message==" + ResponseStatus + "\n");
+			if (ResponseStatus.contains("success")) {
+				msg.append("      -- RETURN_WAIT_TIME   : PASS " + "\n\n");
+			} else {
+				msg.append("      -- RETURN_WAIT_TIME   : FAIL " + "\n\n");
+				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+
+			}
+		} else {
+			System.out.println("Response Message is not displayed");
+			msg.append("Response Message is not displayed");
+
+		}
 	}
 
 	public static void waitForVisibilityOfElement(By objLocator, long lTime) {

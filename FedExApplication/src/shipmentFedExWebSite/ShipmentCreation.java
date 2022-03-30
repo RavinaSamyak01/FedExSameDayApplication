@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,7 +45,7 @@ public class ShipmentCreation extends BaseInit {
 		// int rcount = sh1.getLastRowNum();
 
 		for (int i = 1; i < 26; i++) {
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, 5);
 			// --click on shipping menu
 			driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
 			Thread.sleep(2000);
@@ -113,32 +112,30 @@ public class ShipmentCreation extends BaseInit {
 			driver.findElement(By.xpath("//*[@id='dl_zip']")).clear();
 			driver.findElement(By.xpath("//*[@id='dl_zip']")).sendKeys(DLZip);
 			driver.findElement(By.xpath("//*[@id='dl_zip']")).sendKeys(Keys.TAB);
-			Thread.sleep(2000);
 
 			// Del Phone number
 			String DLPhone = formatter.formatCellValue(sh1.getRow(i).getCell(11));
 			driver.findElement(By.xpath("//*[@id='dl_phone']")).clear();
 			driver.findElement(By.xpath("//*[@id='dl_phone']")).sendKeys(DLPhone);
-			Thread.sleep(2000);
 
 			// click on calander
 			driver.findElement(By.id("anchor1xx")).click(); // click on calander
 			driver.findElement(By.xpath("//a[contains(.,'Today')]")).click(); // select today
 			Thread.sleep(2000);
 
+
 			// ready time selection
 			Select select1 = new Select(driver.findElement(By.id("ddlReadyHour")));
 			select1.selectByVisibleText("11");
+			Thread.sleep(2000);
 
 			// ready time min selection
 			select1 = new Select(driver.findElement(By.id("ddlReadyMinutes")));
 			select1.selectByVisibleText("30");
 
 			// AM/ PM selection
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			select1 = new Select(driver.findElement(By.xpath(".//*[@name='ddlReadyTimeType']")));
 			select1.selectByVisibleText("AM");
-			Thread.sleep(2000);
 
 			// Service ID compare from the Excel
 			String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(13));
@@ -156,7 +153,6 @@ public class ShipmentCreation extends BaseInit {
 			driver.findElement(By.id("pieces")).sendKeys(Keys.BACK_SPACE);
 			pieces = formatter.formatCellValue(sh1.getRow(i).getCell(14));
 			driver.findElement(By.id("pieces")).sendKeys(pieces);
-			Thread.sleep(1000);
 			driver.findElement(By.id("pieces")).sendKeys(Keys.TAB);
 
 			// Generate random numbers
@@ -231,9 +227,11 @@ public class ShipmentCreation extends BaseInit {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("window.scrollBy(0,-850)", "");
-			driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
 			Thread.sleep(2000);
+			driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
+			Thread.sleep(2000);
+
 			// Service
 
 			File src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
@@ -245,7 +243,6 @@ public class ShipmentCreation extends BaseInit {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkPR")));
 				driver.findElement(By.id("chkPR")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 				String rate = driver.findElement(By.id("btnPR")).getText();
 				System.out.println(rate);
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
@@ -268,7 +265,6 @@ public class ShipmentCreation extends BaseInit {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkS2")));
 				driver.findElement(By.id("chkS2")).click();
-				driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 
 				String rate = driver.findElement(By.id("btnS2")).getText();
 				System.out.println(rate);
@@ -291,6 +287,7 @@ public class ShipmentCreation extends BaseInit {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
 				driver.findElement(By.id("chkSDRTS")).click();
 				Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(By.id("chkEC")));
 				driver.findElement(By.id("chkEC")).click();
 				Thread.sleep(2000);
 				String rate = driver.findElement(By.id("btnEC")).getText();
@@ -330,51 +327,32 @@ public class ShipmentCreation extends BaseInit {
 					fis1.close();
 				}
 			} else if (serviceid.equals("DRV")) {
-				WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
-				act.moveToElement(SHipBTN).click().perform();
-				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDRV")));
+				driver.findElement(By.id("chkDRV")).click();
+				Thread.sleep(2000);
 
-				try {
-					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
-					WebElement ACRestriction = driver.findElement(By.id("lblErrMessage"));
-					act.moveToElement(ACRestriction).build().perform();
-					if (ACRestriction.isDisplayed()) {
-						String ErrMsg = driver.findElement(By.id("lblErrMessage")).getText();
-						System.out.println("Validation Message is displayed==" + ErrMsg);
-						msg.append("Validation Message is displayed==" + ErrMsg + "\n");
-						System.out.println("Account is restricted, Please Active the account");
-						msg.append("Account is restricted, Please Active the account" + "\n");
+				String rate = driver.findElement(By.id("btnDRV")).getText();
+				System.out.println(rate);
+				msg.append("DRV Service - Actual Rate :" + rate + "\n");
 
-					}
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+				sh2.getRow(i).createCell(16).setCellValue(rate);
 
-				} catch (Exception ACRestriction) {
-					driver.findElement(By.id("chkDRV")).click();
-					Thread.sleep(2000);
+				if (!rate.equals(ExpectedRate)) {
+					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					fis1.close();
 
-					String rate = driver.findElement(By.id("btnDRV")).getText();
-					System.out.println(rate);
-					msg.append("DRV Service - Actual Rate :" + rate + "\n");
+				}
 
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
-
-					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						fis1.close();
-
-					}
-
-					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						fis1.close();
-					}
-
+				else {
+					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					fis1.close();
 				}
 
 			} else if (serviceid.equals("AIR")) {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkAIR")));
-				driver.findElement(By.id("chkAIR")).click();
+					driver.findElement(By.id("chkAIR")).click();
 				Thread.sleep(2000);
 
 				String rate = driver.findElement(By.id("btnAIR")).getText();
@@ -428,12 +406,33 @@ public class ShipmentCreation extends BaseInit {
 
 			}
 
+			try {
+				WebElement ReCalMsg = driver.findElement(By.id("lblRecalMsg"));
+				act.moveToElement(ReCalMsg).build().perform();
+				if (ReCalMsg.isDisplayed()) {
+					System.out.println(ReCalMsg.getText() + " Message displayed");
+					WebElement ReCal = driver.findElement(By.id("lnkCalculate"));
+					act.moveToElement(ReCal).click().perform();
+					Thread.sleep(2000);
+				}
+
+			} catch (Exception ReCalculate) {
+				System.out.println("NO need to Recalculate");
+			}
+
 			WebElement SHipBTN = driver.findElement(By.id("cmdSubmit"));
 			act.moveToElement(SHipBTN).click().perform();
 			// Create job button
-			Thread.sleep(5000);
 
 			try {
+				try {
+					if (isAlertPresent()) {
+						Alert alt = driver.switchTo().alert();
+						alt.accept();
+					}
+				} catch (Exception Alert) {
+					System.out.println("Alert is not present");
+				}
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrMessage")));
 				WebElement ACRestriction = driver.findElement(By.id("lblErrMessage"));
 				act.moveToElement(ACRestriction).build().perform();
@@ -447,95 +446,91 @@ public class ShipmentCreation extends BaseInit {
 				}
 
 			} catch (Exception ACRestriction) {
-				if (isAlertPresent()) {
-					Alert alt = driver.switchTo().alert();
-					alt.accept();
-				}
-				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
-				// Confirm from Shipment Summary screen.
-				driver.getTitle();
-				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
-				driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click();
-				Thread.sleep(5000);
-
-				// Get Shipment tracking number and store in variable
-				String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText();
-				System.out.println("Shipment Tracking # " + VoucherNum);
-
-				msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
-				sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
-				fis1.close();
-
-				// --copy data to cheetah file
-				// --Initialize cheetah file
-				File src2 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-				FileInputStream fis3 = new FileInputStream(src2);
-				Workbook workbook1 = WorkbookFactory.create(fis3);
-				FileOutputStream fis2 = new FileOutputStream(src2);
-				Sheet sh3 = workbook1.getSheet("Sheet1");
-
-				if (i == 4) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 5) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 6) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 12) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 13) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 14) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 15) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i == 16) {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-					System.out.println("set the Tracking No in PackageNo");
-				} else if (i > 21) {
-					System.out.println("No need to add tracking after row 20");
-				} else {
-					// set trackingNo
-					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-					System.out.println("Shipment Tracking No==" + VoucherNum);
-					System.out.println("set the Tracking No");
-				}
-				workbook1.write(fis2);
-				fis2.close();
+				System.out.println("Account is Active");
 			}
-			// If alert pop-up exist, than accept.
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
+			// Confirm from Shipment Summary screen.
+			driver.getTitle();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
+			driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click();
 
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("dvPrintGrid")));
+			// Get Shipment tracking number and store in variable
+			String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText();
+			System.out.println("Shipment Tracking # " + VoucherNum);
+
+			msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
+			sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
+			fis1.close();
+
+			// --copy data to cheetah file
+			// --Initialize cheetah file
+			File src2 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+			FileInputStream fis3 = new FileInputStream(src2);
+			Workbook workbook1 = WorkbookFactory.create(fis3);
+			FileOutputStream fis2 = new FileOutputStream(src2);
+			Sheet sh3 = workbook1.getSheet("Sheet1");
+
+			if (i == 4) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 5) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 6) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 12) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 13) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 14) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 15) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i == 16) {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+				System.out.println("set the Tracking No in PackageNo");
+			} else if (i > 21) {
+				System.out.println("No need to add tracking after row 20");
+			} else {
+				// set trackingNo
+				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+				System.out.println("Shipment Tracking No==" + VoucherNum);
+				System.out.println("set the Tracking No");
+			}
+			workbook1.write(fis2);
+			fis2.close();
 		}
+		// If alert pop-up exist, than accept.
 
 		String subject = "Selenium Automation Script : STAGING FedEx Shipment Creation";
 		try {

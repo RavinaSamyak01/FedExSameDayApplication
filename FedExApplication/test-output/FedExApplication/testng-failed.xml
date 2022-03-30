@@ -3,17 +3,17 @@
 <suite parallel="none" name="Failed suite [FedExApplication]">
   <test parallel="none" name="Shipment Creation(failed)">
     <classes>
-      <class name="shipmentFedExWebSite.ShipmentCreation">
-        <methods>
-          <include name="shipmentCreation"/>
-        </methods>
-      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
       <class name="shipmentFedExWebSite.CheetahOrderProcessing">
         <methods>
           <include name="startUp"/>
           <include name="end"/>
         </methods>
       </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
+      <class name="shipmentFedExWebSite.ShipmentCreation">
+        <methods>
+          <include name="shipmentCreation"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </classes>
   </test> <!-- Shipment Creation(failed) -->
 </suite> <!-- Failed suite [FedExApplication] -->
