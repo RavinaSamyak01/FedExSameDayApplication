@@ -42,7 +42,7 @@ public class CrudOperation extends BaseInit {
 
 		for (int i = 1; i < 5; i++) {
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			// --click on shipping menu
 			driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
 			Thread.sleep(2000);

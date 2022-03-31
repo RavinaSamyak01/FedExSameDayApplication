@@ -123,7 +123,6 @@ public class ShipmentCreation extends BaseInit {
 			driver.findElement(By.xpath("//a[contains(.,'Today')]")).click(); // select today
 			Thread.sleep(2000);
 
-
 			// ready time selection
 			Select select1 = new Select(driver.findElement(By.id("ddlReadyHour")));
 			select1.selectByVisibleText("11");
@@ -228,7 +227,10 @@ public class ShipmentCreation extends BaseInit {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("window.scrollBy(0,-850)", "");
 			Thread.sleep(2000);
-			driver.findElement(By.id("lnkCalculate")).click(); // Click on calculate link
+			WebElement Cal = driver.findElement(By.id("lnkCalculate"));
+			// Click on calculate link
+			act.moveToElement(Cal).click().perform();
+			Thread.sleep(2000);
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
 			Thread.sleep(2000);
 
@@ -238,6 +240,8 @@ public class ShipmentCreation extends BaseInit {
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
 			workbook.write(fis1);
+			Thread.sleep(5000);
+
 			// If match with PR, below code will execute
 			if (serviceid.equals("PR")) {
 
@@ -352,7 +356,7 @@ public class ShipmentCreation extends BaseInit {
 			} else if (serviceid.equals("AIR")) {
 
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkAIR")));
-					driver.findElement(By.id("chkAIR")).click();
+				driver.findElement(By.id("chkAIR")).click();
 				Thread.sleep(2000);
 
 				String rate = driver.findElement(By.id("btnAIR")).getText();

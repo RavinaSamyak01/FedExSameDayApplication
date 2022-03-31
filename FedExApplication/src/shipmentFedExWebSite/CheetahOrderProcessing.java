@@ -27,7 +27,7 @@ public class CheetahOrderProcessing extends BaseInit {
 	public void cheetahOrderPro() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
-		msg.append("Cheetah Order Processing Start - " + "\n\n");
+		msg.append("Cheetah Order Processing Start - " + "\n\n\n");
 
 		// r.keyPress(KeyEvent.VK_F11);
 
@@ -169,10 +169,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- PAT : PASS " + "\n");
+							msg.append("PAT : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- PAT : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("PAT : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -233,10 +235,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- PPN : PASS " + "\n");
+							msg.append("PPN : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- PPN : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("PPN : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -334,10 +338,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- DBA : PASS " + "\n");
+							msg.append("DBA : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- DBA : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("DBA : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -394,10 +400,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- DCR : PASS " + "\n");
+							msg.append("DCR : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- DCR : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("DCR : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -455,10 +463,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- DNO : PASS " + "\n");
+							msg.append("DNO : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- DNO : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("DNO : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -516,10 +526,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- DRD : PASS " + "\n");
+							msg.append("DRD : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- DRD : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("DRD : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -595,10 +607,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
 						if (ResponseStatus.contains("success")) {
-							msg.append("      -- SDRTS2 : PASS " + "\n");
+							msg.append("SDRTS2 : PASS " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 						} else {
-							msg.append("      -- SDRTS2 : FAIL " + "\n");
-							msg.append("Response==" + ResponseStatus+ "\n");
+							msg.append("SDRTS2 : FAIL " + "\n");
+							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 						}
 					} else {
@@ -639,7 +653,6 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					deliverEd();
 					dlstatusUpdate();
-					msg.append("      -- PICKUP_WAIT_TIME   : PASS " + "\n");
 
 				}
 
@@ -665,7 +678,6 @@ public class CheetahOrderProcessing extends BaseInit {
 					waitTimedl();
 					deliverEd();
 					dlstatusUpdate();
-					msg.append("      -- DELIVERY_WAIT_TIME : PASS " + "\n");
 
 				}
 
@@ -691,7 +703,6 @@ public class CheetahOrderProcessing extends BaseInit {
 					waitTimertn();
 					deliverEd();
 					dlstatusUpdate();
-					msg.append("      -- RETURN_WAIT_TIME   : PASS " + "\n\n");
 
 				}
 
@@ -713,7 +724,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		System.out.println("Cheetah Process END----");
 
 		msg.append("Regards, - " + "\n");
-		msg.append("Selenium Automation" + "\n\n");
+		msg.append("Selenium Automation" + "\n\n\n");
 		// Send Email
 		String subject = "Selenium Automation Script: STAGING Cheetah Order Processing";
 
@@ -754,10 +765,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- Confirmed  : PASS " + "\n");
+				msg.append("Confirmed  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- Confirmed   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("Confirmed   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -794,10 +807,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- Pickedup  : PASS " + "\n");
+				msg.append("Pickedup  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- Pickedup   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("Pickedup   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -838,10 +853,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- Pickup Status Update  : PASS " + "\n");
+				msg.append("Pickup Status Update  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- Pickup Status Update   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("Pickup Status Update   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -878,10 +895,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- Delivered  : PASS " + "\n");
+				msg.append("Delivered  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- Delivered   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("Delivered   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -922,10 +941,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- Delivery Status Update  : PASS " + "\n");
+				msg.append("Delivery Status Update  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- Delivery Status Update   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("Delivery Status Update   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -961,10 +982,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- Rejected  : PASS " + "\n");
+				msg.append("Rejected  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- Rejected   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("Rejected   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -1011,10 +1034,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- PackageDetailChange  : PASS " + "\n");
+				msg.append("PackageDetailChange  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- PackageDetailChange   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("PackageDetailChange   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -1059,10 +1084,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- AddPackage  : PASS " + "\n");
+				msg.append("AddPackage  : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- AddPackage   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("AddPackage   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -1108,10 +1135,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- PICKUP_WAIT_TIME   : PASS " + "\n");
+				msg.append("PICKUP_WAIT_TIME   : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- PICKUP_WAIT_TIME   : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("PICKUP_WAIT_TIME   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -1157,10 +1186,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- DELIVERY_WAIT_TIME : PASS " + "\n");
+				msg.append("DELIVERY_WAIT_TIME : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- DELIVERY_WAIT_TIME : FAIL " + "\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("DELIVERY_WAIT_TIME : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {
@@ -1206,10 +1237,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
 			if (ResponseStatus.contains("success")) {
-				msg.append("      -- RETURN_WAIT_TIME   : PASS " + "\n\n");
+				msg.append("RETURN_WAIT_TIME   : PASS " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
+
 			} else {
-				msg.append("      -- RETURN_WAIT_TIME   : FAIL " + "\n\n");
-				msg.append("      -- Response==" + ResponseStatus+ "\n\n");
+				msg.append("RETURN_WAIT_TIME   : FAIL " + "\n");
+				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
 			}
 		} else {

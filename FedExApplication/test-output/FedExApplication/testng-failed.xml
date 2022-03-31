@@ -16,4 +16,19 @@
       </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </classes>
   </test> <!-- Shipment Creation(failed) -->
+  <test parallel="none" name="Crud Operations(failed)">
+    <classes>
+      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
+        <methods>
+          <include name="startUp"/>
+          <include name="end"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
+      <class name="shipmentFedExWebSite.CrudOperation">
+        <methods>
+          <include name="crudOperations"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.CrudOperation -->
+    </classes>
+  </test> <!-- Crud Operations(failed) -->
 </suite> <!-- Failed suite [FedExApplication] -->
