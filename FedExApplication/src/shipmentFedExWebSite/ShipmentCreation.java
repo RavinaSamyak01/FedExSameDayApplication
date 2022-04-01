@@ -291,8 +291,17 @@ public class ShipmentCreation extends BaseInit {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
 				driver.findElement(By.id("chkSDRTS")).click();
 				Thread.sleep(2000);
-				wait.until(ExpectedConditions.elementToBeClickable(By.id("chkEC")));
-				driver.findElement(By.id("chkEC")).click();
+				try {
+					WebElement CheckEC = driver.findElement(By.id("chkEC"));
+					wait.until(ExpectedConditions.elementToBeClickable(By.id("chkEC")));
+					act.moveToElement(CheckEC).build().perform();
+					CheckEC.click();
+				} catch (Exception NoSuchEl) {
+					WebElement CheckEC = driver.findElement(By.id("chkEC"));
+					wait.until(ExpectedConditions.elementToBeClickable(By.id("chkEC")));
+					act.moveToElement(CheckEC).build().perform();
+					CheckEC.click();
+				}
 				Thread.sleep(2000);
 				String rate = driver.findElement(By.id("btnEC")).getText();
 				System.out.println(rate);

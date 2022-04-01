@@ -2,24 +2,24 @@
 <testng-results total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-31T06:24:16Z" name="Default suite" finished-at="2022-03-31T06:29:33Z" duration-ms="316899">
+  <suite started-at="2022-04-01T05:35:50Z" name="Default suite" finished-at="2022-04-01T05:42:19Z" duration-ms="388283">
     <groups>
     </groups>
-    <test started-at="2022-03-31T06:24:16Z" name="Default test" finished-at="2022-03-31T06:29:33Z" duration-ms="316899">
-      <class name="shipmentFedExWebSite.CrudOperation">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.CrudOperation@68df9280]" started-at="2022-03-31T11:53:51Z" name="startUp" finished-at="2022-03-31T11:54:16Z" duration-ms="25538" status="PASS">
+    <test started-at="2022-04-01T05:35:50Z" name="Default test" finished-at="2022-04-01T05:42:19Z" duration-ms="388283">
+      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-01T11:05:16Z" name="startUp" finished-at="2022-04-01T11:05:50Z" duration-ms="34011" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@68df9280]" started-at="2022-03-31T11:54:16Z" name="crudOperations" finished-at="2022-03-31T11:59:33Z" duration-ms="316883" status="PASS">
+        <test-method signature="cheetahOrderPro()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-01T11:05:50Z" name="cheetahOrderPro" finished-at="2022-04-01T11:12:19Z" duration-ms="388243" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- crudOperations -->
-        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.CrudOperation@68df9280]" started-at="2022-03-31T11:59:33Z" name="end" finished-at="2022-03-31T11:59:34Z" duration-ms="703" status="PASS">
+        </test-method> <!-- cheetahOrderPro -->
+        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-01T11:12:19Z" name="end" finished-at="2022-04-01T11:12:19Z" duration-ms="623" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
-      </class> <!-- shipmentFedExWebSite.CrudOperation -->
+      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
