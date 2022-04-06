@@ -31,6 +31,8 @@ public class RateVerification extends BaseInit {
 	@Test
 	public void prService() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		msg.append("Rate/Quote Verification Process Start.... " + "\n");
+
 		// --get the data
 		try {
 			System.out.println("Rate Verification start");
@@ -43,8 +45,8 @@ public class RateVerification extends BaseInit {
 			File src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
-			//31
-			for (int i = 1; i <31 ; i++) {
+			// 31
+			for (int i = 1; i < 31; i++) {
 				driver.getTitle();
 				pause(1000);
 
@@ -103,19 +105,19 @@ public class RateVerification extends BaseInit {
 				Select hour = new Select(driver.findElement(By.id("ddlPickupHour")));
 				hour.selectByIndex(7); // AM
 				System.out.println("select hour");
-				pause(200);
+				pause(2000);
 
 				// Select minuts
 				Select minutes = new Select(driver.findElement(By.id("ddlPickupMinutes")));
 				minutes.selectByIndex(1); // AM
 				System.out.println("select minutes");
-				pause(200);
+				pause(2000);
 
 				// Select AM/PM
 				Select AmPm = new Select(driver.findElement(By.id("ddlTimeType")));
 				AmPm.selectByIndex(0); // AM
 				System.out.println("select ampm");
-				pause(200);
+				pause(2000);
 
 				// --Click on show rates
 				driver.findElement(By.id("btngetQuickquote")).click();
@@ -140,6 +142,10 @@ public class RateVerification extends BaseInit {
 					System.out.println(actrate);
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
 					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					msg.append("ServiceID==" + serviceid + "\n");
+					msg.append("Actual Rate==" + actrate + "\n");
+					msg.append("Expected Rate==" + ExpectedRate + "\n");
+
 					/*
 					 * workbook.write(fis1); fis1.close();
 					 */
@@ -147,6 +153,7 @@ public class RateVerification extends BaseInit {
 					if (!actrate.equals(ExpectedRate)) {
 
 						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						msg.append("Result==" + "FAIL" + "\n\n");
 
 						/*
 						 * workbook.write(fis1); fis1.close();
@@ -162,6 +169,8 @@ public class RateVerification extends BaseInit {
 						 * workbook.getSheet("Sheet1");
 						 */
 						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						msg.append("Result==" + "PASS" + "\n\n");
+
 						/*
 						 * workbook.write(fis1); fis1.close();
 						 */
@@ -177,9 +186,12 @@ public class RateVerification extends BaseInit {
 					System.out.println(actrate);
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
 					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					msg.append("ServiceID==" + serviceid + "\n");
+					msg.append("Actual Rate==" + actrate + "\n");
+					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
 						sh1.getRow(i).createCell(5).setCellValue("FAIL");
-
+						msg.append("Result==" + "FAIL" + "\n\n");
 						/*
 						 * workbook.write(fis1); fis1.close();
 						 */
@@ -187,6 +199,7 @@ public class RateVerification extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						msg.append("Result==" + "PASS" + "\n\n");
 
 						/*
 						 * workbook.write(fis1); fis1.close();
@@ -201,9 +214,12 @@ public class RateVerification extends BaseInit {
 					System.out.println(actrate);
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
 					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					msg.append("ServiceID==" + serviceid + "\n");
+					msg.append("Actual Rate==" + actrate + "\n");
+					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
 						sh1.getRow(i).createCell(5).setCellValue("FAIL");
-
+						msg.append("Result==" + "FAIL" + "\n\n");
 						/*
 						 * workbook.write(fis1); fis1.close();
 						 */
@@ -212,6 +228,8 @@ public class RateVerification extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						msg.append("Result==" + "PASS" + "\n\n");
+
 						/*
 						 * workbook.write(fis1); fis1.close();
 						 */
@@ -225,8 +243,12 @@ public class RateVerification extends BaseInit {
 					System.out.println(actrate);
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
 					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					msg.append("ServiceID==" + serviceid + "\n");
+					msg.append("Actual Rate==" + actrate + "\n");
+					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						msg.append("Result==" + "FAIL" + "\n\n");
 
 						/*
 						 * workbook.write(fis1); fis1.close();
@@ -236,6 +258,7 @@ public class RateVerification extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						msg.append("Result==" + "PASS" + "\n\n");
 
 						/*
 						 * workbook.write(fis1); fis1.close();
@@ -250,14 +273,18 @@ public class RateVerification extends BaseInit {
 					System.out.println(actrate);
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
 					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					msg.append("ServiceID==" + serviceid + "\n");
+					msg.append("Actual Rate==" + actrate + "\n");
+					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						msg.append("Result==" + "FAIL" + "\n\n");
 
 					}
 
 					else {
 						sh2.getRow(i).createCell(5).setCellValue("PASS");
-
+						msg.append("Result==" + "PASS" + "\n\n");
 						/*
 						 * workbook.write(fis1); fis1.close();
 						 */
@@ -275,8 +302,12 @@ public class RateVerification extends BaseInit {
 					System.out.println(actrate);
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
 					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					msg.append("ServiceID==" + serviceid + "\n");
+					msg.append("Actual Rate==" + actrate + "\n");
+					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						msg.append("Result==" + "FAIL" + "\n\n");
 
 						/*
 						 * workbook.write(fis1); fis1.close();
@@ -285,6 +316,7 @@ public class RateVerification extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						msg.append("Result==" + "PASS" + "\n\n");
 
 						/*
 						 * workbook.write(fis1); fis1.close();
@@ -297,18 +329,13 @@ public class RateVerification extends BaseInit {
 			}
 			workbook.write(fis1);
 			fis1.close();
+			msg.append("Rate/Quote Verification Process Completed !!" + "\n");
 
 		} catch (Exception e) {
 			System.out.println("Something went Wrong");
+			msg.append("Rate/Quote Verification Process Completed !!==FAIL" + "\n");
 
 		}
-
-		msg.append("Step1 : Enter URL : PASS" + "\n");
-		msg.append("Step2 : Enter UserName : PASS" + "\n");
-		msg.append("Step3 : Enter Password : PASS" + "\n");
-		msg.append("Step4 : Application Login Successfully : PASS" + "\n");
-		msg.append("Step5 : Rate/Quote Verification Process Start.... " + "\n");
-		msg.append("Step6 : Rate/Quote Verification Process Completed !!" + "\n");
 
 		// Send Email
 

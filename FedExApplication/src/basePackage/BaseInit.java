@@ -23,7 +23,7 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		//options.addArguments("--headless");
+		// options.addArguments("--headless");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -50,6 +50,7 @@ public class BaseInit {
 	public void login() {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		driver.get("https://staging.fedexsameday.com/");
+		msg.append("Step1 : Enter URL : PASS" + "\n");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
 		driver.findElement(By.id("Header_fdx_main_liLogin")).click();
 		driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
@@ -57,9 +58,11 @@ public class BaseInit {
 		// enter password
 		driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
 		driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys("samyak10");
-
+		msg.append("Step2 : Enter UserName : PASS" + "\n");
+		msg.append("Step3 : Enter Password : PASS" + "\n");
 		driver.findElement(By.id("Header_fdx_main_cmdMenuLogin")).click();
 		System.out.println("Login done");
+		msg.append("Step4 : Application Login Successfully : PASS" + "\n");
 		driver.getTitle();
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"fdx-o-grid\"]")));
 	}

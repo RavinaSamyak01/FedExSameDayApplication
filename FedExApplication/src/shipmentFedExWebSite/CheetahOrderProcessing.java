@@ -168,7 +168,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PAT : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -234,7 +234,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PPN : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -337,7 +337,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DBA : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -399,7 +399,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DCR : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -462,7 +462,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DNO : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -525,7 +525,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DRD : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -606,7 +606,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
-						if (ResponseStatus.contains("success")) {
+						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("SDRTS2 : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -764,7 +764,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Confirmed  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -806,7 +806,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Pickedup  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -852,7 +852,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Pickup Status Update  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -894,7 +894,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Delivered  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -940,7 +940,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Delivery Status Update  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -981,7 +981,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Rejected  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -1033,7 +1033,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("PackageDetailChange  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -1083,7 +1083,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("AddPackage  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -1134,7 +1134,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("PICKUP_WAIT_TIME   : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -1185,7 +1185,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("DELIVERY_WAIT_TIME : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 
@@ -1236,7 +1236,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
-			if (ResponseStatus.contains("success")) {
+			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("RETURN_WAIT_TIME   : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
 

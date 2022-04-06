@@ -2,20 +2,20 @@
 <testng-results total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-04-01T05:35:50Z" name="Default suite" finished-at="2022-04-01T05:42:19Z" duration-ms="388283">
+  <suite started-at="2022-04-05T12:17:46Z" name="Default suite" finished-at="2022-04-05T12:23:36Z" duration-ms="350671">
     <groups>
     </groups>
-    <test started-at="2022-04-01T05:35:50Z" name="Default test" finished-at="2022-04-01T05:42:19Z" duration-ms="388283">
+    <test started-at="2022-04-05T12:17:46Z" name="Default test" finished-at="2022-04-05T12:23:36Z" duration-ms="350671">
       <class name="shipmentFedExWebSite.CheetahOrderProcessing">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-01T11:05:16Z" name="startUp" finished-at="2022-04-01T11:05:50Z" duration-ms="34011" status="PASS">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-05T17:47:25Z" name="startUp" finished-at="2022-04-05T17:47:46Z" duration-ms="20060" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="cheetahOrderPro()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-01T11:05:50Z" name="cheetahOrderPro" finished-at="2022-04-01T11:12:19Z" duration-ms="388243" status="PASS">
+        <test-method signature="cheetahOrderPro()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-05T17:47:46Z" name="cheetahOrderPro" finished-at="2022-04-05T17:53:36Z" duration-ms="350649" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cheetahOrderPro -->
-        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-01T11:12:19Z" name="end" finished-at="2022-04-01T11:12:19Z" duration-ms="623" status="PASS">
+        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@5be46f9d]" started-at="2022-04-05T17:53:36Z" name="end" finished-at="2022-04-05T17:53:37Z" duration-ms="543" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
