@@ -47,7 +47,7 @@ public class ShipmentCreation extends BaseInit {
 
 		try {
 
-			for (int i = 1; i < 26; i++) {
+			for (int i = 1; i < 27; i++) {
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				// --click on shipping menu
 				driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
@@ -261,13 +261,13 @@ public class ShipmentCreation extends BaseInit {
 
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 						fis1.close();
 					}
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 						fis1.close();
 					}
 
@@ -288,14 +288,14 @@ public class ShipmentCreation extends BaseInit {
 
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 						fis1.close();
 
 					}
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}
@@ -325,7 +325,7 @@ public class ShipmentCreation extends BaseInit {
 					sh2.getRow(i).createCell(16).setCellValue(rate);
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 
 						fis1.close();
 
@@ -333,7 +333,7 @@ public class ShipmentCreation extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}
@@ -353,12 +353,12 @@ public class ShipmentCreation extends BaseInit {
 
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 
 						fis1.close();
 					} else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}
@@ -377,7 +377,7 @@ public class ShipmentCreation extends BaseInit {
 
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 
 						fis1.close();
 
@@ -385,7 +385,7 @@ public class ShipmentCreation extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}
@@ -405,7 +405,7 @@ public class ShipmentCreation extends BaseInit {
 					sh2.getRow(i).createCell(16).setCellValue(rate);
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 
 						fis1.close();
 
@@ -413,7 +413,7 @@ public class ShipmentCreation extends BaseInit {
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}
@@ -433,14 +433,14 @@ public class ShipmentCreation extends BaseInit {
 					sh2.getRow(i).createCell(16).setCellValue(rate);
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 						fis1.close();
 
 					}
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}
@@ -453,19 +453,20 @@ public class ShipmentCreation extends BaseInit {
 					String rate = driver.findElement(By.id("btnFRG")).getText();
 					System.out.println(rate);
 					msg.append("FRG Service - Actual Rate :" + rate + "\n");
+					
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 					msg.append("FRG Service - Expected Rate :" + ExpectedRate + "\n");
 					sh2.getRow(i).createCell(16).setCellValue(rate);
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL"+"\n");
+						msg.append("Result==" + "FAIL" + "\n");
 						fis1.close();
 
 					}
 
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						msg.append("Result==" + "PASS "+"\n");
+						msg.append("Result==" + "PASS " + "\n");
 
 						fis1.close();
 					}

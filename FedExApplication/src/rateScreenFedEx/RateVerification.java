@@ -34,308 +34,295 @@ public class RateVerification extends BaseInit {
 		msg.append("Rate/Quote Verification Process Start.... " + "\n");
 
 		// --get the data
-		try {
-			System.out.println("Rate Verification start");
-			File src = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
-			FileInputStream fis = new FileInputStream(src);
-			Workbook workbook = WorkbookFactory.create(fis);
-			Sheet sh1 = workbook.getSheet("Sheet1");
+		// try {
+		System.out.println("Rate Verification start");
+		File src = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
+		FileInputStream fis = new FileInputStream(src);
+		Workbook workbook = WorkbookFactory.create(fis);
+		Sheet sh1 = workbook.getSheet("Sheet1");
 
-			DataFormatter formatter = new DataFormatter();
+		DataFormatter formatter = new DataFormatter();
+
+		// 31
+		for (int i = 8; i < 31; i++) {
+			driver.getTitle();
+			pause(1000);
+
+			// --PickUp Zip
+			String PUZip = formatter.formatCellValue(sh1.getRow(i).getCell(0));
+			driver.findElement(By.id("txtOrig")).clear();
+			driver.findElement(By.id("txtOrig")).sendKeys(PUZip);
+			driver.findElement(By.id("txtOrig")).sendKeys(Keys.TAB);
+			Thread.sleep(5000);
+
+			// --Delivery Zip
+			String DLZip = formatter.formatCellValue(sh1.getRow(i).getCell(1));
+			driver.findElement(By.id("txtDest")).clear();
+			driver.findElement(By.id("txtDest")).sendKeys(DLZip);
+			driver.findElement(By.id("txtDest")).sendKeys(Keys.TAB);
+			Thread.sleep(5000);
+
+			// --Weight
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("txtActWt0")));
+			driver.findElement(By.id("txtActWt0")).clear();
+			driver.findElement(By.id("txtActWt0")).sendKeys("5");
+			System.out.println("entered weight");
+			driver.findElement(By.id("txtActWt0")).sendKeys(Keys.TAB);
+			Thread.sleep(5000);
+
+			// --Dim(L)
+			driver.findElement(By.id("txtDimLen0")).clear();
+			driver.findElement(By.id("txtDimLen0")).sendKeys("5");
+			System.out.println("entered dim");
+			pause(200);
+
+			// --Dim(W)
+			driver.findElement(By.id("txtDimWid0")).clear();
+			driver.findElement(By.id("txtDimWid0")).sendKeys("5");
+			System.out.println("entered wid");
+			pause(200);
+
+			// --Dim(H)
+			driver.findElement(By.id("txtDimHt0")).clear();
+			driver.findElement(By.id("txtDimHt0")).sendKeys("5");
+			System.out.println("entered Ht");
+			pause(200);
+
+			// --ShipDate
+			driver.findElement(By.id("datepicker")).clear();
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			String newDate = dateFormat.format(cal.getTime());
+			driver.findElement(By.id("datepicker")).sendKeys(newDate);
+			System.out.println("Selected Date,current Date");
+			driver.findElement(By.id("datepicker")).sendKeys(Keys.TAB);
+			pause(200);
+
+			// Select hour
+			Select hour = new Select(driver.findElement(By.id("ddlPickupHour")));
+			hour.selectByIndex(7); // AM
+			System.out.println("select hour");
+			pause(2000);
+
+			// Select minuts
+			Select minutes = new Select(driver.findElement(By.id("ddlPickupMinutes")));
+			minutes.selectByIndex(1); // AM
+			System.out.println("select minutes");
+			pause(2000);
+
+			// Select AM/PM
+			Select AmPm = new Select(driver.findElement(By.id("ddlTimeType")));
+			AmPm.selectByIndex(0); // AM
+			System.out.println("select ampm");
+			pause(2000);
+
+			// --Click on show rates
+			driver.findElement(By.id("btngetQuickquote")).click();
+			wait.until(
+					ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//table[@class=\"fdxRatetable\"]")));
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("window.scrollBy(0,350)", "");
+
+			waitForVisibilityOfElement(By.xpath(".//*[@id='Process']"), 2);
+			waitForInVisibilityOfElement(By.xpath(".//*[@id='Process']"), 30);
+			waitForVisibilityOfElement(By.id("btnShip"), 30);
+
+			// --set the data
+
+			String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(2));
 			File src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
-			// 31
-			for (int i = 1; i < 31; i++) {
-				driver.getTitle();
+			workbook.write(fis1);
+			Thread.sleep(5000);
+
+			if (serviceid.equals("PR")) {
 				pause(1000);
+				String actrate = driver
+						.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[3]//div[@class=\"ratebtn\"]"))
+						.getText();
+				System.out.println(actrate);
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				sh2.getRow(i).createCell(4).setCellValue(actrate);
+				msg.append("ServiceID==" + serviceid + "\n");
+				msg.append("Actual Rate==" + actrate + "\n");
+				msg.append("Expected Rate==" + ExpectedRate + "\n");
 
-				// --PickUp Zip
-				String PUZip = formatter.formatCellValue(sh1.getRow(i).getCell(0));
-				driver.findElement(By.id("txtOrig")).clear();
-				driver.findElement(By.id("txtOrig")).sendKeys(PUZip);
-				driver.findElement(By.id("txtOrig")).sendKeys(Keys.TAB);
-				Thread.sleep(5000);
+				fis1.close();
 
-				// --Delivery Zip
-				String DLZip = formatter.formatCellValue(sh1.getRow(i).getCell(1));
-				driver.findElement(By.id("txtDest")).clear();
-				driver.findElement(By.id("txtDest")).sendKeys(DLZip);
-				driver.findElement(By.id("txtDest")).sendKeys(Keys.TAB);
-				Thread.sleep(5000);
+				if (!actrate.equals(ExpectedRate)) {
 
-				// --Weight
-				wait.until(ExpectedConditions.elementToBeClickable(By.id("txtActWt0")));
-				driver.findElement(By.id("txtActWt0")).clear();
-				driver.findElement(By.id("txtActWt0")).sendKeys("5");
-				System.out.println("entered weight");
-				driver.findElement(By.id("txtActWt0")).sendKeys(Keys.TAB);
-				Thread.sleep(5000);
+					sh2.getRow(i).createCell(5).setCellValue("FAIL");
+					msg.append("Result==" + "FAIL" + "\n\n");
 
-				// --Dim(L)
-				driver.findElement(By.id("txtDimLen0")).clear();
-				driver.findElement(By.id("txtDimLen0")).sendKeys("5");
-				System.out.println("entered dim");
-				pause(200);
+					fis1.close();
 
-				// --Dim(W)
-				driver.findElement(By.id("txtDimWid0")).clear();
-				driver.findElement(By.id("txtDimWid0")).sendKeys("5");
-				System.out.println("entered wid");
-				pause(200);
+				}
 
-				// --Dim(H)
-				driver.findElement(By.id("txtDimHt0")).clear();
-				driver.findElement(By.id("txtDimHt0")).sendKeys("5");
-				System.out.println("entered Ht");
-				pause(200);
-
-				// --ShipDate
-				driver.findElement(By.id("datepicker")).clear();
-				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(new Date());
-				String newDate = dateFormat.format(cal.getTime());
-				driver.findElement(By.id("datepicker")).sendKeys(newDate);
-				System.out.println("Selected Date,current Date");
-				driver.findElement(By.id("datepicker")).sendKeys(Keys.TAB);
-				pause(200);
-
-				// Select hour
-				Select hour = new Select(driver.findElement(By.id("ddlPickupHour")));
-				hour.selectByIndex(7); // AM
-				System.out.println("select hour");
-				pause(2000);
-
-				// Select minuts
-				Select minutes = new Select(driver.findElement(By.id("ddlPickupMinutes")));
-				minutes.selectByIndex(1); // AM
-				System.out.println("select minutes");
-				pause(2000);
-
-				// Select AM/PM
-				Select AmPm = new Select(driver.findElement(By.id("ddlTimeType")));
-				AmPm.selectByIndex(0); // AM
-				System.out.println("select ampm");
-				pause(2000);
-
-				// --Click on show rates
-				driver.findElement(By.id("btngetQuickquote")).click();
-				wait.until(ExpectedConditions
-						.visibilityOfAllElementsLocatedBy(By.xpath("//table[@class=\"fdxRatetable\"]")));
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
-				jse.executeScript("window.scrollBy(0,350)", "");
-
-				waitForVisibilityOfElement(By.xpath(".//*[@id='Process']"), 2);
-				waitForInVisibilityOfElement(By.xpath(".//*[@id='Process']"), 30);
-				waitForVisibilityOfElement(By.id("btnShip"), 30);
-
-				// --set the data
-
-				String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(2));
-
-				if (serviceid.equals("PR")) {
-					pause(1000);
-					String actrate = driver
-							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[3]//div[@class=\"ratebtn\"]"))
-							.getText();
-					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
-					msg.append("ServiceID==" + serviceid + "\n");
-					msg.append("Actual Rate==" + actrate + "\n");
-					msg.append("Expected Rate==" + ExpectedRate + "\n");
-
+				else {
 					/*
-					 * workbook.write(fis1); fis1.close();
+					 * File src1srcstatus = new
+					 * File(".\\src\\TestFiles\\FedExRateVerification.xlsx"); FileOutputStream
+					 * fis1srcstatus = new FileOutputStream(src1srcstatus); Sheet sh2srcstatus =
+					 * workbook.getSheet("Sheet1");
 					 */
+					sh2.getRow(i).createCell(5).setCellValue("PASS");
+					msg.append("Result==" + "PASS" + "\n\n");
 
-					if (!actrate.equals(ExpectedRate)) {
+					fis1.close();
 
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL" + "\n\n");
-
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-
-					}
-
-					else {
-						/*
-						 * File src1srcstatus = new
-						 * File(".\\src\\TestFiles\\FedExRateVerification.xlsx"); FileOutputStream
-						 * fis1srcstatus = new FileOutputStream(src1srcstatus); Sheet sh2srcstatus =
-						 * workbook.getSheet("Sheet1");
-						 */
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
-						msg.append("Result==" + "PASS" + "\n\n");
-
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-					}
 				}
+			}
 
-				else if (serviceid.equals("S2")) {
+			else if (serviceid.equals("S2")) {
 
-					pause(1000);
-					String actrate = driver
-							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[5]//div[@class=\"ratebtn\"]"))
-							.getText();
-					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
-					msg.append("ServiceID==" + serviceid + "\n");
-					msg.append("Actual Rate==" + actrate + "\n");
-					msg.append("Expected Rate==" + ExpectedRate + "\n");
-					if (!actrate.equals(ExpectedRate)) {
-						sh1.getRow(i).createCell(5).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL" + "\n\n");
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-					}
+				pause(1000);
+				String actrate = driver
+						.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[5]//div[@class=\"ratebtn\"]"))
+						.getText();
+				System.out.println(actrate);
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				sh2.getRow(i).createCell(4).setCellValue(actrate);
+				msg.append("ServiceID==" + serviceid + "\n");
+				msg.append("Actual Rate==" + actrate + "\n");
+				msg.append("Expected Rate==" + ExpectedRate + "\n");
+				if (!actrate.equals(ExpectedRate)) {
+					sh1.getRow(i).createCell(5).setCellValue("FAIL");
+					msg.append("Result==" + "FAIL" + "\n\n");
 
-					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
-						msg.append("Result==" + "PASS" + "\n\n");
-
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-					}
-				} else if (serviceid.equals("EC")) {
-
-					pause(1000);
-					String actrate = driver
-							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[7]//div[@class=\"ratebtn\"]"))
-							.getText();
-					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
-					msg.append("ServiceID==" + serviceid + "\n");
-					msg.append("Actual Rate==" + actrate + "\n");
-					msg.append("Expected Rate==" + ExpectedRate + "\n");
-					if (!actrate.equals(ExpectedRate)) {
-						sh1.getRow(i).createCell(5).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL" + "\n\n");
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-
-					}
-
-					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
-						msg.append("Result==" + "PASS" + "\n\n");
-
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-					}
-				} else if (serviceid.equals("DR")) {
-
-					pause(1000);
-					String actrate = driver
-							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
-							.getText();
-					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
-					msg.append("ServiceID==" + serviceid + "\n");
-					msg.append("Actual Rate==" + actrate + "\n");
-					msg.append("Expected Rate==" + ExpectedRate + "\n");
-					if (!actrate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL" + "\n\n");
-
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-
-					}
-
-					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
-						msg.append("Result==" + "PASS" + "\n\n");
-
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-					}
-				} else if (serviceid.equals("AIR")) {
-
-					pause(1000);
-					String actrate = driver
-							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
-							.getText();
-					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
-					msg.append("ServiceID==" + serviceid + "\n");
-					msg.append("Actual Rate==" + actrate + "\n");
-					msg.append("Expected Rate==" + ExpectedRate + "\n");
-					if (!actrate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL" + "\n\n");
-
-					}
-
-					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
-						msg.append("Result==" + "PASS" + "\n\n");
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-
-					}
+					fis1.close();
 
 				}
 
-				else if (serviceid.equals("DRV")) {
+				else {
+					sh2.getRow(i).createCell(5).setCellValue("PASS");
+					msg.append("Result==" + "PASS" + "\n\n");
 
-					pause(1000);
-					String actrate = driver
-							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
-							.getText();
-					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
-					msg.append("ServiceID==" + serviceid + "\n");
-					msg.append("Actual Rate==" + actrate + "\n");
-					msg.append("Expected Rate==" + ExpectedRate + "\n");
-					if (!actrate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
-						msg.append("Result==" + "FAIL" + "\n\n");
+					fis1.close();
 
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
-					}
+				}
+			} else if (serviceid.equals("EC")) {
 
-					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
-						msg.append("Result==" + "PASS" + "\n\n");
+				pause(1000);
+				String actrate = driver
+						.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[7]//div[@class=\"ratebtn\"]"))
+						.getText();
+				System.out.println(actrate);
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				sh2.getRow(i).createCell(4).setCellValue(actrate);
+				msg.append("ServiceID==" + serviceid + "\n");
+				msg.append("Actual Rate==" + actrate + "\n");
+				msg.append("Expected Rate==" + ExpectedRate + "\n");
+				if (!actrate.equals(ExpectedRate)) {
+					sh1.getRow(i).createCell(5).setCellValue("FAIL");
+					msg.append("Result==" + "FAIL" + "\n\n");
 
-						/*
-						 * workbook.write(fis1); fis1.close();
-						 */
+					fis1.close();
 
-					}
+				}
+
+				else {
+					sh2.getRow(i).createCell(5).setCellValue("PASS");
+					msg.append("Result==" + "PASS" + "\n\n");
+
+					fis1.close();
+
+				}
+			} else if (serviceid.equals("DR")) {
+
+				pause(1000);
+				String actrate = driver
+						.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
+						.getText();
+				System.out.println(actrate);
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				sh2.getRow(i).createCell(4).setCellValue(actrate);
+				msg.append("ServiceID==" + serviceid + "\n");
+				msg.append("Actual Rate==" + actrate + "\n");
+				msg.append("Expected Rate==" + ExpectedRate + "\n");
+				if (!actrate.equals(ExpectedRate)) {
+					sh2.getRow(i).createCell(5).setCellValue("FAIL");
+					msg.append("Result==" + "FAIL" + "\n\n");
+
+					fis1.close();
+
+				}
+
+				else {
+					sh2.getRow(i).createCell(5).setCellValue("PASS");
+					msg.append("Result==" + "PASS" + "\n\n");
+
+					fis1.close();
+
+				}
+			} else if (serviceid.equals("AIR")) {
+
+				pause(1000);
+				String actrate = driver
+						.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
+						.getText();
+				System.out.println(actrate);
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				sh2.getRow(i).createCell(4).setCellValue(actrate);
+				msg.append("ServiceID==" + serviceid + "\n");
+				msg.append("Actual Rate==" + actrate + "\n");
+				msg.append("Expected Rate==" + ExpectedRate + "\n");
+				if (!actrate.equals(ExpectedRate)) {
+					sh2.getRow(i).createCell(5).setCellValue("FAIL");
+					msg.append("Result==" + "FAIL" + "\n\n");
+
+				}
+
+				else {
+					sh2.getRow(i).createCell(5).setCellValue("PASS");
+					msg.append("Result==" + "PASS" + "\n\n");
+
+					fis1.close();
 
 				}
 
 			}
-			workbook.write(fis1);
-			fis1.close();
-			msg.append("Rate/Quote Verification Process Completed !!" + "\n");
 
-		} catch (Exception e) {
-			System.out.println("Something went Wrong");
-			msg.append("Rate/Quote Verification Process Completed !!==FAIL" + "\n");
+			else if (serviceid.equals("DRV")) {
+
+				pause(1000);
+				String actrate = driver
+						.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
+						.getText();
+				System.out.println(actrate);
+				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				sh2.getRow(i).createCell(4).setCellValue(actrate);
+				msg.append("ServiceID==" + serviceid + "\n");
+				msg.append("Actual Rate==" + actrate + "\n");
+				msg.append("Expected Rate==" + ExpectedRate + "\n");
+				if (!actrate.equals(ExpectedRate)) {
+					sh2.getRow(i).createCell(5).setCellValue("FAIL");
+					msg.append("Result==" + "FAIL" + "\n\n");
+					fis1.close();
+
+				}
+
+				else {
+					sh2.getRow(i).createCell(5).setCellValue("PASS");
+					msg.append("Result==" + "PASS" + "\n\n");
+
+					fis1.close();
+
+				}
+
+			}
 
 		}
+
+		msg.append("Rate/Quote Verification Process Completed !!" + "\n");
+
+		/*
+		 * } catch (Exception e) { System.out.println("Something went Wrong");
+		 * msg.append("Rate/Quote Verification Process Completed !!==FAIL" + "\n");
+		 * 
+		 * }
+		 */
 
 		// Send Email
 
