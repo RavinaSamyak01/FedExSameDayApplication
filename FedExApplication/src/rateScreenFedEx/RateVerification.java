@@ -27,12 +27,13 @@ import basePackage.Email;
 
 public class RateVerification extends BaseInit {
 	static StringBuilder msg = new StringBuilder();
+	static double quoteTime;
 
 	@Test
 	public void prService() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		msg.append("Rate/Quote Verification Process Start.... " + "\n");
-
+		long start, end;
 		// --get the data
 		// try {
 		System.out.println("Rate Verification start");
@@ -44,7 +45,7 @@ public class RateVerification extends BaseInit {
 		DataFormatter formatter = new DataFormatter();
 
 		// 31
-		for (int i = 8; i < 31; i++) {
+		for (int i = 1; i < 31; i++) {
 			driver.getTitle();
 			pause(1000);
 
@@ -118,6 +119,8 @@ public class RateVerification extends BaseInit {
 			pause(2000);
 
 			// --Click on show rates
+			// --Start time
+			start = System.nanoTime();
 			driver.findElement(By.id("btngetQuickquote")).click();
 			wait.until(
 					ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//table[@class=\"fdxRatetable\"]")));
@@ -127,7 +130,11 @@ public class RateVerification extends BaseInit {
 			waitForVisibilityOfElement(By.xpath(".//*[@id='Process']"), 2);
 			waitForInVisibilityOfElement(By.xpath(".//*[@id='Process']"), 30);
 			waitForVisibilityOfElement(By.id("btnShip"), 30);
-
+			// --End time
+			end = System.nanoTime();
+			quoteTime = (end - start) * 1.0e-9;
+			System.out.println("Quote Time (in Seconds) = " + quoteTime);
+			msg.append("Quote Time (in Seconds) = " + quoteTime + "\n");
 			// --set the data
 
 			String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(2));
