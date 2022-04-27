@@ -155,7 +155,6 @@ public class RateVerification extends BaseInit {
 				msg.append("ServiceID==" + serviceid + "\n");
 				msg.append("Actual Rate==" + actrate + "\n");
 				msg.append("Expected Rate==" + ExpectedRate + "\n");
-
 				fis1.close();
 
 				if (!actrate.equals(ExpectedRate)) {
@@ -306,18 +305,14 @@ public class RateVerification extends BaseInit {
 				if (!actrate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(5).setCellValue("FAIL");
 					msg.append("Result==" + "FAIL" + "\n\n");
-					fis1.close();
 
-				}
-
-				else {
+				} else {
 					sh2.getRow(i).createCell(5).setCellValue("PASS");
 					msg.append("Result==" + "PASS" + "\n\n");
 
-					fis1.close();
-
 				}
-
+				workbook.write(fis1);
+				fis1.close();
 			}
 
 		}

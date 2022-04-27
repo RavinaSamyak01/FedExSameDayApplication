@@ -453,13 +453,14 @@ public class ShipmentCreation extends BaseInit {
 					String rate = driver.findElement(By.id("btnFRG")).getText();
 					System.out.println(rate);
 					msg.append("FRG Service - Actual Rate :" + rate + "\n");
-					
+
 					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 					msg.append("FRG Service - Expected Rate :" + ExpectedRate + "\n");
 					sh2.getRow(i).createCell(16).setCellValue(rate);
 					if (!rate.equals(ExpectedRate)) {
 						sh2.getRow(i).createCell(17).setCellValue("FAIL");
 						msg.append("Result==" + "FAIL" + "\n");
+						workbook.write(fis1);
 						fis1.close();
 
 					}
@@ -467,6 +468,7 @@ public class ShipmentCreation extends BaseInit {
 					else {
 						sh2.getRow(i).createCell(17).setCellValue("PASS");
 						msg.append("Result==" + "PASS " + "\n");
+						workbook.write(fis1);
 
 						fis1.close();
 					}
