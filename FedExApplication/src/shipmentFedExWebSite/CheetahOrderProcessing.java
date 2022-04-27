@@ -45,7 +45,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		DataFormatter formatter = new DataFormatter();
 
 		// 8
-		for (int i = 7; i < 8; i++) {
+		for (int i = 1; i < 23; i++) {
 
 			if (i == 1) // Normal Order Processing
 			{
