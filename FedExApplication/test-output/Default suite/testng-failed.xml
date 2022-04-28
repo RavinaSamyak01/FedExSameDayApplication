@@ -3,13 +3,13 @@
 <suite parallel="none" name="Failed suite [Default suite]">
   <test parallel="none" name="Default test(failed)">
     <classes>
-      <class name="rateScreenFedEx.RateVerification">
+      <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
-          <include name="prService"/>
+          <include name="shipmentCreation"/>
           <include name="startUp"/>
           <include name="end"/>
         </methods>
-      </class> <!-- rateScreenFedEx.RateVerification -->
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

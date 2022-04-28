@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite parallel="none" name="Failed suite [FedExApplication]">
-  <test parallel="none" name="Rate Verification(failed)">
+<suite parallel="none" name="Failed suite [Default suite]">
+  <test parallel="none" name="Default test(failed)">
     <classes>
-      <class name="rateScreenFedEx.RateVerification">
+      <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
-          <include name="prService"/>
-        </methods>
-      </class> <!-- rateScreenFedEx.RateVerification -->
-      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
-        <methods>
+          <include name="shipmentCreation"/>
           <include name="startUp"/>
           <include name="end"/>
         </methods>
-      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </classes>
-  </test> <!-- Rate Verification(failed) -->
-</suite> <!-- Failed suite [FedExApplication] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

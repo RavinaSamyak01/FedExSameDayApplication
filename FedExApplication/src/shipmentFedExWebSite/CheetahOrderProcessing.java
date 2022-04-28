@@ -2,6 +2,7 @@ package shipmentFedExWebSite;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,6 +47,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 		// 8
 		for (int i = 1; i < 23; i++) {
+			File src1 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+			FileOutputStream fis1 = new FileOutputStream(src1);
+			Sheet sh2 = workbook.getSheet("Sheet1");
+			workbook.write(fis1);
+
 
 			if (i == 1) // Normal Order Processing
 			{
@@ -161,7 +167,9 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					driver.findElement(By.id("MainContent_btnSubmit")).click();
 					Thread.sleep(1000);
+
 					// --Wait for status
+					
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
 					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
 					act.moveToElement(RespStatus).build().perform();
@@ -171,12 +179,16 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PAT : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
 
 						} else {
 							msg.append("PAT : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
 
 						}
+
+
 					} else {
 						System.out.println("Response Message is not displayed");
 						msg.append("Response Message is not displayed");
@@ -237,10 +249,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PPN : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
 
 						} else {
 							msg.append("PPN : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
 
 						}
 					} else {
@@ -340,10 +354,14 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DBA : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
+
 
 						} else {
 							msg.append("DBA : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+
 
 						}
 					} else {
@@ -402,10 +420,14 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DCR : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
+
 
 						} else {
 							msg.append("DCR : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+
 
 						}
 					} else {
@@ -465,10 +487,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DNO : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
 
 						} else {
 							msg.append("DNO : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
 
 						}
 					} else {
@@ -528,10 +552,14 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DRD : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
+
 
 						} else {
 							msg.append("DRD : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+
 
 						}
 					} else {
@@ -609,10 +637,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("SDRTS2 : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("PASS");
 
 						} else {
 							msg.append("SDRTS2 : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
+							sh2.getRow(i).createCell(11).setCellValue("FAIL");
 
 						}
 					} else {
@@ -720,6 +750,7 @@ public class CheetahOrderProcessing extends BaseInit {
 			{
 
 			}
+
 		}
 		System.out.println("Cheetah Process END----");
 

@@ -311,7 +311,11 @@ public class RateVerification extends BaseInit {
 					msg.append("Result==" + "PASS" + "\n\n");
 
 				}
+				src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
+				fis1 = new FileOutputStream(src1);
+				sh2 = workbook.getSheet("Sheet1");
 				workbook.write(fis1);
+				Thread.sleep(5000);
 				fis1.close();
 			}
 
