@@ -46,12 +46,14 @@ public class CheetahOrderProcessing extends BaseInit {
 		DataFormatter formatter = new DataFormatter();
 
 		// 8
-		for (int i = 1; i < 23; i++) {
+		for (int i = 1; i < 22; i++) {
 			File src1 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
 			workbook.write(fis1);
-
+			Thread.sleep(2000);
+			String SHipTrackNo = formatter.formatCellValue(sh1.getRow(i).getCell(2));
+			msg.append("Shipment Tracking No=="+ SHipTrackNo+ "\n");
 
 			if (i == 1) // Normal Order Processing
 			{
@@ -61,19 +63,19 @@ public class CheetahOrderProcessing extends BaseInit {
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
-				confirmEd();
+				confirmEd(sh2,i);
 
 				Thread.sleep(4000);
-				pickedUp();
+				pickedUp(sh2,i);
 
 				Thread.sleep(4000);
-				pustatusUpdate();
+				pustatusUpdate(sh2,i);
 
 				Thread.sleep(4000);
-				deliverEd();
+				deliverEd(sh2,i);
 
 				Thread.sleep(4000);
-				dlstatusUpdate();
+				dlstatusUpdate(sh2,i);
 				System.out.println("CASE1: Order Processing DONE !!");
 			}
 
@@ -85,7 +87,7 @@ public class CheetahOrderProcessing extends BaseInit {
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
-				rejectEd();
+				rejectEd(sh2,i);
 				System.out.println("CASE2: Rejected DONE !!");
 			}
 
@@ -102,11 +104,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 				Thread.sleep(1000);
 
-				packageDetailChange();
-				pickedUp();
-				pustatusUpdate();
-				deliverEd();
-				dlstatusUpdate();
+				packageDetailChange(sh2,i);
+				pickedUp(sh2,i);
+				pustatusUpdate(sh2,i);
+				deliverEd(sh2,i);
+				dlstatusUpdate(sh2,i);
 				System.out.println("CASE3: [Package Detail Change] Order Processing Completed !!");
 			}
 
@@ -119,11 +121,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 				Thread.sleep(1000);
 
-				addPackage();
-				pickedUp();
-				pustatusUpdate();
-				deliverEd();
-				dlstatusUpdate();
+				addPackage(sh2,i);
+				pickedUp(sh2,i);
+				pustatusUpdate(sh2,i);
+				deliverEd(sh2,i);
+				dlstatusUpdate(sh2,i);
 				System.out.println("CASE4: [Add Package] Order Processing Completed !!");
 			}
 
@@ -140,7 +142,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking2);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(m).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
@@ -169,7 +171,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					Thread.sleep(1000);
 
 					// --Wait for status
-					
+
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
 					WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
 					act.moveToElement(RespStatus).build().perform();
@@ -179,15 +181,14 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PAT : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
+							sh2.getRow(i).createCell(18).setCellValue("PASS");
 
 						} else {
 							msg.append("PAT : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+							sh2.getRow(i).createCell(18).setCellValue("FAIL");
 
 						}
-
 
 					} else {
 						System.out.println("Response Message is not displayed");
@@ -195,10 +196,10 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					pickedUp();
-					pustatusUpdate();
-					deliverEd();
-					dlstatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 
 				}
 				m++;
@@ -211,7 +212,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking2);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(m).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
@@ -249,12 +250,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PPN : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
+							sh2.getRow(i).createCell(19).setCellValue("PASS");
 
 						} else {
 							msg.append("PPN : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+							sh2.getRow(i).createCell(19).setCellValue("FAIL");
 
 						}
 					} else {
@@ -263,10 +264,10 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					pickedUp();
-					pustatusUpdate();
-					deliverEd();
-					dlstatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 
 				}
 				m++;
@@ -317,10 +318,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
-					pickedUp();
-					pustatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -354,14 +355,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DBA : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
-
+							sh2.getRow(i).createCell(20).setCellValue("PASS");
 
 						} else {
 							msg.append("DBA : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
-
+							sh2.getRow(i).createCell(20).setCellValue("FAIL");
 
 						}
 					} else {
@@ -369,8 +368,8 @@ public class CheetahOrderProcessing extends BaseInit {
 						msg.append("Response Message is not displayed");
 
 					}
-					deliverEd();
-					dlstatusUpdate();
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 				}
 
 				n++;
@@ -384,10 +383,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
-					pickedUp();
-					pustatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -420,14 +419,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DCR : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
-
+							sh2.getRow(i).createCell(21).setCellValue("PASS");
 
 						} else {
 							msg.append("DCR : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
-
+							sh2.getRow(i).createCell(21).setCellValue("FAIL");
 
 						}
 					} else {
@@ -436,8 +433,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd();
-					dlstatusUpdate();
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 				}
 
 				n++;
@@ -451,10 +448,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
-					pickedUp();
-					pustatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -487,12 +484,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DNO : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
+							sh2.getRow(i).createCell(22).setCellValue("PASS");
 
 						} else {
 							msg.append("DNO : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+							sh2.getRow(i).createCell(22).setCellValue("FAIL");
 
 						}
 					} else {
@@ -501,8 +498,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd();
-					dlstatusUpdate();
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 				}
 
 				n++;
@@ -516,10 +513,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
-					pickedUp();
-					pustatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -552,14 +549,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DRD : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
-
+							sh2.getRow(i).createCell(23).setCellValue("PASS");
 
 						} else {
 							msg.append("DRD : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
-
+							sh2.getRow(i).createCell(23).setCellValue("FAIL");
 
 						}
 					} else {
@@ -568,8 +563,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd();
-					dlstatusUpdate();
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 				}
 				n++;
 				o++;
@@ -583,10 +578,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
+					confirmEd(sh2,i);
 
-					pickedUp();
-					pustatusUpdate();
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -637,12 +632,12 @@ public class CheetahOrderProcessing extends BaseInit {
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("SDRTS2 : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("PASS");
+							sh2.getRow(i).createCell(24).setCellValue("PASS");
 
 						} else {
 							msg.append("SDRTS2 : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(11).setCellValue("FAIL");
+							sh2.getRow(i).createCell(24).setCellValue("FAIL");
 
 						}
 					} else {
@@ -651,8 +646,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd();
-					dlstatusUpdate();
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 				}
 			}
 
@@ -671,18 +666,18 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
-					waitTimePu();
-					pickedUp();
-					pustatusUpdate();
+					confirmEd(sh2,i);
+					waitTimePu(sh2,i);
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
 
-					deliverEd();
-					dlstatusUpdate();
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 
 				}
 
@@ -697,17 +692,17 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
-					pickedUp();
-					pustatusUpdate();
+					confirmEd(sh2,i);
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
-					waitTimedl();
-					deliverEd();
-					dlstatusUpdate();
+					waitTimedl(sh2,i);
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 
 				}
 
@@ -722,17 +717,17 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd();
-					pickedUp();
-					pustatusUpdate();
+					confirmEd(sh2,i);
+					pickedUp(sh2,i);
+					pustatusUpdate(sh2,i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
-					waitTimertn();
-					deliverEd();
-					dlstatusUpdate();
+					waitTimertn(sh2,i);
+					deliverEd(sh2,i);
+					dlstatusUpdate(sh2,i);
 
 				}
 
@@ -769,7 +764,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void confirmEd() throws Exception // CONFIRMED
+	public static void confirmEd(Sheet sh, int row) throws Exception // CONFIRMED
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -798,10 +793,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Confirmed  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(11).setCellValue("PASS");
 
 			} else {
 				msg.append("Confirmed   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(11).setCellValue("FAIL");
 
 			}
 		} else {
@@ -812,7 +809,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void pickedUp() throws Exception // PICKEDUP
+	public static void pickedUp(Sheet sh, int row) throws Exception // PICKEDUP
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -840,10 +837,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Pickedup  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(12).setCellValue("PASS");
 
 			} else {
 				msg.append("Pickedup   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(12).setCellValue("FAIL");
 
 			}
 		} else {
@@ -853,7 +852,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void pustatusUpdate() throws Exception // Status Update
+	public static void pustatusUpdate(Sheet sh, int row) throws Exception // Status Update
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -886,10 +885,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Pickup Status Update  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(13).setCellValue("Pass");
 
 			} else {
 				msg.append("Pickup Status Update   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(13).setCellValue("FAIL");
 
 			}
 		} else {
@@ -899,7 +900,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void deliverEd() throws Exception // DELIVERED
+	public static void deliverEd(Sheet sh, int row) throws Exception // DELIVERED
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -928,10 +929,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Delivered  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(14).setCellValue("Pass");
 
 			} else {
 				msg.append("Delivered   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(14).setCellValue("FAIL");
 
 			}
 		} else {
@@ -942,7 +945,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void dlstatusUpdate() throws Exception // Status Update
+	public static void dlstatusUpdate(Sheet sh, int row) throws Exception // Status Update
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -974,10 +977,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Delivery Status Update  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(15).setCellValue("Pass");
 
 			} else {
 				msg.append("Delivery Status Update   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(15).setCellValue("FAIL");
 
 			}
 		} else {
@@ -988,7 +993,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void rejectEd() throws Exception // REJECTED
+	public static void rejectEd(Sheet sh, int row) throws Exception // REJECTED
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1015,10 +1020,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Rejected  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(16).setCellValue("Pass");
 
 			} else {
 				msg.append("Rejected   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(16).setCellValue("FAIL");
 
 			}
 		} else {
@@ -1029,7 +1036,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void packageDetailChange() throws Exception // PackageDetailChange
+	public static void packageDetailChange(Sheet sh, int row) throws Exception // PackageDetailChange
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1067,10 +1074,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("PackageDetailChange  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(17).setCellValue("Pass");
 
 			} else {
 				msg.append("PackageDetailChange   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(17).setCellValue("FAIL");
 
 			}
 		} else {
@@ -1080,7 +1089,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void addPackage() throws Exception // Add Package
+	public static void addPackage(Sheet sh, int row) throws Exception // Add Package
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1117,10 +1126,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("AddPackage  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(18).setCellValue("Pass");
 
 			} else {
 				msg.append("AddPackage   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(18).setCellValue("FAIL");
 
 			}
 		} else {
@@ -1130,7 +1141,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void waitTimePu() throws Exception // PICKUP_WAIT_TIME
+	public static void waitTimePu(Sheet sh, int row) throws Exception // PICKUP_WAIT_TIME
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1168,10 +1179,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("PICKUP_WAIT_TIME   : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(27).setCellValue("Pass");
 
 			} else {
 				msg.append("PICKUP_WAIT_TIME   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(27).setCellValue("FAIL");
 
 			}
 		} else {
@@ -1181,7 +1194,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void waitTimedl() throws Exception // DELIVERY_WAIT_TIME
+	public static void waitTimedl(Sheet sh, int row) throws Exception // DELIVERY_WAIT_TIME
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1219,10 +1232,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("DELIVERY_WAIT_TIME : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(28).setCellValue("PASS");
 
 			} else {
 				msg.append("DELIVERY_WAIT_TIME : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(28).setCellValue("FAIL");
 
 			}
 		} else {
@@ -1232,7 +1247,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void waitTimertn() throws Exception // RETURN_WAIT_TIME
+	public static void waitTimertn(Sheet sh, int row) throws Exception // RETURN_WAIT_TIME
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1270,10 +1285,12 @@ public class CheetahOrderProcessing extends BaseInit {
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("RETURN_WAIT_TIME   : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(29).setCellValue("PASS");
 
 			} else {
 				msg.append("RETURN_WAIT_TIME   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
+				sh.getRow(row).createCell(29).setCellValue("FAIL");
 
 			}
 		} else {

@@ -44,11 +44,12 @@ public class ShipmentCreation extends BaseInit {
 		FileInputStream fis = new FileInputStream(src);
 		Workbook workbook = WorkbookFactory.create(fis);
 		Sheet sh1 = workbook.getSheet("Sheet1");
-		// int rcount = sh1.getLastRowNum();
+//		int rcount = sh1.getLastRowNum();
+//		System.out.println("Last row number==" + rcount);
 
-		 try {
+		// try {
 
-		for (int i = 25; i < 27; i++) {
+		for (int i = 1; i < 26; i++) {
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			// --click on shipping menu
 			driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
@@ -254,8 +255,8 @@ public class ShipmentCreation extends BaseInit {
 			File src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
 			FileOutputStream fis1 = new FileOutputStream(src1);
 			Sheet sh2 = workbook.getSheet("Sheet1");
-			workbook.write(fis1);
-			Thread.sleep(5000);
+			// workbook.write(fis1);
+			Thread.sleep(2000);
 
 			// If match with PR, below code will execute
 			if (serviceid.equals("PR")) {
@@ -470,18 +471,21 @@ public class ShipmentCreation extends BaseInit {
 				if (!rate.equals(ExpectedRate)) {
 					sh2.getRow(i).createCell(17).setCellValue("FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
+					fis1.close();
+
 				}
 
 				else {
 					sh2.getRow(i).createCell(17).setCellValue("PASS");
 					msg.append("Result==" + "PASS " + "\n");
+					fis1.close();
 
 				}
-				src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
+				src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
 				fis1 = new FileOutputStream(src1);
 				sh2 = workbook.getSheet("Sheet1");
 				workbook.write(fis1);
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 				fis1.close();
 
 			}
@@ -545,16 +549,21 @@ public class ShipmentCreation extends BaseInit {
 
 			msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
 			sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
+
+			src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
+			fis1 = new FileOutputStream(src1);
+			sh2 = workbook.getSheet("Sheet1");
 			workbook.write(fis1);
 			fis1.close();
+			Thread.sleep(2000);
 
 			// --copy data to cheetah file
 			// --Initialize cheetah file
-			File src2 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-			FileInputStream fis3 = new FileInputStream(src2);
-			Workbook workbook1 = WorkbookFactory.create(fis3);
-			FileOutputStream fis2 = new FileOutputStream(src2);
-			Sheet sh3 = workbook1.getSheet("Sheet1");
+			File src21 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+			FileInputStream fisI3 = new FileInputStream(src21);
+			Workbook workbook2 = WorkbookFactory.create(fisI3);
+			FileOutputStream fis3 = new FileOutputStream(src21);
+			Sheet sh3 = workbook2.getSheet("Sheet1");
 
 			if (i == 4) {
 				// set trackingNo
@@ -612,23 +621,25 @@ public class ShipmentCreation extends BaseInit {
 				System.out.println("Shipment Tracking No==" + VoucherNum);
 				System.out.println("set the Tracking No");
 			}
-			workbook1.write(fis2);
-			fis2.close();
+			workbook2.write(fis3);
+			fis3.close();
 
 		}
 		msg.append("Shipment Creation Process Completed.... PASS" + "\n");
 
-	} catch (Exception error) {
-		msg.append("Shipment Creation Process Completed.... FAIL" + "\n");
-
-	}
+		/*
+		 * } catch (Exception error) {
+		 * msg.append("Shipment Creation Process Completed.... FAIL" + "\n");
+		 * 
+		 * }
+		 */
 		// If alert pop-up exist, than accept.
 
 		String subject = "Selenium Automation Script : STAGING FedEx Shipment Creation";
 		try {
 			// asharma@samyak.com,pgandhi@samyak.com,sdas@samyak.com,byagnik@samyak.com,pdoshi@samyak.com,kbrahmbhatt@samyak.com
-			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-					msg.toString(), "");
+			// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject, msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(ShipmentCreation.class.getName()).log(Level.SEVERE, null, ex);
 		}
