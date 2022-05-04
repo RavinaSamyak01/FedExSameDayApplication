@@ -281,6 +281,7 @@ public class ShipmentCreation extends BaseInit {
 					msg.append("Result==" + "PASS " + "\n");
 					fis1.close();
 				}
+				fis1.close();
 
 			}
 			// If match with S2, below code will execute
@@ -310,6 +311,7 @@ public class ShipmentCreation extends BaseInit {
 
 					fis1.close();
 				}
+				fis1.close();
 
 			} else if (serviceid.equals("EC")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
@@ -348,6 +350,7 @@ public class ShipmentCreation extends BaseInit {
 
 					fis1.close();
 				}
+				fis1.close();
 
 			} else if (serviceid.equals("DR")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDR")));
@@ -373,6 +376,8 @@ public class ShipmentCreation extends BaseInit {
 
 					fis1.close();
 				}
+				fis1.close();
+
 			} else if (serviceid.equals("DRV")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDRV")));
 				driver.findElement(By.id("chkDRV")).click();
@@ -400,6 +405,7 @@ public class ShipmentCreation extends BaseInit {
 
 					fis1.close();
 				}
+				fis1.close();
 
 			} else if (serviceid.equals("AIR")) {
 
@@ -455,6 +461,7 @@ public class ShipmentCreation extends BaseInit {
 
 					fis1.close();
 				}
+				fis1.close();
 
 			} else if (serviceid.equals("FRG")) {
 
