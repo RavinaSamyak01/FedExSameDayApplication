@@ -252,12 +252,6 @@ public class ShipmentCreation extends BaseInit {
 
 			// Service
 
-			File src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
-			FileOutputStream fis1 = new FileOutputStream(src1);
-			Sheet sh2 = workbook.getSheet("Sheet1");
-			// workbook.write(fis1);
-			Thread.sleep(2000);
-
 			// If match with PR, below code will execute
 			if (serviceid.equals("PR")) {
 
@@ -268,20 +262,16 @@ public class ShipmentCreation extends BaseInit {
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("PR Service - Actual Rate :" + rate + "\n");
 				msg.append("PR Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
-
+				setData("Sheet1", i, 16, rate);
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-					fis1.close();
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
-					fis1.close();
 				}
-				fis1.close();
 
 			}
 			// If match with S2, below code will execute
@@ -296,22 +286,19 @@ public class ShipmentCreation extends BaseInit {
 				msg.append("S2 Service - Actual Rate :" + rate + "\n");
 				msg.append("S2 Service - Expected Rate :" + ExpectedRate + "\n");
 
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-					fis1.close();
 
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
 
-					fis1.close();
 				}
-				fis1.close();
 
 			} else if (serviceid.equals("EC")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkSDRTS")));
@@ -335,22 +322,18 @@ public class ShipmentCreation extends BaseInit {
 
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("EC Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-
-					fis1.close();
 
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
 
-					fis1.close();
 				}
-				fis1.close();
 
 			} else if (serviceid.equals("DR")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDR")));
@@ -363,20 +346,17 @@ public class ShipmentCreation extends BaseInit {
 
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("DR Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
 
-					fis1.close();
 				} else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
 
-					fis1.close();
 				}
-				fis1.close();
 
 			} else if (serviceid.equals("DRV")) {
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkDRV")));
@@ -389,23 +369,19 @@ public class ShipmentCreation extends BaseInit {
 
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("DRV Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-
-					fis1.close();
 
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
 
-					fis1.close();
 				}
-				fis1.close();
 
 			} else if (serviceid.equals("AIR")) {
 
@@ -419,20 +395,17 @@ public class ShipmentCreation extends BaseInit {
 
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("AIR Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-
-					fis1.close();
 
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
 
-					fis1.close();
 				}
 
 			} else if (serviceid.equals("SDC")) {
@@ -447,21 +420,18 @@ public class ShipmentCreation extends BaseInit {
 
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("SDC Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-					fis1.close();
 
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
 
-					fis1.close();
 				}
-				fis1.close();
 
 			} else if (serviceid.equals("FRG")) {
 
@@ -474,26 +444,18 @@ public class ShipmentCreation extends BaseInit {
 
 				String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
 				msg.append("FRG Service - Expected Rate :" + ExpectedRate + "\n");
-				sh2.getRow(i).createCell(16).setCellValue(rate);
+				setData("Sheet1", i, 16, rate);
 				if (!rate.equals(ExpectedRate)) {
-					sh2.getRow(i).createCell(17).setCellValue("FAIL");
+					setData("Sheet1", i, 17, "FAIL");
 					msg.append("Result==" + "FAIL" + "\n");
-					fis1.close();
 
 				}
 
 				else {
-					sh2.getRow(i).createCell(17).setCellValue("PASS");
+					setData("Sheet1", i, 17, "PASS");
 					msg.append("Result==" + "PASS " + "\n");
-					fis1.close();
 
 				}
-				src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
-				fis1 = new FileOutputStream(src1);
-				sh2 = workbook.getSheet("Sheet1");
-				workbook.write(fis1);
-				Thread.sleep(2000);
-				fis1.close();
 
 			}
 
@@ -538,98 +500,93 @@ public class ShipmentCreation extends BaseInit {
 
 			} catch (Exception ACRestriction) {
 				System.out.println("Account is Active");
+				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
+				// Confirm from Shipment Summary screen.
+				driver.getTitle();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
+				driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click();
+
+				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("dvPrintGrid")));
+				end = System.nanoTime();
+				ShipmentCreationTime = (end - start) * 1.0e-9;
+				System.out.println("Shipment Creation Time (in Seconds) = " + ShipmentCreationTime);
+				msg.append("Shipment Creation Time (in Seconds) = " + ShipmentCreationTime + "\n");
+				// Get Shipment tracking number and store in variable
+				String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText();
+				System.out.println("Shipment Tracking # " + VoucherNum);
+
+				msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
+				setData("Sheet1", i, 15, VoucherNum);
+
+				Thread.sleep(2000);
+
+				// --copy data to cheetah file
+				// --Initialize cheetah file
+				File src21 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
+				FileInputStream fisI3 = new FileInputStream(src21);
+				Workbook workbook2 = WorkbookFactory.create(fisI3);
+				FileOutputStream fis3 = new FileOutputStream(src21);
+				Sheet sh3 = workbook2.getSheet("Sheet1");
+
+				if (i == 4) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 5) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 6) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 12) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 13) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 14) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 15) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i == 16) {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
+					System.out.println("set the Tracking No in PackageNo");
+				} else if (i > 21) {
+					System.out.println("No need to add tracking after row 20");
+				} else {
+					// set trackingNo
+					sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
+					System.out.println("Shipment Tracking No==" + VoucherNum);
+					System.out.println("set the Tracking No");
+				}
+				workbook2.write(fis3);
+				fis3.close();
 			}
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
-			// Confirm from Shipment Summary screen.
-			driver.getTitle();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=cmdSubmit]")));
-			driver.findElement(By.cssSelector("input[id=cmdSubmit]")).click();
-
-			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("dvPrintGrid")));
-			end = System.nanoTime();
-			ShipmentCreationTime = (end - start) * 1.0e-9;
-			System.out.println("Shipment Creation Time (in Seconds) = " + ShipmentCreationTime);
-			msg.append("Shipment Creation Time (in Seconds) = " + ShipmentCreationTime + "\n");
-			// Get Shipment tracking number and store in variable
-			String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText();
-			System.out.println("Shipment Tracking # " + VoucherNum);
-
-			msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
-			sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
-
-			src1 = new File(".\\src\\TestFiles\\FedExShipments.xlsx");
-			fis1 = new FileOutputStream(src1);
-			sh2 = workbook.getSheet("Sheet1");
-			workbook.write(fis1);
-			fis1.close();
-			Thread.sleep(2000);
-
-			// --copy data to cheetah file
-			// --Initialize cheetah file
-			File src21 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-			FileInputStream fisI3 = new FileInputStream(src21);
-			Workbook workbook2 = WorkbookFactory.create(fisI3);
-			FileOutputStream fis3 = new FileOutputStream(src21);
-			Sheet sh3 = workbook2.getSheet("Sheet1");
-
-			if (i == 4) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 5) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 6) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 12) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 13) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 14) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 15) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i == 16) {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				sh3.getRow(i).createCell(3).setCellValue(VoucherNum);
-				System.out.println("set the Tracking No in PackageNo");
-			} else if (i > 21) {
-				System.out.println("No need to add tracking after row 20");
-			} else {
-				// set trackingNo
-				sh3.getRow(i).createCell(2).setCellValue(VoucherNum);
-				System.out.println("Shipment Tracking No==" + VoucherNum);
-				System.out.println("set the Tracking No");
-			}
-			workbook2.write(fis3);
-			fis3.close();
 
 		}
 		msg.append("Shipment Creation Process Completed.... PASS" + "\n");
@@ -646,7 +603,8 @@ public class ShipmentCreation extends BaseInit {
 		try {
 			// asharma@samyak.com,pgandhi@samyak.com,sdas@samyak.com,byagnik@samyak.com,pdoshi@samyak.com,kbrahmbhatt@samyak.com
 			// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
-			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject, msg.toString(), "");
+			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+					msg.toString(), "");
 		} catch (Exception ex) {
 			Logger.getLogger(ShipmentCreation.class.getName()).log(Level.SEVERE, null, ex);
 		}

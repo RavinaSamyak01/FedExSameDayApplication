@@ -1,5 +1,15 @@
 package basePackage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Platform;
@@ -23,7 +33,7 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless");
+		// options.addArguments("--headless");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -31,6 +41,7 @@ public class BaseInit {
 		options.addArguments("--disable-extensions");
 		options.addArguments("--no-sandbox");
 		options.addArguments("--start-maximized");
+		// options.addArguments("window-size=800x600");
 		// options.addArguments("window-size=1366x788");
 		capabilities.setPlatform(Platform.ANY);
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -71,5 +82,20 @@ public class BaseInit {
 	public void end() {
 		driver.close();
 		driver.quit();
+	}
+
+	public static void setData(String sheetName, int row, int col, String value)
+			throws EncryptedDocumentException, InvalidFormatException, IOException {
+		String FilePath = ".\\src\\TestFiles\\FedExShipments.xlsx";
+
+		File src = new File(FilePath);
+		FileInputStream fis = new FileInputStream(src);
+		Workbook workbook = WorkbookFactory.create(fis);
+		FileOutputStream fos1 = new FileOutputStream(src);
+		Sheet sh = workbook.getSheet(sheetName);
+
+		sh.getRow(row).createCell(col).setCellValue(value);
+		workbook.write(fos1);
+		fos1.close();
 	}
 }
