@@ -101,7 +101,7 @@
                     <div class="method-list-content failed suite-FedExApplication">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BaseClass" class="method navigator-link" hash-for-method="baseMethods">baseMethods</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-FedExApplication" title="rateScreenFedEx.RateVerification" class="method navigator-link" hash-for-method="prService">prService</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -120,6 +120,11 @@
                     <div class="method-list-content passed suite-FedExApplication">
                       <span>
                         <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BaseClass" class="method navigator-link" hash-for-method="baseMethods">baseMethods</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BrokenLinks" class="method navigator-link" hash-for-method="brokenLinks">brokenLinks</a> <!-- method navigator-link -->
                       </span>
                       <br/>
@@ -131,11 +136,6 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-FedExApplication" title="shipmentFedExWebSite.CrudOperation" class="method navigator-link" hash-for-method="crudOperations">crudOperations</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-FedExApplication" title="rateScreenFedEx.RateVerification" class="method navigator-link" hash-for-method="prService">prService</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-FedExApplication -->
@@ -153,27 +153,6 @@
           <div class="suite-FedExApplication-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">com.fdxMasterScreens.BaseClass</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="baseMethods">
-                  </a> <!-- baseMethods -->
-                  <span class="method-name">baseMethods</span>
-                  <div class="stack-trace">java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.xssf.usermodel.XSSFWorkbook.getSheet(String)&quot; because &quot;this.wb&quot; is null
-	at com.fdxMasterScreens.ExcelDataProvider.getData(ExcelDataProvider.java:30)
-	at com.fdxMasterScreens.TrackShipment.trckShipment(TrackShipment.java:27)
-	at com.fdxMasterScreens.BaseClass.baseMethods(BaseClass.java:24)
-... Removed 24 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-FedExApplication-class-failed -->
-          <div class="suite-FedExApplication-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
               <span class="class-name">shipmentFedExWebSite.ShipmentCreation</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -182,24 +161,32 @@
                   <a name="shipmentCreation">
                   </a> <!-- shipmentCreation -->
                   <span class="method-name">shipmentCreation</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all elements located by By.id: dvPrintGrid (tried for 50 second(s) with 500 milliseconds interval)
-Build info: version: &apos;3.13.0&apos;, revision: &apos;2f0d292&apos;, time: &apos;2018-06-25T15:32:14.902Z&apos;
-System info: host: &apos;SIPL92&apos;, ip: &apos;10.212.130.161&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;16.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\Users\RPRAJA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:63990}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 0b1f02fb82268a8b0d5a1391407e5aa4
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: chkPR (tried for 50 second(s) with 500 milliseconds interval)
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:81)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:271)
-	at shipmentFedExWebSite.ShipmentCreation.shipmentCreation(ShipmentCreation.java:548)
-... Removed 24 stack frames
+	at shipmentFedExWebSite.ShipmentCreation.shipmentCreation(ShipmentCreation.java:258)
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.id: chkPR
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.13.0&apos;, revision: &apos;2f0d292&apos;, time: &apos;2018-06-25T15:32:14.902Z&apos;
+System info: host: &apos;SIPL92&apos;, ip: &apos;10.212.130.166&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:408)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:248)
+	... 24 more
+... Removed 23 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-FedExApplication-class-failed -->
-          <div class="suite-FedExApplication-class-passed">
+          <div class="suite-FedExApplication-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">rateScreenFedEx.RateVerification</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -208,6 +195,58 @@ Session ID: 0b1f02fb82268a8b0d5a1391407e5aa4
                   <a name="prService">
                   </a> <!-- prService -->
                   <span class="method-name">prService</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#txtOrig&quot;}
+  (Session info: chrome=100.0.4896.127)
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.13.0&apos;, revision: &apos;2f0d292&apos;, time: &apos;2018-06-25T15:32:14.902Z&apos;
+System info: host: &apos;SIPL92&apos;, ip: &apos;10.212.130.166&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 100.0.4896.127, chrome: {chromedriverVersion: 100.0.4896.60 (6a5d10861ce8..., userDataDir: C:\WINDOWS\TEMP\scoped_dir1...}, goog:chromeOptions: {debuggerAddress: localhost:61928}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 956fd11fd1e331be7e8be31acffa08e1
+*** Element info: {Using=id, value=txtOrig}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:368)
+	at org.openqa.selenium.By$ById.findElement(By.java:188)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
+	at rateScreenFedEx.RateVerification.prService(RateVerification.java:54)
+... Removed 27 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-FedExApplication-class-failed -->
+          <div class="suite-FedExApplication-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.fdxMasterScreens.BrokenLinks</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="brokenLinks">
+                  </a> <!-- brokenLinks -->
+                  <span class="method-name">brokenLinks</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-FedExApplication-class-passed -->
+          <div class="suite-FedExApplication-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.fdxMasterScreens.BaseClass</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="baseMethods">
+                  </a> <!-- baseMethods -->
+                  <span class="method-name">baseMethods</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -223,21 +262,6 @@ Session ID: 0b1f02fb82268a8b0d5a1391407e5aa4
                   <a name="crudOperations">
                   </a> <!-- crudOperations -->
                   <span class="method-name">crudOperations</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-FedExApplication-class-passed -->
-          <div class="suite-FedExApplication-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.fdxMasterScreens.BrokenLinks</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="brokenLinks">
-                  </a> <!-- brokenLinks -->
-                  <span class="method-name">brokenLinks</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -267,16 +291,16 @@ Session ID: 0b1f02fb82268a8b0d5a1391407e5aa4
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite parallel=&quot;none&quot; name=&quot;FedExApplication&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;Rate Verification&quot;&gt;
-    &lt;classes&gt;
-      &lt;class name=&quot;rateScreenFedEx.RateVerification&quot;/&gt;
-    &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- Rate Verification --&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Shipment Creation&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;shipmentFedExWebSite.ShipmentCreation&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Shipment Creation --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Rate Verification&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;rateScreenFedEx.RateVerification&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Rate Verification --&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Master Screens&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;com.fdxMasterScreens.BaseClass&quot;/&gt;
@@ -308,10 +332,10 @@ Session ID: 0b1f02fb82268a8b0d5a1391407e5aa4
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">Rate Verification (1 class)</span>
+                <span class="test-name">Shipment Creation (1 class)</span>
               </li>
               <li>
-                <span class="test-name">Shipment Creation (1 class)</span>
+                <span class="test-name">Rate Verification (1 class)</span>
               </li>
               <li>
                 <span class="test-name">Master Screens (1 class)</span>
@@ -351,34 +375,34 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(6);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'prService')
-data.setCell(0, 2, 'rateScreenFedEx.RateVerification')
-data.setCell(0, 3, 1997640);
+data.setCell(0, 1, 'cheetahOrderPro')
+data.setCell(0, 2, 'shipmentFedExWebSite.CheetahOrderProcessing')
+data.setCell(0, 3, 435150);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'cheetahOrderPro')
-data.setCell(1, 2, 'shipmentFedExWebSite.CheetahOrderProcessing')
-data.setCell(1, 3, 364775);
+data.setCell(1, 1, 'crudOperations')
+data.setCell(1, 2, 'shipmentFedExWebSite.CrudOperation')
+data.setCell(1, 3, 264337);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'crudOperations')
-data.setCell(2, 2, 'shipmentFedExWebSite.CrudOperation')
-data.setCell(2, 3, 303105);
+data.setCell(2, 1, 'shipmentCreation')
+data.setCell(2, 2, 'shipmentFedExWebSite.ShipmentCreation')
+data.setCell(2, 3, 185064);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'shipmentCreation')
-data.setCell(3, 2, 'shipmentFedExWebSite.ShipmentCreation')
-data.setCell(3, 3, 97670);
+data.setCell(3, 1, 'brokenLinks')
+data.setCell(3, 2, 'com.fdxMasterScreens.BrokenLinks')
+data.setCell(3, 3, 111379);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'brokenLinks')
-data.setCell(4, 2, 'com.fdxMasterScreens.BrokenLinks')
-data.setCell(4, 3, 87215);
+data.setCell(4, 1, 'baseMethods')
+data.setCell(4, 2, 'com.fdxMasterScreens.BaseClass')
+data.setCell(4, 3, 16262);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'baseMethods')
-data.setCell(5, 2, 'com.fdxMasterScreens.BaseClass')
-data.setCell(5, 3, 3596);
+data.setCell(5, 1, 'prService')
+data.setCell(5, 2, 'rateScreenFedEx.RateVerification')
+data.setCell(5, 3, 1098);
 window.suiteTableData['FedExApplication']= { tableData: data, tableDiv: 'times-div-FedExApplication'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 47 minutes</span>
+              <span class="suite-total-time">Total running time: 16 minutes</span>
               <div id="times-div-FedExApplication">
               </div> <!-- times-div-FedExApplication -->
             </div> <!-- times-div -->
@@ -411,53 +435,53 @@ return data;
               </div> <!-- configuration-suite before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
-              <div class="chronological-class-name">rateScreenFedEx.RateVerification</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">prService</span>
-                <span class="method-start">20983 ms</span>
-              </div> <!-- test-method -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
               <div class="chronological-class-name">shipmentFedExWebSite.ShipmentCreation</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">shipmentCreation</span>
-                <span class="method-start">2018681 ms</span>
+                <span class="method-start">28689 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">rateScreenFedEx.RateVerification</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">prService</span>
+                <span class="method-start">213781 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.fdxMasterScreens.BaseClass</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">baseMethods</span>
-                <span class="method-start">2116374 ms</span>
+                <span class="method-start">214892 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">shipmentFedExWebSite.CrudOperation</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">crudOperations</span>
-                <span class="method-start">2119980 ms</span>
+                <span class="method-start">231170 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.fdxMasterScreens.BrokenLinks</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">brokenLinks</span>
-                <span class="method-start">2423096 ms</span>
+                <span class="method-start">495512 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">shipmentFedExWebSite.CheetahOrderProcessing</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">cheetahOrderPro</span>
-                <span class="method-start">2510321 ms</span>
+                <span class="method-start">606907 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">end</span>
-                <span class="method-start">2875106 ms</span>
+                <span class="method-start">1042070 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

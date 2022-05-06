@@ -3,6 +3,8 @@ package com.fdxMasterScreens;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -13,7 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TrackShipment extends BaseClass {
 
-	public static void trckShipment() throws IOException, InterruptedException {
+	public static void trckShipment()
+			throws IOException, InterruptedException, EncryptedDocumentException, InvalidFormatException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		for (int i = 1; i < 3; i++) {
 			if (i == 1) {
@@ -23,8 +26,7 @@ public class TrackShipment extends BaseClass {
 				driver.findElement(By.linkText("Track Multiple Shipments")).click();
 				waitForVisibilityOfElement(By.id("rightColumn"), 5);
 
-				ExcelDataProvider excelDataProvider = new ExcelDataProvider();
-				String tracking = excelDataProvider.getData("Sheet1", 2, 15);
+				String tracking = getData("Sheet1", 2, 15);
 
 				WebElement TrackTB = driver.findElement(By.id("rightColumn"));
 				js.executeScript("arguments[0].scrollIntoView();", TrackTB);
@@ -66,7 +68,7 @@ public class TrackShipment extends BaseClass {
 
 			}
 		}
-		
+
 		System.out.println("Shipment Tracking Test Case Executed successfully !!!");
 	}
 

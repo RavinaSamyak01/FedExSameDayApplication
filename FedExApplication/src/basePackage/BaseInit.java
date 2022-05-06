@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -97,5 +98,21 @@ public class BaseInit {
 		sh.getRow(row).createCell(col).setCellValue(value);
 		workbook.write(fos1);
 		fos1.close();
+	}
+
+	public static String getData(String sheetName, int row, int col)
+			throws EncryptedDocumentException, InvalidFormatException, IOException {
+		String FilePath = ".\\src\\TestFiles\\FedExShipments.xlsx";
+
+		File src = new File(FilePath);
+
+		FileInputStream FIS = new FileInputStream(src);
+		Workbook workbook = WorkbookFactory.create(FIS);
+		Sheet sh1 = workbook.getSheet(sheetName);
+
+		DataFormatter formatter = new DataFormatter();
+		String Cell = formatter.formatCellValue(sh1.getRow(row).getCell(col));
+
+		return Cell;
 	}
 }
