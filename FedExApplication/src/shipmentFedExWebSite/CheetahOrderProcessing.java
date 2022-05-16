@@ -32,9 +32,16 @@ public class CheetahOrderProcessing extends BaseInit {
 
 		// r.keyPress(KeyEvent.VK_F11);
 
-		// driver.get("http://172.16.21.70:9077/publicServiceWebapplication/FlashWsV2.aspx");
-		driver.get("http://10.20.104.82:9077/publicServiceWebapplication/FlashWsV2.aspx");
+		String Env = storage.getProperty("Env");
+		String BaseURL = null;
+		if (Env.equalsIgnoreCase("Pre-Prod")) {
+			BaseURL = storage.getProperty("PREPRODURLCheetahOrder");
 
+		} else if (Env.equalsIgnoreCase("STG")) {
+			BaseURL = storage.getProperty("STGURLCheetahOrder");
+
+		}
+		driver.get(BaseURL);
 		Thread.sleep(4000);
 
 		System.out.println("Cheetah Process Start----" + "\n");
@@ -53,7 +60,7 @@ public class CheetahOrderProcessing extends BaseInit {
 			workbook.write(fis1);
 			Thread.sleep(2000);
 			String SHipTrackNo = formatter.formatCellValue(sh1.getRow(i).getCell(2));
-			msg.append("Shipment Tracking No=="+ SHipTrackNo+ "\n");
+			msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 
 			if (i == 1) // Normal Order Processing
 			{
@@ -63,19 +70,19 @@ public class CheetahOrderProcessing extends BaseInit {
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
-				confirmEd(sh2,i);
+				confirmEd(sh2, i);
 
 				Thread.sleep(4000);
-				pickedUp(sh2,i);
+				pickedUp(sh2, i);
 
 				Thread.sleep(4000);
-				pustatusUpdate(sh2,i);
+				pustatusUpdate(sh2, i);
 
 				Thread.sleep(4000);
-				deliverEd(sh2,i);
+				deliverEd(sh2, i);
 
 				Thread.sleep(4000);
-				dlstatusUpdate(sh2,i);
+				dlstatusUpdate(sh2, i);
 				System.out.println("CASE1: Order Processing DONE !!");
 			}
 
@@ -87,7 +94,7 @@ public class CheetahOrderProcessing extends BaseInit {
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
-				rejectEd(sh2,i);
+				rejectEd(sh2, i);
 				System.out.println("CASE2: Rejected DONE !!");
 			}
 
@@ -104,11 +111,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 				Thread.sleep(1000);
 
-				packageDetailChange(sh2,i);
-				pickedUp(sh2,i);
-				pustatusUpdate(sh2,i);
-				deliverEd(sh2,i);
-				dlstatusUpdate(sh2,i);
+				packageDetailChange(sh2, i);
+				pickedUp(sh2, i);
+				pustatusUpdate(sh2, i);
+				deliverEd(sh2, i);
+				dlstatusUpdate(sh2, i);
 				System.out.println("CASE3: [Package Detail Change] Order Processing Completed !!");
 			}
 
@@ -121,11 +128,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 				Thread.sleep(1000);
 
-				addPackage(sh2,i);
-				pickedUp(sh2,i);
-				pustatusUpdate(sh2,i);
-				deliverEd(sh2,i);
-				dlstatusUpdate(sh2,i);
+				addPackage(sh2, i);
+				pickedUp(sh2, i);
+				pustatusUpdate(sh2, i);
+				deliverEd(sh2, i);
+				dlstatusUpdate(sh2, i);
 				System.out.println("CASE4: [Add Package] Order Processing Completed !!");
 			}
 
@@ -142,7 +149,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking2);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(m).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
@@ -196,10 +203,10 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 
 				}
 				m++;
@@ -212,7 +219,7 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking2);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(m).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
@@ -264,10 +271,10 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 
 				}
 				m++;
@@ -318,10 +325,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -368,8 +375,8 @@ public class CheetahOrderProcessing extends BaseInit {
 						msg.append("Response Message is not displayed");
 
 					}
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 				}
 
 				n++;
@@ -383,10 +390,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -433,8 +440,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 				}
 
 				n++;
@@ -448,10 +455,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -498,8 +505,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 				}
 
 				n++;
@@ -513,10 +520,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -563,8 +570,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 				}
 				n++;
 				o++;
@@ -578,10 +585,10 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
+					confirmEd(sh2, i);
 
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -646,8 +653,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 				}
 			}
 
@@ -666,18 +673,18 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
-					waitTimePu(sh2,i);
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					confirmEd(sh2, i);
+					waitTimePu(sh2, i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
 
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 
 				}
 
@@ -692,17 +699,17 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					confirmEd(sh2, i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
-					waitTimedl(sh2,i);
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					waitTimedl(sh2, i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 
 				}
 
@@ -717,17 +724,17 @@ public class CheetahOrderProcessing extends BaseInit {
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2,i);
-					pickedUp(sh2,i);
-					pustatusUpdate(sh2,i);
+					confirmEd(sh2, i);
+					pickedUp(sh2, i);
+					pustatusUpdate(sh2, i);
 					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
-					waitTimertn(sh2,i);
-					deliverEd(sh2,i);
-					dlstatusUpdate(sh2,i);
+					waitTimertn(sh2, i);
+					deliverEd(sh2, i);
+					dlstatusUpdate(sh2, i);
 
 				}
 
@@ -752,7 +759,8 @@ public class CheetahOrderProcessing extends BaseInit {
 		msg.append("Regards, - " + "\n");
 		msg.append("Selenium Automation" + "\n\n\n");
 		// Send Email
-		String subject = "Selenium Automation Script: STAGING Cheetah Order Processing";
+		Env = storage.getProperty("Env");
+		String subject = "Selenium Automation Script: " + Env + " Cheetah Order Processing";
 
 		// asharma@samyak.com,pgandhi@samyak.com,sdas@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
 		try {

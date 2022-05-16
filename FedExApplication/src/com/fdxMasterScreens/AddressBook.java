@@ -18,24 +18,29 @@ import basePackage.BaseInit;
 public class AddressBook extends BaseInit {
 
 	public static void addrBook() throws Exception {
+		msg.append("--------------------------------------" + "\n");
+		msg.append("ADDRESS BOOK :- " + "\n");
 
 		addressImport();
 		addrCreateAddress();
 	}
 
-	public static void addrCreateAddress()
-			throws Exception {/*
-								 * Thread.sleep(5000); Actions builder = new Actions(driver);
-								 * driver.findElement(By.linkText("Manage")).click();
-								 * 
-								 * WebElement ele1 = driver.findElement(By.linkText("Manage My Account"));
-								 * builder.moveToElement(ele1).build().perform();
-								 * 
-								 * WebElement ele2 = driver.findElement(By.linkText("Manage My Account"));
-								 * builder.moveToElement(ele2).build().perform();
-								 * 
-								 * driver.findElement(By.linkText("Address Book")).click();
-								 */
+	public static void addrCreateAddress() throws Exception {
+		/*
+		 * Thread.sleep(5000); Actions builder = new Actions(driver);
+		 * driver.findElement(By.linkText("Manage")).click();
+		 * 
+		 * WebElement ele1 = driver.findElement(By.linkText("Manage My Account"));
+		 * builder.moveToElement(ele1).build().perform();
+		 * 
+		 * WebElement ele2 = driver.findElement(By.linkText("Manage My Account"));
+		 * builder.moveToElement(ele2).build().perform();
+		 * 
+		 * driver.findElement(By.linkText("Address Book")).click();
+		 * 
+		 */
+		msg.append("Manually Create Address and Save               : PASS" + "\n");
+
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id=\"dvPrintGrid\"]/table/tbody/tr[4]/td[2]/a[37]/img")).click();
 		Thread.sleep(2000);
@@ -82,6 +87,7 @@ public class AddressBook extends BaseInit {
 		 */
 		driver.findElement(By.linkText("Address Book")).click();
 		waitForVisibilityOfElement(By.id("swab.navmenu"), 5);
+
 		for (int i = 0; i < 5; i++) {
 
 			if (i == 0) {
@@ -101,9 +107,11 @@ public class AddressBook extends BaseInit {
 				Thread.sleep(5000);
 				driver.findElement(By.id("cmdProcess")).click();
 				System.out.println("Clear Address and Import !!");
+				msg.append("Address Import  : PASS" + "\n");
+
 			}
 
-			if (i == 1) {
+			else if (i == 1) {
 				Thread.sleep(5000);
 				driver.findElement(By.linkText("Import")).click();
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
@@ -128,7 +136,7 @@ public class AddressBook extends BaseInit {
 				System.out.println("Address Import with Comma Delimeter : PASS");
 			}
 
-			if (i == 2) {
+			else if (i == 2) {
 				Thread.sleep(5000);
 				driver.findElement(By.linkText("Import")).click();
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
@@ -144,9 +152,11 @@ public class AddressBook extends BaseInit {
 				Thread.sleep(5000);
 				driver.findElement(By.id("cmdProcess")).click();
 				System.out.println("Address Import with Semicolon Delimeter : PASS");
+				msg.append("Address Import with Semicolon (;) Delimeter    : PASS" + "\n");
+
 			}
 
-			if (i == 3) {
+			else if (i == 3) {
 				Thread.sleep(5000);
 				driver.findElement(By.linkText("Import")).click();
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
@@ -162,9 +172,11 @@ public class AddressBook extends BaseInit {
 				Thread.sleep(5000);
 				driver.findElement(By.id("cmdProcess")).click();
 				System.out.println("Address Import with Verticle Bar Delimeter : PASS");
+				msg.append("Address Import with Verticle Bar (|) Delimeter : PASS" + "\n");
+
 			}
 
-			if (i == 4) {
+			else if (i == 4) {
 				Thread.sleep(5000);
 				driver.findElement(By.linkText("Import")).click();
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
@@ -180,6 +192,8 @@ public class AddressBook extends BaseInit {
 				Thread.sleep(5000);
 				driver.findElement(By.id("cmdProcess")).click();
 				System.out.println("Address Import with Tab Delimeter : PASS");
+				msg.append("Address Import with Tab (	) Delimeter        : PASS" + "\n\n");
+
 			}
 
 		}

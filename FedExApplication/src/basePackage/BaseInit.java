@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Properties;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -28,9 +29,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseInit {
 	public static WebDriver driver;
 	protected static StringBuilder msg = new StringBuilder();
+	public static Properties storage = new Properties();
 
 	@BeforeSuite
-	public void startUp() {
+	public void startUp() throws IOException, InterruptedException {
+		storage = new Properties();
+		FileInputStream fi = new FileInputStream(".\\src\\TestFiles\\config.properties");
+		storage.load(fi);
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
@@ -59,19 +64,61 @@ public class BaseInit {
 
 	}
 
-	public void login() {
+	public void login() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
-		driver.get("https://staging.fedexsameday.com/");
-		msg.append("Step1 : Enter URL : PASS" + "\n");
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
-		driver.findElement(By.id("Header_fdx_main_liLogin")).click();
-		driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
-		driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys("testsamyak10");
-		// enter password
-		driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
-		driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys("samyak10");
-		msg.append("Step2 : Enter UserName : PASS" + "\n");
-		msg.append("Step3 : Enter Password : PASS" + "\n");
+
+		String Env = storage.getProperty("Env");
+
+		if (Env.equalsIgnoreCase("Pre-Prod")) {
+			String URL = storage.getProperty("PREPRODURL");
+			driver.get(URL);
+			msg.append("Step1 : Enter URL : PASS" + "\n");
+			String UserName = storage.getProperty("PREPRODUserName");
+			String Password = storage.getProperty("PREPRODPassword");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
+			driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+			driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
+			driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
+			// enter password
+			driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
+			driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
+			msg.append("Step2 : Enter UserName : PASS" + "\n");
+			msg.append("Step3 : Enter Password : PASS" + "\n");
+
+		} else if (Env.equalsIgnoreCase("STG")) {
+			String URL = storage.getProperty("STGURL");
+			driver.get(URL);
+			msg.append("Step1 : Enter URL : PASS" + "\n");
+			String UserName = storage.getProperty("STGUserName");
+			String Password = storage.getProperty("STGPassword");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
+			driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+			driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
+			driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
+			// enter password
+			driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
+			driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
+			msg.append("Step2 : Enter UserName : PASS" + "\n");
+			msg.append("Step3 : Enter Password : PASS" + "\n");
+
+		} else if (Env.equalsIgnoreCase("DEV")) {
+			String URL = storage.getProperty("DEVURL");
+			driver.get(URL);
+			msg.append("Step1 : Enter URL : PASS" + "\n");
+			String UserName = storage.getProperty("DEVUserName");
+			String Password = storage.getProperty("DEVPassword");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
+			driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+			driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
+			driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
+			// enter password
+			driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
+			driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
+			msg.append("Step2 : Enter UserName : PASS" + "\n");
+			msg.append("Step3 : Enter Password : PASS" + "\n");
+
+		}
+		Thread.sleep(2000);
 		driver.findElement(By.id("Header_fdx_main_cmdMenuLogin")).click();
 		System.out.println("Login done");
 		msg.append("Step4 : Application Login Successfully : PASS" + "\n");

@@ -35,15 +35,24 @@ public class RateVerification extends BaseInit {
 		msg.append("Rate/Quote Verification Process Start.... " + "\n");
 		long start, end;
 		// --get the data
-//	/	try {
-			System.out.println("Rate Verification start");
-			File src = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
-			FileInputStream fis = new FileInputStream(src);
-			Workbook workbook = WorkbookFactory.create(fis);
-			Sheet sh1 = workbook.getSheet("Sheet1");
+		System.out.println("Rate Verification start");
 
-			DataFormatter formatter = new DataFormatter();
+		String Env = storage.getProperty("Env");
+		File src = null;
+		if (Env.equalsIgnoreCase("Pre-Prod")) {
+			src = new File(".\\src\\TestFiles\\PreProductionRateVerification.xlsx");
 
+		} else if (Env.equalsIgnoreCase("STG")) {
+			src = new File(".\\src\\TestFiles\\\\FedExRateVerification.xlsx");
+
+		}
+		FileInputStream fis = new FileInputStream(src);
+		Workbook workbook = WorkbookFactory.create(fis);
+		Sheet sh1 = workbook.getSheet("Sheet1");
+
+		DataFormatter formatter = new DataFormatter();
+
+		try {
 			// 31
 			for (int i = 1; i < 31; i++) {
 				driver.getTitle();
@@ -138,7 +147,7 @@ public class RateVerification extends BaseInit {
 				// --set the data
 
 				String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(2));
-				File src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
+				File src1 = new File(".\\src\\TestFiles\\PreProductionRateVerification.xlsx");
 				FileOutputStream fis1 = new FileOutputStream(src1);
 				Sheet sh2 = workbook.getSheet("Sheet1");
 
@@ -306,7 +315,7 @@ public class RateVerification extends BaseInit {
 
 					fis1.close();
 				}
-				src1 = new File(".\\src\\TestFiles\\FedExRateVerification.xlsx");
+				src1 = new File(".\\src\\TestFiles\\PreProductionRateVerification.xlsx");
 				fis1 = new FileOutputStream(src1);
 				sh2 = workbook.getSheet("Sheet1");
 				workbook.write(fis1);
@@ -316,20 +325,21 @@ public class RateVerification extends BaseInit {
 
 			msg.append("Rate/Quote Verification Process Completed !!" + "\n");
 
-		/*} catch (
+		} catch (
 
 		Exception e) {
 			System.out.println("Something went Wrong");
 			msg.append("Rate/Quote Verification Process Completed !!==FAIL" + "\n");
 
-		}*/
+		}
 
 		// Send Email
 
-		String subject = "Selenium Automation Script: STAGING FedEx Rate/Quote";
+		Env = storage.getProperty("Env");
+		String subject = "Selenium Automation Script: " + Env + " FedEx Rate/Quote";
 		try {
 			// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
-			//ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+			// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
 			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
 					msg.toString(), "");
 		} catch (Exception ex) {

@@ -22,7 +22,8 @@ public class ActivityReport extends BaseInit {
 	public static void actReport() throws IOException, InterruptedException {
 		Thread.sleep(2000);
 		Actions builder = new Actions(driver);
-
+		msg.append("--------------------------------------" + "\n");
+		msg.append("Activity Report :- " + "\n");
 		driver.findElement(By.linkText("Support")).click();
 
 		waitForVisibilityOfElement(By.linkText("Run Reports"), 5);
@@ -30,6 +31,7 @@ public class ActivityReport extends BaseInit {
 		builder.moveToElement(ele1).build().perform();
 
 		driver.findElement(By.linkText("Activity Report")).click();
+		msg.append("Open Screen   : PASS" + "\n");
 
 		Thread.sleep(2000);
 		driver.findElement(By.name("anchor1xx")).click();
@@ -41,9 +43,15 @@ public class ActivityReport extends BaseInit {
 
 		waitForVisibilityOfElement(By.id("ddAcctNum"), 5);
 
-		WebElement el = driver.findElement(By.id("ddAcctNum"));
-		Select opt = new Select(el);
-		opt.selectByVisibleText("TEST Cheers - # ******889");
+		try {
+			WebElement el = driver.findElement(By.id("ddAcctNum"));
+			Select opt = new Select(el);
+			opt.selectByVisibleText("TEST Cheers - # ******889");
+		} catch (Exception AccNo) {
+			WebElement el = driver.findElement(By.id("ddAcctNum"));
+			Select opt = new Select(el);
+			opt.selectByVisibleText("TEST Cheers - # ******113");
+		}
 
 		driver.findElement(By.id("cmdRpt")).click();
 		waitForVisibilityOfElement(By.id("cmdRpt"), 5);
@@ -51,6 +59,7 @@ public class ActivityReport extends BaseInit {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\ActivitySummary.png"));
 		System.out.println("Activity Summary Test Case Executed successfully !!!");
+		msg.append("Verify Report : PASS" + "\n\n");
 
 		try {
 			ExcelDataProvider excelDataProvider = new ExcelDataProvider();

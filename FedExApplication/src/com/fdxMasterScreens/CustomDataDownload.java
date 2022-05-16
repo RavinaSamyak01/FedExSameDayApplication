@@ -19,6 +19,10 @@ public class CustomDataDownload extends BaseClass {
 
 	public static void custmDataDown() throws Exception {
 		Actions builder = new Actions(driver);
+
+		msg.append("--------------------------------------" + "\n");
+		msg.append("Custom Data Download :- " + "\n");
+
 		driver.findElement(By.linkText("Support")).click();
 
 		waitForVisibilityOfElement(By.linkText("Run Reports"), 5);
@@ -46,8 +50,13 @@ public class CustomDataDownload extends BaseClass {
 		Select s1 = new Select(acct);
 		s1.deselectByVisibleText("(******136) CREATIVE ARTISTS AGENCY");
 
-		Select s2 = new Select(acct);
-		s2.selectByVisibleText("(******229) TEST Cheers");
+		try {
+			Select s2 = new Select(acct);
+			s2.selectByVisibleText("(******229) TEST Cheers");
+		} catch (Exception Ac) {
+			Select s2 = new Select(acct);
+			s2.selectByVisibleText("(******229) ASHLEEPIERCE");
+		}
 
 		WebElement fields = driver.findElement(By.id("lbAvailable"));
 		Select fld1 = new Select(fields);
@@ -79,6 +88,8 @@ public class CustomDataDownload extends BaseClass {
 
 		System.out.println("Generate Report !! : PASS");
 		driver.findElement(By.id("Back")).click();
+		msg.append("Save New Report  : PASS" + "\n");
+
 	}
 
 	public static void allColumns() throws Exception {
@@ -97,9 +108,13 @@ public class CustomDataDownload extends BaseClass {
 		Select s1 = new Select(acct);
 		s1.deselectByVisibleText("(******136) CREATIVE ARTISTS AGENCY");
 
+		try {
 		Select s2 = new Select(acct);
 		s2.selectByVisibleText("(******229) TEST Cheers");
-
+		}catch(Exception e) {
+			Select s2 = new Select(acct);
+			s2.selectByVisibleText("(******229) ASHLEEPIERCE");
+		}
 		Thread.sleep(3000);
 		WebElement fields = driver.findElement(By.id("lbAvailable"));
 		fields.click();
@@ -124,6 +139,8 @@ public class CustomDataDownload extends BaseClass {
 		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\CustomDataDownload_AllColumns.png"));
 
 		System.out.println("Generate Report with All Columns !! : PASS");
+		msg.append("Generate Report  : PASS" + "\n\n\n\n");
+
 	}
 
 	public static void waitForVisibilityOfElement(By objLocator, long lTime) {

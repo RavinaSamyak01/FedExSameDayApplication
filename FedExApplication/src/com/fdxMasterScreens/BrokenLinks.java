@@ -32,7 +32,8 @@ public class BrokenLinks extends BaseInit {
 
 		}
 
-		String subject = "Selenium Automation Script: STAGING FedExSameDay Broken Links";
+		String Env = storage.getProperty("Env");
+		String subject = "Selenium Automation Script: " + Env + " FedExSameDay Broken Links";
 		try {
 			Email.sendMail("Ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
 					msg.toString(), "");

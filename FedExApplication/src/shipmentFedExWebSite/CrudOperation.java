@@ -570,7 +570,8 @@ public class CrudOperation extends BaseInit {
 			}
 			// Send Email
 		}
-		String subject = "Selenium Automation Script:FedEx Crud operation";
+		String Env = storage.getProperty("Env");
+		String subject = "Selenium Automation Script: " + Env + " FedEx Crud operation";
 		try {
 			basePackage.Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
 					msg.toString(), "");

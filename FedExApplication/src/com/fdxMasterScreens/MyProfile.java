@@ -17,6 +17,8 @@ public class MyProfile extends BaseClass {
 	public static void myProfile() throws IOException, InterruptedException {
 		Actions builder = new Actions(driver);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		msg.append("--------------------------------------" + "\n");
+		msg.append("MY Profile :- " + "\n");
 
 		driver.findElement(By.linkText("Support")).click();
 
@@ -25,7 +27,8 @@ public class MyProfile extends BaseClass {
 		builder.moveToElement(ele1).build().perform();
 
 		driver.findElement(By.linkText("My Profile")).click();
-		waitForVisibilityOfElement(By.id("content"), 5);
+		waitForVisibilityOfElement(By.id("content"), 50);
+		msg.append("Open Screen  : PASS" + "\n");
 		driver.findElement(By.id("ncsButtons_cmdSubmit")).click();
 		jse.executeScript("window.scrollBy(0,250)", "");
 		waitForVisibilityOfElement(By.id("lblErrMessage1"), 5);
@@ -33,6 +36,8 @@ public class MyProfile extends BaseClass {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\MyProfile.png"));
 		System.out.println("My Profile Test Case Executed successfully !!!");
+		msg.append("Save Profile : PASS" + "\n\n");
+
 	}
 
 	public static void waitForVisibilityOfElement(By objLocator, long lTime) {
