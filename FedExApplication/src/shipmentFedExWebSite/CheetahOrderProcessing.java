@@ -1,15 +1,7 @@
 package shipmentFedExWebSite;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -46,112 +38,102 @@ public class CheetahOrderProcessing extends BaseInit {
 
 		System.out.println("Cheetah Process Start----" + "\n");
 		// Read data from Excel
-		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		DataFormatter formatter = new DataFormatter();
 
 		// 8
 		for (int i = 1; i < 22; i++) {
-			File src1 = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-			FileOutputStream fis1 = new FileOutputStream(src1);
-			Sheet sh2 = workbook.getSheet("Sheet1");
-			workbook.write(fis1);
-			Thread.sleep(2000);
-			String SHipTrackNo = formatter.formatCellValue(sh1.getRow(i).getCell(2));
+			String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+
 			msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 
 			if (i == 1) // Normal Order Processing
 			{
 
-				String ShipmentTracking = formatter.formatCellValue(sh1.getRow(i).getCell(2));
+				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
-				confirmEd(sh2, i);
+				confirmEd(i);
 
 				Thread.sleep(4000);
-				pickedUp(sh2, i);
+				pickedUp(i);
 
 				Thread.sleep(4000);
-				pustatusUpdate(sh2, i);
+				pustatusUpdate(i);
 
 				Thread.sleep(4000);
-				deliverEd(sh2, i);
+				deliverEd(i);
 
 				Thread.sleep(4000);
-				dlstatusUpdate(sh2, i);
+				dlstatusUpdate(i);
 				System.out.println("CASE1: Order Processing DONE !!");
 			}
 
 			else if (i == 2) // Rejected job from Cheetah
 			{
 				System.out.println("CASE2: [Rejected] Order Processing Initiated !!");
-				String ShipmentTracking = formatter.formatCellValue(sh1.getRow(i).getCell(2));
+				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
-				rejectEd(sh2, i);
+				rejectEd(i);
 				System.out.println("CASE2: Rejected DONE !!");
 			}
 
 			else if (i == 3) // Package Detail Change
 			{
 
-				String ShipmentTracking = formatter.formatCellValue(sh1.getRow(i).getCell(2));
+				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
-				String PackageTrackNum = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+				String PackageTrackNum = getData("CheetahProcess", "Sheet1", i, 3);
 				driver.findElement(By.id("MainContent_txtPkgTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtPkgTrackNum")).sendKeys(PackageTrackNum);
 
 				Thread.sleep(1000);
 
-				packageDetailChange(sh2, i);
-				pickedUp(sh2, i);
-				pustatusUpdate(sh2, i);
-				deliverEd(sh2, i);
-				dlstatusUpdate(sh2, i);
+				packageDetailChange(i);
+				pickedUp(i);
+				pustatusUpdate(i);
+				deliverEd(i);
+				dlstatusUpdate(i);
 				System.out.println("CASE3: [Package Detail Change] Order Processing Completed !!");
 			}
 
 			else if (i == 4) // Add Package
 			{
 
-				String ShipmentTracking = formatter.formatCellValue(sh1.getRow(i).getCell(2));
+				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 				Thread.sleep(1000);
 
-				addPackage(sh2, i);
-				pickedUp(sh2, i);
-				pustatusUpdate(sh2, i);
-				deliverEd(sh2, i);
-				dlstatusUpdate(sh2, i);
+				addPackage(i);
+				pickedUp(i);
+				pustatusUpdate(i);
+				deliverEd(i);
+				dlstatusUpdate(i);
 				System.out.println("CASE4: [Add Package] Order Processing Completed !!");
 			}
 
 			else if (i == 5) // Pickup Exception
 			{
 				msg.append("CASE5: PickupException :- " + "\n");
-				int l = 5;
 				int m = 5;
-				String puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				String puexceptioncode = getData("CheetahProcess", "Sheet1", i, 5);
 
 				if (puexceptioncode.equals("PAT")) {
-					String ShipmentTracking2 = formatter.formatCellValue(sh1.getRow(m).getCell(2));
+					String ShipmentTracking2 = getData("CheetahProcess", "Sheet1", m, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking2);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(m);
 
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(m).getCell(2));
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", m, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
@@ -170,7 +152,7 @@ public class CheetahOrderProcessing extends BaseInit {
 							.selectByVisibleText("Process Only");
 					driver.findElement(By.id("MainContent_txtSequenceId")).clear();
 					driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("17");
-					String EventJsonData = formatter.formatCellValue(sh1.getRow(5).getCell(10));
+					String EventJsonData = getData("CheetahProcess", "Sheet1", 5, 10);
 					driver.findElement(By.id("MainContent_txtEventJsonData")).clear();
 					driver.findElement(By.id("MainContent_txtEventJsonData")).sendKeys(EventJsonData);
 
@@ -185,15 +167,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PAT : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(18).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", m, 18, "PASS");
 
 						} else {
 							msg.append("PAT : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(18).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", m, 18, "FAIL");
+							getScreenshot(driver, "PAT_Fail_" + ShipTrackNo);
 
 						}
 
@@ -203,31 +189,30 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					pickedUp(m);
+					pustatusUpdate(m);
+					deliverEd(m);
+					dlstatusUpdate(m);
 
 				}
 				m++;
-				l++;
-				puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				puexceptioncode = getData("CheetahProcess", "Sheet1", m, 5);
 
 				if (puexceptioncode.equals("PPN")) {
-					String ShipmentTracking2 = formatter.formatCellValue(sh1.getRow(m).getCell(2));
+					String ShipmentTracking2 = getData("CheetahProcess", "Sheet1", m, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking2);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(m);
 
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(m).getCell(2));
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", m, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
 
-					String PackageTrackNum = formatter.formatCellValue(sh1.getRow(i).getCell(3));
+					String PackageTrackNum = getData("CheetahProcess", "Sheet1", m, 3);
 					driver.findElement(By.id("MainContent_txtPkgTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtPkgTrackNum")).sendKeys(PackageTrackNum);
 					Thread.sleep(1000);
@@ -254,15 +239,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("PPN : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(19).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", m, 19, "PASS");
 
 						} else {
 							msg.append("PPN : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(19).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", m, 19, "FAIL");
+							getScreenshot(driver, "PPN_Fail_" + ShipTrackNo);
 
 						}
 					} else {
@@ -271,39 +260,34 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					pickedUp(m);
+					pustatusUpdate(m);
+					deliverEd(m);
+					dlstatusUpdate(m);
 
 				}
 				m++;
-				l++;
-				puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				puexceptioncode = getData("CheetahProcess", "Sheet1", m, 5);
 				if (puexceptioncode.equals("PBC")) {
 
 				}
 				m++;
-				l++;
-				puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				puexceptioncode = getData("CheetahProcess", "Sheet1", m, 5);
 				if (puexceptioncode.equals("PCR")) {
 
 				}
 				m++;
-				l++;
-				puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				puexceptioncode = getData("CheetahProcess", "Sheet1", m, 5);
 				if (puexceptioncode.equals("PNO")) {
 
 				}
 				m++;
-				l++;
-				puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				puexceptioncode = getData("CheetahProcess", "Sheet1", m, 5);
 				if (puexceptioncode.equals("PBA")) {
 
 				}
 				m++;
-				l++;
-				puexceptioncode = formatter.formatCellValue(sh1.getRow(l).getCell(5));
+				puexceptioncode = getData("CheetahProcess", "Sheet1", m, 5);
 				if (puexceptioncode.equals("PRD")) {
 
 				}
@@ -315,21 +299,20 @@ public class CheetahOrderProcessing extends BaseInit {
 				msg.append("CASE6: DeliveryException :- " + "\n");
 
 				int n = 12;
-				int o = 12;
 
-				String dlexceptioncode = formatter.formatCellValue(sh1.getRow(n).getCell(5));
+				String dlexceptioncode = getData("CheetahProcess", "Sheet1", n, 5);
 				if (dlexceptioncode.equals("DBA")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(n);
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					pickedUp(n);
+					pustatusUpdate(n);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
@@ -359,15 +342,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DBA : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(20).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", n, 20, "PASS");
 
 						} else {
 							msg.append("DBA : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(20).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", n, 20, "FAIL");
+							getScreenshot(driver, "DBA_Fail_" + ShipTrackNo);
 
 						}
 					} else {
@@ -375,26 +362,25 @@ public class CheetahOrderProcessing extends BaseInit {
 						msg.append("Response Message is not displayed");
 
 					}
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					deliverEd(n);
+					dlstatusUpdate(n);
 				}
 
 				n++;
-				o++;
-				dlexceptioncode = formatter.formatCellValue(sh1.getRow(n).getCell(5));
+				dlexceptioncode = getData("CheetahProcess", "Sheet1", n, 5);
 
 				if (dlexceptioncode.equals("DCR")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(n);
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					pickedUp(n);
+					pustatusUpdate(n);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
@@ -423,15 +409,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DCR : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(21).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", n, 21, "PASS");
 
 						} else {
 							msg.append("DCR : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(21).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", n, 21, "FAIL");
+							getScreenshot(driver, "DCR_Fail_" + ShipTrackNo);
 
 						}
 					} else {
@@ -440,26 +430,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					deliverEd(n);
+					dlstatusUpdate(n);
 				}
 
 				n++;
-				o++;
-				dlexceptioncode = formatter.formatCellValue(sh1.getRow(n).getCell(5));
+				dlexceptioncode = getData("CheetahProcess", "Sheet1", n, 5);
 
 				if (dlexceptioncode.equals("DNO")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(n);
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					pickedUp(n);
+					pustatusUpdate(n);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
@@ -488,15 +477,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DNO : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(22).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", n, 22, "PASS");
 
 						} else {
 							msg.append("DNO : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(22).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", n, 22, "FAIL");
+							getScreenshot(driver, "DNO_Fail_" + ShipTrackNo);
 
 						}
 					} else {
@@ -505,26 +498,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					deliverEd(n);
+					dlstatusUpdate(n);
 				}
 
 				n++;
-				o++;
-				dlexceptioncode = formatter.formatCellValue(sh1.getRow(n).getCell(5));
+				dlexceptioncode = getData("CheetahProcess", "Sheet1", n, 5);
 
 				if (dlexceptioncode.equals("DRD")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(n);
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					pickedUp(n);
+					pustatusUpdate(n);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
@@ -553,15 +545,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("DRD : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(23).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", n, 23, "PASS");
 
 						} else {
 							msg.append("DRD : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(23).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", n, 23, "FAIL");
+							getScreenshot(driver, "DRD_Fail_" + ShipTrackNo);
 
 						}
 					} else {
@@ -570,26 +566,25 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					deliverEd(n);
+					dlstatusUpdate(n);
 				}
 				n++;
-				o++;
-				dlexceptioncode = formatter.formatCellValue(sh1.getRow(n).getCell(5));
+				dlexceptioncode = getData("CheetahProcess", "Sheet1", n, 5);
 
 				if (dlexceptioncode.equals("SDRTS2")) // StatusRevision
 				{
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
+					confirmEd(n);
 
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(o).getCell(2));
+					pickedUp(n);
+					pustatusUpdate(n);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", n, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
@@ -636,15 +631,19 @@ public class CheetahOrderProcessing extends BaseInit {
 					if (RespStatus.isDisplayed()) {
 						String ResponseStatus = RespStatus.getText();
 						System.out.println("Response Message==" + ResponseStatus + "\n");
+						String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+						msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 						if (ResponseStatus.equalsIgnoreCase("OK")) {
 							msg.append("SDRTS2 : PASS " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(24).setCellValue("PASS");
+							setData("CheetahProcess", "Sheet1", n, 24, "PASS");
 
 						} else {
 							msg.append("SDRTS2 : FAIL " + "\n");
 							msg.append("Response==" + ResponseStatus + "\n\n\n");
-							sh2.getRow(i).createCell(24).setCellValue("FAIL");
+							setData("CheetahProcess", "Sheet1", n, 24, "FAIL");
+							getScreenshot(driver, "SDRTS2_Fail_" + ShipTrackNo);
 
 						}
 					} else {
@@ -653,8 +652,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 					}
 
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					deliverEd(n);
+					dlstatusUpdate(n);
 				}
 			}
 
@@ -663,83 +662,79 @@ public class CheetahOrderProcessing extends BaseInit {
 				msg.append("CASE7: WAIT TIME :- " + "\n");
 
 				int s = 18;
-				int t = 18;
 
-				String pwait = formatter.formatCellValue(sh1.getRow(s).getCell(6));
+				String pwait = getData("CheetahProcess", "Sheet1", s, 6);
 				if (pwait.equals("PICKUP_WAIT_TIME")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(t).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", s, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
-					waitTimePu(sh2, i);
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
+					confirmEd(s);
+					waitTimePu(s);
+					pickedUp(s);
+					pustatusUpdate(s);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", s, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
 
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					deliverEd(s);
+					dlstatusUpdate(s);
 
 				}
 
 				s++;
-				t++;
 
-				String dwait = formatter.formatCellValue(sh1.getRow(s).getCell(6));
+				String dwait = getData("CheetahProcess", "Sheet1", s, 6);
 				if (dwait.equals("DELIVERY_WAIT_TIME")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(t).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", s, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
+					confirmEd(s);
+					pickedUp(s);
+					pustatusUpdate(s);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", s, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
-					waitTimedl(sh2, i);
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					waitTimedl(s);
+					deliverEd(s);
+					dlstatusUpdate(s);
 
 				}
 
 				s++;
-				t++;
 
-				String rwait = formatter.formatCellValue(sh1.getRow(s).getCell(6));
+				String rwait = getData("CheetahProcess", "Sheet1", s, 6);
 				if (rwait.equals("RETURN_WAIT_TIME")) {
 
-					String ShipmentTracking1 = formatter.formatCellValue(sh1.getRow(t).getCell(2));
+					String ShipmentTracking1 = getData("CheetahProcess", "Sheet1", s, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking1);
 
 					Thread.sleep(1000);
-					confirmEd(sh2, i);
-					pickedUp(sh2, i);
-					pustatusUpdate(sh2, i);
-					String ShipmentTracking = formatter.formatCellValue(sh1.getRow(t).getCell(2));
+					confirmEd(s);
+					pickedUp(s);
+					pustatusUpdate(s);
+					String ShipmentTracking = getData("CheetahProcess", "Sheet1", s, 2);
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 					driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
 
 					Thread.sleep(1000);
-					waitTimertn(sh2, i);
-					deliverEd(sh2, i);
-					dlstatusUpdate(sh2, i);
+					waitTimertn(s);
+					deliverEd(s);
+					dlstatusUpdate(s);
 
 				}
 
 				s++;
-				t++;
 
 			}
 
@@ -772,7 +767,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void confirmEd(Sheet sh, int row) throws Exception // CONFIRMED
+	public static void confirmEd(int row) throws Exception // CONFIRMED
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -798,15 +793,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+			;
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Confirmed  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(11).setCellValue("PASS");
+				setData("CheetahProcess", "Sheet1", row, 11, "PASS");
 
 			} else {
 				msg.append("Confirmed   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(11).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 11, "FAIL");
+				getScreenshot(driver, "Confirmed_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -817,7 +816,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void pickedUp(Sheet sh, int row) throws Exception // PICKEDUP
+	public static void pickedUp(int row) throws Exception // PICKEDUP
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -842,15 +841,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Pickedup  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(12).setCellValue("PASS");
+				setData("CheetahProcess", "Sheet1", row, 12, "PASS");
 
 			} else {
 				msg.append("Pickedup   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(12).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 12, "FAIL");
+				getScreenshot(driver, "PickedUp_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -860,7 +863,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void pustatusUpdate(Sheet sh, int row) throws Exception // Status Update
+	public static void pustatusUpdate(int row) throws Exception // Status Update
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -890,15 +893,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Pickup Status Update  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(13).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 13, "PASS");
 
 			} else {
 				msg.append("Pickup Status Update   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(13).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 13, "FAIL");
+				getScreenshot(driver, "PUpStatusUpdate_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -908,7 +915,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void deliverEd(Sheet sh, int row) throws Exception // DELIVERED
+	public static void deliverEd(int row) throws Exception // DELIVERED
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -934,15 +941,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Delivered  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(14).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 14, "PASS");
 
 			} else {
 				msg.append("Delivered   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(14).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 14, "FAIL");
+				getScreenshot(driver, "Delivered_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -953,7 +964,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void dlstatusUpdate(Sheet sh, int row) throws Exception // Status Update
+	public static void dlstatusUpdate(int row) throws Exception // Status Update
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -982,15 +993,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Delivery Status Update  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(15).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 15, "PASS");
 
 			} else {
 				msg.append("Delivery Status Update   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(15).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 15, "FAIL");
+				getScreenshot(driver, "DelStatusUpdate_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -1001,7 +1016,7 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void rejectEd(Sheet sh, int row) throws Exception // REJECTED
+	public static void rejectEd(int row) throws Exception // REJECTED
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
@@ -1025,15 +1040,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("Rejected  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(16).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 16, "PASS");
 
 			} else {
 				msg.append("Rejected   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(16).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 16, "FAIL");
+				getScreenshot(driver, "Rejected_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -1044,16 +1063,10 @@ public class CheetahOrderProcessing extends BaseInit {
 
 	}
 
-	public static void packageDetailChange(Sheet sh, int row) throws Exception // PackageDetailChange
+	public static void packageDetailChange(int row) throws Exception // PackageDetailChange
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
-
-		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		DataFormatter formatter = new DataFormatter();
 
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
@@ -1065,7 +1078,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_txtSequenceId")).clear();
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("14");
 
-		String EventJsonData = formatter.formatCellValue(sh1.getRow(3).getCell(10));
+		String EventJsonData = getData("CheetahProcess", "Sheet1", 3, 10);
 		driver.findElement(By.id("MainContent_txtEventJsonData")).clear();
 		driver.findElement(By.id("MainContent_txtEventJsonData")).sendKeys(EventJsonData);
 
@@ -1079,15 +1092,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("PackageDetailChange  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(17).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 17, "PASS");
 
 			} else {
 				msg.append("PackageDetailChange   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(17).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 17, "FAIL");
+				getScreenshot(driver, "PackgDetailChange_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -1097,16 +1114,10 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void addPackage(Sheet sh, int row) throws Exception // Add Package
+	public static void addPackage(int row) throws Exception // Add Package
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
-
-		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		DataFormatter formatter = new DataFormatter();
 
 		Thread.sleep(1000);
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
@@ -1117,7 +1128,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		new Select(driver.findElement(By.id("MainContent_ddlActionFlag"))).selectByVisibleText("Process Only");
 		driver.findElement(By.id("MainContent_txtSequenceId")).clear();
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("15");
-		String EventJsonData = formatter.formatCellValue(sh1.getRow(4).getCell(10));
+		String EventJsonData = getData("CheetahProcess", "Sheet1", 4, 10);
 		driver.findElement(By.id("MainContent_txtEventJsonData")).clear();
 		driver.findElement(By.id("MainContent_txtEventJsonData")).sendKeys(EventJsonData);
 
@@ -1131,15 +1142,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("AddPackage  : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(18).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 18, "PASS");
 
 			} else {
 				msg.append("AddPackage   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(18).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 18, "FAIL");
+				getScreenshot(driver, "AddPackage_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -1149,17 +1164,10 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void waitTimePu(Sheet sh, int row) throws Exception // PICKUP_WAIT_TIME
+	public static void waitTimePu(int row) throws Exception // PICKUP_WAIT_TIME
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
-
-		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		DataFormatter formatter = new DataFormatter();
-
 		Thread.sleep(1000);
 
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
@@ -1170,7 +1178,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		new Select(driver.findElement(By.id("MainContent_ddlActionFlag"))).selectByVisibleText("Process Only");
 		driver.findElement(By.id("MainContent_txtSequenceId")).clear();
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("16");
-		String EventJsonData = formatter.formatCellValue(sh1.getRow(18).getCell(10));
+		String EventJsonData = getData("CheetahProcess", "Sheet1", 18, 10);
 		driver.findElement(By.id("MainContent_txtEventJsonData")).clear();
 		driver.findElement(By.id("MainContent_txtEventJsonData")).sendKeys(EventJsonData);
 
@@ -1184,15 +1192,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("PICKUP_WAIT_TIME   : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(27).setCellValue("Pass");
+				setData("CheetahProcess", "Sheet1", row, 27, "PASS");
 
 			} else {
 				msg.append("PICKUP_WAIT_TIME   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(27).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 27, "FAIL");
+				getScreenshot(driver, "PUpWaitTime_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -1202,18 +1214,10 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void waitTimedl(Sheet sh, int row) throws Exception // DELIVERY_WAIT_TIME
+	public static void waitTimedl(int row) throws Exception // DELIVERY_WAIT_TIME
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
-
-		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		DataFormatter formatter = new DataFormatter();
-
-		Thread.sleep(1000);
 
 		driver.findElement(By.id("MainContent_txtShipStatus")).clear();
 		driver.findElement(By.id("MainContent_txtShipStatus")).sendKeys("DELIVERY_WAIT_TIME");
@@ -1223,7 +1227,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		new Select(driver.findElement(By.id("MainContent_ddlActionFlag"))).selectByVisibleText("Process Only");
 		driver.findElement(By.id("MainContent_txtSequenceId")).clear();
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("16");
-		String EventJsonData = formatter.formatCellValue(sh1.getRow(19).getCell(10));
+		String EventJsonData = getData("CheetahProcess", "Sheet1", 19, 10);
 		driver.findElement(By.id("MainContent_txtEventJsonData")).clear();
 		driver.findElement(By.id("MainContent_txtEventJsonData")).sendKeys(EventJsonData);
 
@@ -1237,15 +1241,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("DELIVERY_WAIT_TIME : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(28).setCellValue("PASS");
+				setData("CheetahProcess", "Sheet1", row, 28, "PASS");
 
 			} else {
 				msg.append("DELIVERY_WAIT_TIME : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(28).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 28, "FAIL");
+				getScreenshot(driver, "DelWaitTime_Fail_" + ShipTrackNo);
 
 			}
 		} else {
@@ -1255,16 +1263,10 @@ public class CheetahOrderProcessing extends BaseInit {
 		}
 	}
 
-	public static void waitTimertn(Sheet sh, int row) throws Exception // RETURN_WAIT_TIME
+	public static void waitTimertn(int row) throws Exception // RETURN_WAIT_TIME
 	{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		Actions act = new Actions(driver);
-
-		File src = new File(".\\src\\TestFiles\\CheetahProcessing.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		DataFormatter formatter = new DataFormatter();
 
 		Thread.sleep(1000);
 
@@ -1276,7 +1278,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		new Select(driver.findElement(By.id("MainContent_ddlActionFlag"))).selectByVisibleText("Process Only");
 		driver.findElement(By.id("MainContent_txtSequenceId")).clear();
 		driver.findElement(By.id("MainContent_txtSequenceId")).sendKeys("16");
-		String EventJsonData = formatter.formatCellValue(sh1.getRow(20).getCell(10));
+		String EventJsonData = getData("CheetahProcess", "Sheet1", 20, 10);
 		driver.findElement(By.id("MainContent_txtEventJsonData")).clear();
 		driver.findElement(By.id("MainContent_txtEventJsonData")).sendKeys(EventJsonData);
 
@@ -1290,15 +1292,19 @@ public class CheetahOrderProcessing extends BaseInit {
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");
+			String ShipTrackNo = driver.findElement(By.id("MainContent_lblShipTrackNum")).getText();
+			msg.append("ShipmentTrackNo== " + ShipTrackNo + "\n");
+
 			if (ResponseStatus.equalsIgnoreCase("OK")) {
 				msg.append("RETURN_WAIT_TIME   : PASS " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(29).setCellValue("PASS");
+				setData("CheetahProcess", "Sheet1", row, 29, "PASS");
 
 			} else {
 				msg.append("RETURN_WAIT_TIME   : FAIL " + "\n");
 				msg.append("Response==" + ResponseStatus + "\n\n\n");
-				sh.getRow(row).createCell(29).setCellValue("FAIL");
+				setData("CheetahProcess", "Sheet1", row, 29, "FAIL");
+				getScreenshot(driver, "ReturnWaitTime_Fail_" + ShipTrackNo);
 
 			}
 		} else {

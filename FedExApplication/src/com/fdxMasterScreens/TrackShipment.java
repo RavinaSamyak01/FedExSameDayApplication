@@ -30,7 +30,7 @@ public class TrackShipment extends BaseClass {
 				driver.findElement(By.linkText("Track Multiple Shipments")).click();
 				waitForVisibilityOfElement(By.id("rightColumn"), 5);
 
-				String tracking = getData("Sheet1", 2, 15);
+				String tracking = getData("ShipmentCreation", "Sheet1", 2, 15);
 
 				WebElement TrackTB = driver.findElement(By.id("rightColumn"));
 				js.executeScript("arguments[0].scrollIntoView();", TrackTB);

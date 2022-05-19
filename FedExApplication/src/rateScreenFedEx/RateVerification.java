@@ -1,18 +1,11 @@
 package rateScreenFedEx;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -37,21 +30,6 @@ public class RateVerification extends BaseInit {
 		// --get the data
 		System.out.println("Rate Verification start");
 
-		String Env = storage.getProperty("Env");
-		File src = null;
-		if (Env.equalsIgnoreCase("Pre-Prod")) {
-			src = new File(".\\src\\TestFiles\\PreProductionRateVerification.xlsx");
-
-		} else if (Env.equalsIgnoreCase("STG")) {
-			src = new File(".\\src\\TestFiles\\\\FedExRateVerification.xlsx");
-
-		}
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-
-		DataFormatter formatter = new DataFormatter();
-
 		try {
 			// 31
 			for (int i = 1; i < 31; i++) {
@@ -59,14 +37,15 @@ public class RateVerification extends BaseInit {
 				pause(1000);
 
 				// --PickUp Zip
-				String PUZip = formatter.formatCellValue(sh1.getRow(i).getCell(0));
+				String PUZip = getData("RateVerification", "Sheet1", i, 0);
+				System.out.println("PickUp Zip=="+PUZip);
 				driver.findElement(By.id("txtOrig")).clear();
 				driver.findElement(By.id("txtOrig")).sendKeys(PUZip);
 				driver.findElement(By.id("txtOrig")).sendKeys(Keys.TAB);
 				Thread.sleep(5000);
 
 				// --Delivery Zip
-				String DLZip = formatter.formatCellValue(sh1.getRow(i).getCell(1));
+				String DLZip = getData("RateVerification", "Sheet1", i, 1);
 				driver.findElement(By.id("txtDest")).clear();
 				driver.findElement(By.id("txtDest")).sendKeys(DLZip);
 				driver.findElement(By.id("txtDest")).sendKeys(Keys.TAB);
@@ -146,10 +125,7 @@ public class RateVerification extends BaseInit {
 				msg.append("Quote Time (in Seconds) = " + quoteTime + "\n");
 				// --set the data
 
-				String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(2));
-				File src1 = new File(".\\src\\TestFiles\\PreProductionRateVerification.xlsx");
-				FileOutputStream fis1 = new FileOutputStream(src1);
-				Sheet sh2 = workbook.getSheet("Sheet1");
+				String serviceid = getData("RateVerification", "Sheet1", i, 2);
 
 				if (serviceid.equals("PR")) {
 					pause(1000);
@@ -157,27 +133,22 @@ public class RateVerification extends BaseInit {
 							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[3]//div[@class=\"ratebtn\"]"))
 							.getText();
 					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					String ExpectedRate = getData("RateVerification", "Sheet1", i, 3);
+					setData("RateVerification", "Sheet1", i, 4, actrate);
 					msg.append("ServiceID==" + serviceid + "\n");
 					msg.append("Actual Rate==" + actrate + "\n");
 					msg.append("Expected Rate==" + ExpectedRate + "\n");
-					fis1.close();
 
 					if (!actrate.equals(ExpectedRate)) {
 
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						setData("RateVerification", "Sheet1", i, 5, "FAIL");
 						msg.append("Result==" + "FAIL" + "\n\n");
-
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						setData("RateVerification", "Sheet1", i, 5, "PASS");
 						msg.append("Result==" + "PASS" + "\n\n");
-
-						fis1.close();
 
 					}
 				}
@@ -189,24 +160,20 @@ public class RateVerification extends BaseInit {
 							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[5]//div[@class=\"ratebtn\"]"))
 							.getText();
 					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					String ExpectedRate = getData("RateVerification", "Sheet1", i, 3);
+					setData("RateVerification", "Sheet1", i, 4, actrate);
 					msg.append("ServiceID==" + serviceid + "\n");
 					msg.append("Actual Rate==" + actrate + "\n");
 					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
-						sh1.getRow(i).createCell(5).setCellValue("FAIL");
+						setData("RateVerification", "Sheet1", i, 5, "FAIL");
 						msg.append("Result==" + "FAIL" + "\n\n");
-
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						setData("RateVerification", "Sheet1", i, 5, "PASS");
 						msg.append("Result==" + "PASS" + "\n\n");
-
-						fis1.close();
 
 					}
 				} else if (serviceid.equals("EC")) {
@@ -216,24 +183,20 @@ public class RateVerification extends BaseInit {
 							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[7]//div[@class=\"ratebtn\"]"))
 							.getText();
 					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					String ExpectedRate = getData("RateVerification", "Sheet1", i, 3);
+					setData("RateVerification", "Sheet1", i, 4, actrate);
 					msg.append("ServiceID==" + serviceid + "\n");
 					msg.append("Actual Rate==" + actrate + "\n");
 					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
-						sh1.getRow(i).createCell(5).setCellValue("FAIL");
+						setData("RateVerification", "Sheet1", i, 5, "FAIL");
 						msg.append("Result==" + "FAIL" + "\n\n");
-
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						setData("RateVerification", "Sheet1", i, 5, "PASS");
 						msg.append("Result==" + "PASS" + "\n\n");
-
-						fis1.close();
 
 					}
 				} else if (serviceid.equals("DR")) {
@@ -243,24 +206,20 @@ public class RateVerification extends BaseInit {
 							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
 							.getText();
 					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					String ExpectedRate = getData("RateVerification", "Sheet1", i, 3);
+					setData("RateVerification", "Sheet1", i, 4, actrate);
 					msg.append("ServiceID==" + serviceid + "\n");
 					msg.append("Actual Rate==" + actrate + "\n");
 					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						setData("RateVerification", "Sheet1", i, 5, "FAIL");
 						msg.append("Result==" + "FAIL" + "\n\n");
-
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						setData("RateVerification", "Sheet1", i, 5, "PASS");
 						msg.append("Result==" + "PASS" + "\n\n");
-
-						fis1.close();
 
 					}
 				} else if (serviceid.equals("AIR")) {
@@ -270,22 +229,20 @@ public class RateVerification extends BaseInit {
 							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
 							.getText();
 					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					String ExpectedRate = getData("RateVerification", "Sheet1", i, 3);
+					setData("RateVerification", "Sheet1", i, 4, actrate);
 					msg.append("ServiceID==" + serviceid + "\n");
 					msg.append("Actual Rate==" + actrate + "\n");
 					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						setData("RateVerification", "Sheet1", i, 5, "FAIL");
 						msg.append("Result==" + "FAIL" + "\n\n");
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						setData("RateVerification", "Sheet1", i, 5, "PASS");
 						msg.append("Result==" + "PASS" + "\n\n");
-
-						fis1.close();
 
 					}
 
@@ -298,28 +255,22 @@ public class RateVerification extends BaseInit {
 							.findElement(By.xpath("//*[@class=\"fdxRatetable\"]/tbody[1]//div[@class=\"ratebtn\"]"))
 							.getText();
 					System.out.println(actrate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(3));
-					sh2.getRow(i).createCell(4).setCellValue(actrate);
+					String ExpectedRate = getData("RateVerification", "Sheet1", i, 3);
+					setData("RateVerification", "Sheet1", i, 4, actrate);
 					msg.append("ServiceID==" + serviceid + "\n");
 					msg.append("Actual Rate==" + actrate + "\n");
 					msg.append("Expected Rate==" + ExpectedRate + "\n");
 					if (!actrate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(5).setCellValue("FAIL");
+						setData("RateVerification", "Sheet1", i, 5, "FAIL");
 						msg.append("Result==" + "FAIL" + "\n\n");
 
 					} else {
-						sh2.getRow(i).createCell(5).setCellValue("PASS");
+						setData("RateVerification", "Sheet1", i, 5, "PASS");
 						msg.append("Result==" + "PASS" + "\n\n");
 
 					}
 
-					fis1.close();
 				}
-				src1 = new File(".\\src\\TestFiles\\PreProductionRateVerification.xlsx");
-				fis1 = new FileOutputStream(src1);
-				sh2 = workbook.getSheet("Sheet1");
-				workbook.write(fis1);
-				Thread.sleep(5000);
 
 			}
 
@@ -335,7 +286,7 @@ public class RateVerification extends BaseInit {
 
 		// Send Email
 
-		Env = storage.getProperty("Env");
+		String Env = storage.getProperty("Env");
 		String subject = "Selenium Automation Script: " + Env + " FedEx Rate/Quote";
 		try {
 			// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com

@@ -1,16 +1,9 @@
 package shipmentFedExWebSite;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,13 +26,6 @@ public class CrudOperation extends BaseInit {
 	public void crudOperations() throws Exception {
 		Actions act = new Actions(driver);
 
-		// Read data from Excel
-		File src = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
-		FileInputStream fis = new FileInputStream(src);
-		Workbook workbook = WorkbookFactory.create(fis);
-		Sheet sh1 = workbook.getSheet("Sheet1");
-		// int rcount = sh1.getLastRowNum();
-
 		for (int i = 1; i < 5; i++) {
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -50,8 +36,6 @@ public class CrudOperation extends BaseInit {
 			driver.findElement(By.linkText("Create a Shipment")).click();
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
 			driver.getTitle();
-
-			DataFormatter formatter = new DataFormatter();
 
 			try {
 				if (driver.findElement(By.id("cmdChangePUAddr")).isDisplayed()) // If my preferences has setup From
@@ -65,26 +49,32 @@ public class CrudOperation extends BaseInit {
 				System.out.println("No default address !!");
 			}
 
-			String PUCompany = formatter.formatCellValue(sh1.getRow(i).getCell(0));
+			// Pickup Company
+			String PUCompany = getData("CrudOperation", "Sheet1", i, 0);
 			driver.findElement(By.xpath("//*[@id='pu_company']")).clear();
-			driver.findElement(By.xpath("//*[@id='pu_company']")).sendKeys(PUCompany); // Pickup Company
+			driver.findElement(By.xpath("//*[@id='pu_company']")).sendKeys(PUCompany);
 
-			String PUName = formatter.formatCellValue(sh1.getRow(i).getCell(1));
+			// Pickup Name
+			String PUName = getData("CrudOperation", "Sheet1", i, 1);
 			driver.findElement(By.xpath("//*[@id='pu_pertosee']")).clear();
-			driver.findElement(By.xpath("//*[@id='pu_pertosee']")).sendKeys(PUName); // Pickup Name
-			String PUAddress1 = formatter.formatCellValue(sh1.getRow(i).getCell(2));
-			driver.findElement(By.xpath("//*[@id='pu_addr1']")).clear();
-			driver.findElement(By.xpath("//*[@id='pu_addr1']")).sendKeys(PUAddress1); // PU Address line 1
+			driver.findElement(By.xpath("//*[@id='pu_pertosee']")).sendKeys(PUName);
 
-			String PUZip = formatter.formatCellValue(sh1.getRow(i).getCell(4));
+			// PU Address line 1
+			String PUAddress1 = getData("CrudOperation", "Sheet1", i, 2);
+			driver.findElement(By.xpath("//*[@id='pu_addr1']")).clear();
+			driver.findElement(By.xpath("//*[@id='pu_addr1']")).sendKeys(PUAddress1);
+
+			// Pickup Zip code and tab
+			String PUZip = getData("CrudOperation", "Sheet1", i, 4);
 			driver.findElement(By.xpath("//*[@id='pu_zip']")).clear();
 			driver.findElement(By.xpath("//*[@id='pu_zip']")).sendKeys(PUZip);
-			driver.findElement(By.xpath("//*[@id='pu_zip']")).sendKeys(Keys.TAB); // Pickup Zip code and tab
+			driver.findElement(By.xpath("//*[@id='pu_zip']")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 
-			String PUPhone = formatter.formatCellValue(sh1.getRow(i).getCell(5));
+			// Pickup phone Number
+			String PUPhone = getData("CrudOperation", "Sheet1", i, 5);
 			driver.findElement(By.xpath("//*[@id='pu_phone']")).clear();
-			driver.findElement(By.xpath("//*[@id='pu_phone']")).sendKeys(PUPhone); // Pickup phone Number
+			driver.findElement(By.xpath("//*[@id='pu_phone']")).sendKeys(PUPhone);
 
 			boolean pures = driver.findElement(By.id("Pu_Res")).isSelected();
 			if (pures == false) {
@@ -111,27 +101,33 @@ public class CrudOperation extends BaseInit {
 
 			// Delivery Information : To Address
 
-			String DLCompany = formatter.formatCellValue(sh1.getRow(i).getCell(6));
+			// Delivery Company name
+			String DLCompany = getData("CrudOperation", "Sheet1", i, 6);
 			driver.findElement(By.xpath("//*[@id='dl_company']")).clear();
-			driver.findElement(By.xpath("//*[@id='dl_company']")).sendKeys(DLCompany); // Delivery Company name
+			driver.findElement(By.xpath("//*[@id='dl_company']")).sendKeys(DLCompany);
 
-			String DLName = formatter.formatCellValue(sh1.getRow(i).getCell(7));
+			// Delivery Contact Name
+			String DLName = getData("CrudOperation", "Sheet1", i, 7);
 			driver.findElement(By.xpath("//*[@id='dl_attn']")).clear();
-			driver.findElement(By.xpath("//*[@id='dl_attn']")).sendKeys(DLName); // Delivery Contact Name
+			driver.findElement(By.xpath("//*[@id='dl_attn']")).sendKeys(DLName);
 
-			String DLAddress1 = formatter.formatCellValue(sh1.getRow(i).getCell(8));
+			// Del Address line 1
+			String DLAddress1 = getData("CrudOperation", "Sheet1", i, 8);
 			driver.findElement(By.xpath("//*[@id='dl_addr1']")).clear();
-			driver.findElement(By.xpath("//*[@id='dl_addr1']")).sendKeys(DLAddress1); // Del Address line 1
+			driver.findElement(By.xpath("//*[@id='dl_addr1']")).sendKeys(DLAddress1);
 
-			String DLZip = formatter.formatCellValue(sh1.getRow(i).getCell(10));
+			// Del Zip and tab
+			String DLZip = getData("CrudOperation", "Sheet1", i, 10);
 			driver.findElement(By.xpath("//*[@id='dl_zip']")).clear();
 			driver.findElement(By.xpath("//*[@id='dl_zip']")).sendKeys(DLZip);
-			driver.findElement(By.xpath("//*[@id='dl_zip']")).sendKeys(Keys.TAB); // Del Zip and tab
+			driver.findElement(By.xpath("//*[@id='dl_zip']")).sendKeys(Keys.TAB);
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			Thread.sleep(2000);
-			String DLPhone = formatter.formatCellValue(sh1.getRow(i).getCell(11));
+
+			// Del Phone number
+			String DLPhone = getData("CrudOperation", "Sheet1", i, 11);
 			driver.findElement(By.xpath("//*[@id='dl_phone']")).clear();
-			driver.findElement(By.xpath("//*[@id='dl_phone']")).sendKeys(DLPhone); // Del Phone number
+			driver.findElement(By.xpath("//*[@id='dl_phone']")).sendKeys(DLPhone);
 
 			boolean dlres = driver.findElement(By.id("dl_Res")).isSelected();
 			if (dlres == false) {
@@ -189,8 +185,8 @@ public class CrudOperation extends BaseInit {
 			select1.selectByVisibleText("AM");
 			Thread.sleep(2000);
 
-			String serviceid = formatter.formatCellValue(sh1.getRow(i).getCell(13)); // Service ID compare from the
-																						// Excel
+			String serviceid = getData("CrudOperation", "Sheet1", i, 13); // Service ID compare from the
+																			// Excel
 
 			if (serviceid.equals("DRV") || serviceid.equals("AIR") || serviceid.equals("SDC")
 					|| serviceid.equals("FRG")) {
@@ -198,10 +194,10 @@ public class CrudOperation extends BaseInit {
 				driver.findElement(By.name("txt_content")).sendKeys("BOX"); // Enter value in contents text box
 			}
 
-			String pieces = formatter.formatCellValue(sh1.getRow(i).getCell(14));
+			String pieces = getData("CrudOperation", "Sheet1", i, 14);
 			driver.findElement(By.id("pieces")).sendKeys(Keys.BACK_SPACE);
 			driver.findElement(By.id("pieces")).sendKeys(Keys.BACK_SPACE);
-			pieces = formatter.formatCellValue(sh1.getRow(i).getCell(14));
+			pieces = getData("CrudOperation", "Sheet1", i, 14);
 			driver.findElement(By.id("pieces")).sendKeys(pieces);
 			Thread.sleep(1000);
 			driver.findElement(By.id("pieces")).sendKeys(Keys.TAB);
@@ -304,31 +300,28 @@ public class CrudOperation extends BaseInit {
 
 				// Service
 
-				File src1 = new File(".\\src\\TestFiles\\CrudOperation.xlsx");
-				FileOutputStream fis1 = new FileOutputStream(src1);
-				Sheet sh2 = workbook.getSheet("Sheet1");
-				workbook.write(fis1);
-
 				if (serviceid.equals("PR")) // If match with PR, below code will execute
 				{
 					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("chkPR")));
 					driver.findElement(By.id("chkPR")).click();
 					String rate = driver.findElement(By.id("btnPR")).getText();
 					System.out.println(rate);
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
 					msg.append("PR Service - Actual Rate :" + rate + "\n");
-					sh2.getRow(i).createCell(16).setCellValue(rate);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 
 					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
+
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 
 					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 
 				}
@@ -342,20 +335,19 @@ public class CrudOperation extends BaseInit {
 					String rate = driver.findElement(By.id("btnS2")).getText();
 					System.out.println(rate);
 					msg.append("S2 Service - Actual Rate :" + rate + "\n");
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 
 					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
 						// workbook.write(fis1);
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 
 				}
@@ -370,19 +362,18 @@ public class CrudOperation extends BaseInit {
 					System.out.println(rate);
 					msg.append("EC Service - Actual Rate :" + rate + "\n");
 
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
 						// workbook.write(fis1);
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 
 				}
@@ -396,17 +387,17 @@ public class CrudOperation extends BaseInit {
 					System.out.println(rate);
 					msg.append("DR Service - Actual Rate :" + rate + "\n");
 
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 
 					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
 						// workbook.write(fis1);
-						fis1.close();
+
 					} else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 				}
 
@@ -420,20 +411,19 @@ public class CrudOperation extends BaseInit {
 					System.out.println(rate);
 					msg.append("DRV Service - Actual Rate :" + rate + "\n");
 
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 
 					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
 						// workbook.write(fis1);
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 
 				}
@@ -448,19 +438,18 @@ public class CrudOperation extends BaseInit {
 					System.out.println(rate);
 					msg.append("AIR Service - Actual Rate :" + rate + "\n");
 
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
 						// workbook.write(fis1);
-						fis1.close();
 
 					}
 
 					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
 						// workbook.write(fis1);
-						fis1.close();
+
 					}
 
 				}
@@ -475,19 +464,17 @@ public class CrudOperation extends BaseInit {
 					System.out.println(rate);
 					msg.append("SDC Service - Actual Rate :" + rate + "\n");
 
-					String ExpectedRate = formatter.formatCellValue(sh1.getRow(i).getCell(12));
-					sh2.getRow(i).createCell(16).setCellValue(rate);
-					if (!rate.equals(ExpectedRate)) {
-						sh2.getRow(i).createCell(17).setCellValue("FAIL");
-						// workbook.write(fis1);
-						fis1.close();
+					String ExpectedRate = getData("CrudOperation", "Sheet1", i, 12);
+					setData("CrudOperation", "Sheet1", i, 16, rate);
 
+					setData("CrudOperation", "Sheet1", i, 16, rate);
+					if (!rate.equals(ExpectedRate)) {
+						setData("CrudOperation", "Sheet1", i, 17, "FAIL");
 					}
 
 					else {
-						sh2.getRow(i).createCell(17).setCellValue("PASS");
-						// workbook.write(fis1);
-						fis1.close();
+						setData("CrudOperation", "Sheet1", i, 17, "PASS");
+
 					}
 
 				}
@@ -549,17 +536,10 @@ public class CrudOperation extends BaseInit {
 																					// screen.
 
 				try {
-					String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText(); // Get
-																											// Shipment
-																											// tracking
-																											// number
-																											// and
-																											// store in
+					String VoucherNum = driver.findElement(By.xpath("//*[@id='lblVoucherNum']")).getText(); // Get //
 																											// variable
 					System.out.println("Shipment Tracking # " + VoucherNum);
-					sh2.getRow(i).createCell(15).setCellValue(VoucherNum);
-					workbook.write(fis1);
-					fis1.close();
+					setData("CrudOperation", "Sheet1", i, 15, VoucherNum);
 					msg.append("Shipment Tracking # " + VoucherNum + "\n\n");
 				} catch (Exception e) {
 					System.out.println("Write voucher in excel is working !!");

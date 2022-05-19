@@ -12,11 +12,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import basePackage.BaseInit;
 
 public class AddressBook extends BaseInit {
 
+	@Test
 	public static void addrBook() throws Exception {
 		msg.append("--------------------------------------" + "\n");
 		msg.append("ADDRESS BOOK :- " + "\n");
@@ -39,7 +41,7 @@ public class AddressBook extends BaseInit {
 		 * driver.findElement(By.linkText("Address Book")).click();
 		 * 
 		 */
-		msg.append("Manually Create Address and Save               : PASS" + "\n");
+		msg.append("Manually Create Address and Save  : PASS" + "\n");
 
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//*[@id=\"dvPrintGrid\"]/table/tbody/tr[4]/td[2]/a[37]/img")).click();
@@ -73,6 +75,7 @@ public class AddressBook extends BaseInit {
 	}
 
 	public static void addressImport() throws InterruptedException, IOException {
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 
 		Thread.sleep(5000);
 		Actions builder = new Actions(driver);
@@ -89,6 +92,24 @@ public class AddressBook extends BaseInit {
 		waitForVisibilityOfElement(By.id("swab.navmenu"), 5);
 
 		for (int i = 0; i < 5; i++) {
+			String Env = storage.getProperty("Env");
+			System.out.println("Env " + Env);
+
+			String PartialPath = "C:\\Users\\rprajapati\\git\\FedExSameDayApplication\\FedExApplication\\src\\TestFiles\\";
+
+			// --STG File
+			String STGAddressImport = PartialPath + "AddressImport_STG.txt";
+			String STGComma = PartialPath + "Import_Comma_STG.txt";
+			String STGSemiCol = PartialPath + "Import_Semicolon_STG.txt";
+			String STGTab = PartialPath + "Import_Tab_STG.txt";
+			String STGVerBar = PartialPath + "Import_Verticle Bar_STG.txt";
+
+			// --PreProd File
+			String PreProdAddressImport = PartialPath + "AddressImport_PreProd.txt";
+			String PreProdComma = PartialPath + "Import_Comma_PreProd.txt";
+			String PreProdSemiCol = PartialPath + "Import_Semicolon_PreProd.txt";
+			String PreProdTab = PartialPath + "Import_Tab_PreProd.txt";
+			String PreProdVerBar = PartialPath + "Import_Verticle Bar_PreProd.txt";
 
 			if (i == 0) {
 				driver.findElement(By.linkText("Import")).click();
@@ -96,15 +117,21 @@ public class AddressBook extends BaseInit {
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
 				Select opt = new Select(ele);
 				opt.selectByVisibleText("Comma");
-				driver.findElement(By.id("fileUpload")).sendKeys(
-						"C:\\Users\\rprajapati\\git\\FedExSameDayApplication\\FedExApplication\\src\\TestFiles\\AddressImport.txt");
+				if (Env.contains("STG")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(STGAddressImport);
+
+				} else if (Env.contains("Pre-Prod")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(PreProdAddressImport);
+
+				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
 				opt1.selectByVisibleText("Yes, clear all old addresses");
 				File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\AddressImport.png"));
 				driver.findElement(By.id("cmdUpload")).click();
-				Thread.sleep(5000);
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("cmdProcess")));
+				wait.until(ExpectedConditions.elementToBeClickable(By.id("cmdProcess")));
 				driver.findElement(By.id("cmdProcess")).click();
 				System.out.println("Clear Address and Import !!");
 				msg.append("Address Import  : PASS" + "\n");
@@ -117,8 +144,13 @@ public class AddressBook extends BaseInit {
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
 				Select opt = new Select(ele);
 				opt.selectByVisibleText("Comma");
-				driver.findElement(By.id("fileUpload")).sendKeys(
-						"C:\\Users\\rprajapati\\git\\FedExSameDayApplication\\FedExApplication\\src\\TestFiles\\Import_Comma.txt");
+				if (Env.contains("STG")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(STGComma);
+
+				} else if (Env.contains("Pre-Prod")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(PreProdComma);
+
+				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
 				opt1.selectByVisibleText("No, don't clear old addresses");
@@ -142,8 +174,13 @@ public class AddressBook extends BaseInit {
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
 				Select opt = new Select(ele);
 				opt.selectByVisibleText("Semicolon");
-				driver.findElement(By.id("fileUpload")).sendKeys(
-						"C:\\Users\\rprajapati\\git\\FedExSameDayApplication\\FedExApplication\\src\\TestFiles\\Import_Semicolon.txt");
+				if (Env.contains("STG")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(STGSemiCol);
+
+				} else if (Env.contains("Pre-Prod")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(PreProdSemiCol);
+
+				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
 				opt1.selectByVisibleText("No, don't clear old addresses");
@@ -162,8 +199,13 @@ public class AddressBook extends BaseInit {
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
 				Select opt = new Select(ele);
 				opt.selectByVisibleText("Verticle Bar");
-				driver.findElement(By.id("fileUpload")).sendKeys(
-						"C:\\Users\\rprajapati\\git\\FedExSameDayApplication\\FedExApplication\\src\\TestFiles\\Import_Verticle Bar.txt");
+				if (Env.contains("STG")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(STGVerBar);
+
+				} else if (Env.contains("Pre-Prod")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(PreProdVerBar);
+
+				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
 				opt1.selectByVisibleText("No, don't clear old addresses");
@@ -182,8 +224,13 @@ public class AddressBook extends BaseInit {
 				WebElement ele = driver.findElement(By.id("ddlDelimeter"));
 				Select opt = new Select(ele);
 				opt.selectByVisibleText("Tab");
-				driver.findElement(By.id("fileUpload")).sendKeys(
-						"C:\\Users\\rprajapati\\git\\FedExSameDayApplication\\FedExApplication\\src\\TestFiles\\Import_Tab.txt");
+				if (Env.contains("STG")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(STGTab);
+
+				} else if (Env.contains("Pre-Prod")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(PreProdTab);
+
+				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
 				opt1.selectByVisibleText("No, don't clear old addresses");

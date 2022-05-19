@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -14,7 +15,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -39,7 +42,7 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		// options.addArguments("--headless");
+		//options.addArguments("--headless");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -133,9 +136,46 @@ public class BaseInit {
 		driver.quit();
 	}
 
-	public static void setData(String sheetName, int row, int col, String value)
+	public static void setData(String FileName, String sheetName, int row, int col, String value)
 			throws EncryptedDocumentException, InvalidFormatException, IOException {
-		String FilePath = ".\\src\\TestFiles\\FedExShipments.xlsx";
+		String Env = storage.getProperty("Env");
+		System.out.println("Env==" + Env);
+		String FilePath = null;
+
+		// --Rate Verification File
+		if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("RateVerification")) {
+			FilePath = storage.getProperty("PREPRD_RateVerificationFile");
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("RateVerification")) {
+			FilePath = storage.getProperty("STG_RateVerificationFile");
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("RateVerification")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
+
+		// --Shipment Creation File
+		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("ShipmentCreation")) {
+			FilePath = storage.getProperty("PREPRD_ShipmentCreationFile");
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("ShipmentCreation")) {
+			FilePath = storage.getProperty("STG_ShipmentCreationFile");
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("ShipmentCreation")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
+
+		// --Crud Operation File
+		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("CrudOperation")) {
+			FilePath = storage.getProperty("PREPRD_CrudOperationFile");
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("CrudOperation")) {
+			FilePath = storage.getProperty("STG_CrudOperationFile");
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CrudOperation")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
+		// --Cheetah Process File
+		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("CheetahProcess")) {
+			FilePath = storage.getProperty("PREPRD_CheetahProcessFile");
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("CheetahProcess")) {
+			FilePath = storage.getProperty("STG_CheetahProcessFile");
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CheetahProcess")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
 
 		File src = new File(FilePath);
 		FileInputStream fis = new FileInputStream(src);
@@ -148,12 +188,59 @@ public class BaseInit {
 		fos1.close();
 	}
 
-	public static String getData(String sheetName, int row, int col)
+	public static String getData(String FileName, String sheetName, int row, int col)
 			throws EncryptedDocumentException, InvalidFormatException, IOException {
-		String FilePath = ".\\src\\TestFiles\\FedExShipments.xlsx";
+		String Env = storage.getProperty("Env");
+		System.out.println("Env==" + Env);
+		String FilePath = null;
+
+		// --Rate Verification File
+		if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("RateVerification")) {
+			FilePath = storage.getProperty("PREPRD_RateVerificationFile");
+			System.out.println("File==" + FilePath);
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("RateVerification")) {
+			FilePath = storage.getProperty("STG_RateVerificationFile");
+			System.out.println("File==" + FilePath);
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("RateVerification")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
+
+		// --Shipment Creation File
+		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("ShipmentCreation")) {
+			FilePath = storage.getProperty("PREPRD_ShipmentCreationFile");
+			System.out.println("File==" + FilePath);
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("ShipmentCreation")) {
+			FilePath = storage.getProperty("STG_ShipmentCreationFile");
+			System.out.println("File==" + FilePath);
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("ShipmentCreation")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
+
+		// --Crud Operation File
+		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("CrudOperation")) {
+			FilePath = storage.getProperty("PREPRD_CrudOperationFile");
+			System.out.println("File==" + FilePath);
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("CrudOperation")) {
+			FilePath = storage.getProperty("STG_CrudOperationFile");
+			System.out.println("File==" + FilePath);
+
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CrudOperation")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
+		// --Cheetah Process File
+		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("CheetahProcess")) {
+			FilePath = storage.getProperty("PREPRD_CheetahProcessFile");
+			System.out.println("File==" + FilePath);
+
+		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("CheetahProcess")) {
+			FilePath = storage.getProperty("STG_CheetahProcessFile");
+			System.out.println("File==" + FilePath);
+
+		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CheetahProcess")) {
+			FilePath = storage.getProperty("DEVFile");
+		}
 
 		File src = new File(FilePath);
-
 		FileInputStream FIS = new FileInputStream(src);
 		Workbook workbook = WorkbookFactory.create(FIS);
 		Sheet sh1 = workbook.getSheet(sheetName);
@@ -162,5 +249,17 @@ public class BaseInit {
 		String Cell = formatter.formatCellValue(sh1.getRow(row).getCell(col));
 
 		return Cell;
+	}
+
+	public static String getScreenshot(WebDriver driver, String screenshotName) throws IOException {
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		// after execution, you could see a folder "FailedTestsScreenshots" under src
+		// folder
+		String destination = System.getProperty("user.dir") + "/src/Screenshots/" + screenshotName + ".png";
+		File finalDestination = new File(destination);
+		FileUtils.copyFile(source, finalDestination);
+		return destination;
 	}
 }

@@ -31,11 +31,11 @@
 			<class name="com.fdxMasterScreens.BrokenLinks"></class>
 		</classes>
 	</test>
-	<test thread-count="5" name="Cheetah Order Processing">
+	<!--<test thread-count="5" name="Cheetah Order Processing">
 		<classes>
 			<class name="shipmentFedExWebSite.CheetahOrderProcessing"></class>
 		</classes>
-	</test>
+	</test> -->
 
 	<!-- NASmoke -->
 </suite> <!-- NASuite -->
