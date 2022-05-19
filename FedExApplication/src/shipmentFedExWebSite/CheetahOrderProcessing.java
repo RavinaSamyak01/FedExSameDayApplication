@@ -41,12 +41,11 @@ public class CheetahOrderProcessing extends BaseInit {
 
 		// 8
 		for (int i = 1; i < 22; i++) {
-			String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
-
-			msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 
 			if (i == 1) // Normal Order Processing
 			{
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 
 				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
@@ -71,6 +70,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 2) // Rejected job from Cheetah
 			{
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 				System.out.println("CASE2: [Rejected] Order Processing Initiated !!");
 				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
@@ -83,7 +84,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 3) // Package Detail Change
 			{
-
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -104,7 +106,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 4) // Add Package
 			{
-
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 				String ShipmentTracking = getData("CheetahProcess", "Sheet1", i, 2);
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).clear();
 				driver.findElement(By.id("MainContent_txtShipTrackNum")).sendKeys(ShipmentTracking);
@@ -121,6 +124,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 5) // Pickup Exception
 			{
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 				msg.append("CASE5: PickupException :- " + "\n");
 				int m = 5;
 				String puexceptioncode = getData("CheetahProcess", "Sheet1", i, 5);
@@ -296,6 +301,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 6) // Delivery Exception
 			{
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 				msg.append("CASE6: DeliveryException :- " + "\n");
 
 				int n = 12;
@@ -659,6 +666,8 @@ public class CheetahOrderProcessing extends BaseInit {
 
 			else if (i == 7) // WAIT TIME
 			{
+				String SHipTrackNo = getData("CheetahProcess", "Sheet1", i, 2);
+				msg.append("Shipment Tracking No==" + SHipTrackNo + "\n");
 				msg.append("CASE7: WAIT TIME :- " + "\n");
 
 				int s = 18;

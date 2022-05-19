@@ -3,13 +3,13 @@
 <suite parallel="none" name="Failed suite [Default suite]">
   <test parallel="none" name="Default test(failed)">
     <classes>
-      <class name="com.fdxMasterScreens.BaseClass">
+      <class name="com.fdxMasterScreens.AddressBook">
         <methods>
-          <include name="baseMethods"/>
           <include name="startUp"/>
           <include name="end"/>
+          <include name="addrBook"/>
         </methods>
-      </class> <!-- com.fdxMasterScreens.BaseClass -->
+      </class> <!-- com.fdxMasterScreens.AddressBook -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
