@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite parallel="none" name="Failed suite [FedExApplication]">
-  <test parallel="none" name="Shipment Creation(failed)">
-    <classes>
-      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
-        <methods>
-          <include name="startUp"/>
-          <include name="end"/>
-        </methods>
-      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
-      <class name="shipmentFedExWebSite.ShipmentCreation">
-        <methods>
-          <include name="shipmentCreation"/>
-        </methods>
-      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
-    </classes>
-  </test> <!-- Shipment Creation(failed) -->
   <test parallel="none" name="Master Screens(failed)">
     <classes>
-      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
+      <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
           <include name="startUp"/>
           <include name="end"/>
         </methods>
-      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
       <class name="com.fdxMasterScreens.BaseClass">
         <methods>
           <include name="baseMethods"/>
@@ -31,4 +16,19 @@
       </class> <!-- com.fdxMasterScreens.BaseClass -->
     </classes>
   </test> <!-- Master Screens(failed) -->
+  <test parallel="none" name="Crud Operations(failed)">
+    <classes>
+      <class name="shipmentFedExWebSite.CrudOperation">
+        <methods>
+          <include name="crudOperations"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.CrudOperation -->
+      <class name="shipmentFedExWebSite.ShipmentCreation">
+        <methods>
+          <include name="startUp"/>
+          <include name="end"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+    </classes>
+  </test> <!-- Crud Operations(failed) -->
 </suite> <!-- Failed suite [FedExApplication] -->

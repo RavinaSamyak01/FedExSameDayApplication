@@ -39,7 +39,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		System.out.println("Cheetah Process Start----" + "\n");
 		// Read data from Excel
 
-		// 8
+		// 22
 		for (int i = 1; i < 22; i++) {
 
 			if (i == 1) // Normal Order Processing

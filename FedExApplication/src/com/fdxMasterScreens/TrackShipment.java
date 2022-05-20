@@ -18,12 +18,18 @@ public class TrackShipment extends BaseClass {
 	public static void trckShipment()
 			throws IOException, InterruptedException, EncryptedDocumentException, InvalidFormatException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 
 		msg.append("--------------------------------------" + "\n");
 		msg.append("TrackOrder Shipment Tracking :- " + "\n");
 
 		for (int i = 1; i < 3; i++) {
 			if (i == 1) {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@title=\"FedEx Home\"]")));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@title=\"FedEx Home\"]")));
+				driver.findElement(By.xpath("//*[@title=\"FedEx Home\"]")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Tracking")));
+				wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Tracking")));
 				driver.findElement(By.linkText("Tracking")).click();
 				waitForVisibilityOfElement(By.linkText("Track Multiple Shipments"), 5);
 
@@ -50,9 +56,8 @@ public class TrackShipment extends BaseClass {
 				driver.findElement(By.linkText("Track Multiple Shipments")).click();
 				waitForVisibilityOfElement(By.id("rightColumn"), 5);
 
-				ExcelDataProvider excelDataProvider = new ExcelDataProvider();
-				String t1 = excelDataProvider.getData("Sheet1", 2, 15);
-				String t2 = excelDataProvider.getData("Sheet1", 3, 15);
+				String t1 = getData("ShipmentCreation", "Sheet1", 2, 15);
+				String t2 = getData("ShipmentCreation", "Sheet1", 3, 15);
 
 				WebElement TrackTB = driver.findElement(By.id("rightColumn"));
 				js.executeScript("arguments[0].scrollIntoView();", TrackTB);

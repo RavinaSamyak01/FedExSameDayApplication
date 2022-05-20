@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite parallel="none" name="Failed suite [Default suite]">
-  <test parallel="none" name="Default test(failed)">
+<suite parallel="none" name="Failed suite [FedExApplication]">
+  <test parallel="none" name="Master Screens(failed)">
     <classes>
-      <class name="com.fdxMasterScreens.AddressBook">
+      <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
           <include name="startUp"/>
           <include name="end"/>
-          <include name="addrBook"/>
         </methods>
-      </class> <!-- com.fdxMasterScreens.AddressBook -->
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+      <class name="com.fdxMasterScreens.BaseClass">
+        <methods>
+          <include name="baseMethods"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BaseClass -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Master Screens(failed) -->
+  <test parallel="none" name="Crud Operations(failed)">
+    <classes>
+      <class name="shipmentFedExWebSite.CrudOperation">
+        <methods>
+          <include name="crudOperations"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.CrudOperation -->
+      <class name="shipmentFedExWebSite.ShipmentCreation">
+        <methods>
+          <include name="startUp"/>
+          <include name="end"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+    </classes>
+  </test> <!-- Crud Operations(failed) -->
+</suite> <!-- Failed suite [FedExApplication] -->

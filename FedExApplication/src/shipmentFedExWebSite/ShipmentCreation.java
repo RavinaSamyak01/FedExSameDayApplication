@@ -27,8 +27,10 @@ public class ShipmentCreation extends BaseInit {
 		Actions act = new Actions(driver);
 		msg.append("Shipment Creation Process Start.... " + "\n");
 		long start, end;
+		String Result = null;
 
 		try {
+			// 26
 
 			for (int i = 1; i < 26; i++) {
 				WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -563,14 +565,13 @@ public class ShipmentCreation extends BaseInit {
 			}
 			msg.append("Shipment Creation Process Completed.... PASS" + "\n");
 
-			// --Run Cheetah Method
-			CheetahOrderProcessing Cheeath = new CheetahOrderProcessing();
-			Cheeath.cheetahOrderPro();
+			Result = "PASS";
 
 		} catch (
 
 		Exception error) {
 			msg.append("Shipment Creation Process Completed.... FAIL" + "\n");
+			Result = "FAIL";
 
 		}
 
@@ -590,6 +591,17 @@ public class ShipmentCreation extends BaseInit {
 		 * driver.findElement(By.id("Wuc_headerlogout1_lnkbtnLogout")).click(); // click
 		 * on Logout driver.quit(); // close browser
 		 */
+
+		// --Run Cheetah Method
+		if (Result.equalsIgnoreCase("PASS")) {
+			CheetahOrderProcessing Cheeath = new CheetahOrderProcessing();
+			Cheeath.cheetahOrderPro();
+			// --Moved to FedEx URL and login
+			login();
+
+		} else {
+			System.out.println(Result + "=FAIL");
+		}
 
 	}
 
