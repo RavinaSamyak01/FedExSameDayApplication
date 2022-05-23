@@ -553,6 +553,8 @@ public class ShipmentCreation extends BaseInit {
 						System.out.println("set the Tracking No in PackageNo");
 					} else if (i > 21) {
 						System.out.println("No need to add tracking after row 20");
+						Result = "PASS";
+
 					} else {
 						// set trackingNo
 						setData("CheetahProcess", "Sheet1", i, 2, VoucherNum);
@@ -564,8 +566,6 @@ public class ShipmentCreation extends BaseInit {
 
 			}
 			msg.append("Shipment Creation Process Completed.... PASS" + "\n");
-
-			Result = "PASS";
 
 		} catch (
 
