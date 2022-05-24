@@ -1,161 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="5" passed="3" failed="2" skipped="0">
+<testng-results total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-05-20T15:45:42Z" name="FedExApplication" finished-at="2022-05-20T15:50:36Z" duration-ms="294718">
+  <suite started-at="2022-05-24T10:40:52Z" name="Default suite" finished-at="2022-05-24T10:42:30Z" duration-ms="98330">
     <groups>
     </groups>
-    <test started-at="2022-05-20T15:45:42Z" name="Rate Verification" finished-at="2022-05-20T15:46:44Z" duration-ms="62606">
-      <class name="rateScreenFedEx.RateVerification">
-        <test-method signature="prService()[pri:0, instance:rateScreenFedEx.RateVerification@59a008ba]" started-at="2022-05-20T21:15:42Z" name="prService" finished-at="2022-05-20T21:16:44Z" duration-ms="62598" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- prService -->
-      </class> <!-- rateScreenFedEx.RateVerification -->
-    </test> <!-- Rate Verification -->
-    <test started-at="2022-05-20T15:46:44Z" name="Master Screens" finished-at="2022-05-20T15:47:02Z" duration-ms="17547">
-      <class name="com.fdxMasterScreens.BaseClass">
-        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@5a2d131d]" started-at="2022-05-20T21:16:44Z" name="baseMethods" finished-at="2022-05-20T21:17:02Z" duration-ms="17544" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"css selector","selector":"#dgItin_shipNum_0"}
-  (Session info: chrome=101.0.4951.67)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
-System info: host: 'SIPL92', ip: '10.212.131.39', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '16.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.67, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\RPRAJA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:61006}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: f7255dfb9f0beeb8296b71e28c31505e
-*** Element info: {Using=id, value=dgItin_shipNum_0}]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#dgItin_shipNum_0"}
-  (Session info: chrome=101.0.4951.67)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
-System info: host: 'SIPL92', ip: '10.212.131.39', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '16.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 101.0.4951.67, chrome: {chromedriverVersion: 101.0.4951.41 (93c720db8323..., userDataDir: C:\Users\RPRAJA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:61006}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: f7255dfb9f0beeb8296b71e28c31505e
-*** Element info: {Using=id, value=dgItin_shipNum_0}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:368)
-	at org.openqa.selenium.By$ById.findElement(By.java:188)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
-	at com.fdxMasterScreens.TrackShipment.trckShipment(TrackShipment.java:73)
-	at com.fdxMasterScreens.BaseClass.baseMethods(BaseClass.java:25)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- baseMethods -->
-      </class> <!-- com.fdxMasterScreens.BaseClass -->
-    </test> <!-- Master Screens -->
-    <test started-at="2022-05-20T15:47:02Z" name="Crud Operations" finished-at="2022-05-20T15:47:10Z" duration-ms="7839">
-      <class name="shipmentFedExWebSite.CrudOperation">
-        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@141e5bef]" started-at="2022-05-20T21:17:02Z" name="crudOperations" finished-at="2022-05-20T21:17:10Z" duration-ms="7837" status="FAIL">
-          <exception class="java.io.FileNotFoundException">
-            <message>
-              <![CDATA[.\src\TestFiles\CrudOperation_PreProd..xlsx (The system cannot find the file specified)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.io.FileNotFoundException: .\src\TestFiles\CrudOperation_PreProd..xlsx (The system cannot find the file specified)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:211)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:153)
-	at basePackage.BaseInit.getData(BaseInit.java:244)
-	at shipmentFedExWebSite.CrudOperation.crudOperations(CrudOperation.java:53)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.io.FileNotFoundException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- crudOperations -->
-      </class> <!-- shipmentFedExWebSite.CrudOperation -->
-    </test> <!-- Crud Operations -->
-    <test started-at="2022-05-20T15:47:10Z" name="Broken Links" finished-at="2022-05-20T15:48:17Z" duration-ms="67281">
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@7a1a14a4]" started-at="2022-05-20T21:17:10Z" name="brokenLinks" finished-at="2022-05-20T21:18:17Z" duration-ms="67279" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- brokenLinks -->
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
-    </test> <!-- Broken Links -->
-    <test started-at="2022-05-20T15:48:17Z" name="Shipment Creation" finished-at="2022-05-20T15:50:36Z" duration-ms="139408">
+    <test started-at="2022-05-24T10:40:52Z" name="Default test" finished-at="2022-05-24T10:42:30Z" duration-ms="98330">
       <class name="shipmentFedExWebSite.ShipmentCreation">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56928307]" started-at="2022-05-20T21:15:25Z" name="startUp" finished-at="2022-05-20T21:15:42Z" duration-ms="16498" status="PASS">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-05-24T16:10:28Z" name="startUp" finished-at="2022-05-24T16:10:52Z" duration-ms="23954" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56928307]" started-at="2022-05-20T21:18:17Z" name="shipmentCreation" finished-at="2022-05-20T21:20:36Z" duration-ms="139403" status="PASS">
+        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-05-24T16:10:52Z" name="shipmentCreation" finished-at="2022-05-24T16:12:30Z" duration-ms="98308" status="FAIL">
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because "Result" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "Result" is null
+	at shipmentFedExWebSite.ShipmentCreation.shipmentCreation(ShipmentCreation.java:596)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- shipmentCreation -->
-        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56928307]" started-at="2022-05-20T21:20:36Z" name="end" finished-at="2022-05-20T21:20:37Z" duration-ms="200" status="PASS">
+        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-05-24T16:12:30Z" name="end" finished-at="2022-05-24T16:12:31Z" duration-ms="345" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
       </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
-    </test> <!-- Shipment Creation -->
-  </suite> <!-- FedExApplication -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

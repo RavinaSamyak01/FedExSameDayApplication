@@ -42,7 +42,7 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		//options.addArguments("--headless");
+		// options.addArguments("--headless");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -77,57 +77,72 @@ public class BaseInit {
 			String URL = storage.getProperty("PREPRODURL");
 			driver.get(URL);
 			msg.append("Step1 : Enter URL : PASS" + "\n");
-			String UserName = storage.getProperty("PREPRODUserName");
-			String Password = storage.getProperty("PREPRODPassword");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
-			driver.findElement(By.id("Header_fdx_main_liLogin")).click();
-			driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
-			driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
-			// enter password
-			driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
-			driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
-			msg.append("Step2 : Enter UserName : PASS" + "\n");
-			msg.append("Step3 : Enter Password : PASS" + "\n");
-
+			try {
+				String UserName = storage.getProperty("PREPRODUserName");
+				String Password = storage.getProperty("PREPRODPassword");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
+				driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+				driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
+				driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
+				// enter password
+				driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
+				driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
+				msg.append("Step2 : Enter UserName : PASS" + "\n");
+				msg.append("Step3 : Enter Password : PASS" + "\n");
+			} catch (Exception loggedin) {
+				System.out.println("Already loggedin");
+			}
 		} else if (Env.equalsIgnoreCase("STG")) {
 			String URL = storage.getProperty("STGURL");
 			driver.get(URL);
 			msg.append("Step1 : Enter URL : PASS" + "\n");
-			String UserName = storage.getProperty("STGUserName");
-			String Password = storage.getProperty("STGPassword");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
-			driver.findElement(By.id("Header_fdx_main_liLogin")).click();
-			driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
-			driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
-			// enter password
-			driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
-			driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
-			msg.append("Step2 : Enter UserName : PASS" + "\n");
-			msg.append("Step3 : Enter Password : PASS" + "\n");
+			try {
+				String UserName = storage.getProperty("STGUserName");
+				String Password = storage.getProperty("STGPassword");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
+				driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+				driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
+				driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
+				// enter password
+				driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
+				driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
+				msg.append("Step2 : Enter UserName : PASS" + "\n");
+				msg.append("Step3 : Enter Password : PASS" + "\n");
+			} catch (Exception loggedin) {
+				System.out.println("Already loggedin");
+			}
 
 		} else if (Env.equalsIgnoreCase("DEV")) {
 			String URL = storage.getProperty("DEVURL");
 			driver.get(URL);
 			msg.append("Step1 : Enter URL : PASS" + "\n");
-			String UserName = storage.getProperty("DEVUserName");
-			String Password = storage.getProperty("DEVPassword");
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
-			driver.findElement(By.id("Header_fdx_main_liLogin")).click();
-			driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
-			driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
-			// enter password
-			driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
-			driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
-			msg.append("Step2 : Enter UserName : PASS" + "\n");
-			msg.append("Step3 : Enter Password : PASS" + "\n");
+			try {
+				String UserName = storage.getProperty("DEVUserName");
+				String Password = storage.getProperty("DEVPassword");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_liLogin")));
+				driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+				driver.findElement(By.id("Header_fdx_main_logon_name")).clear();
+				driver.findElement(By.id("Header_fdx_main_logon_name")).sendKeys(UserName);
+				// enter password
+				driver.findElement(By.id("Header_fdx_main_logon_password")).clear();
+				driver.findElement(By.id("Header_fdx_main_logon_password")).sendKeys(Password);
+				msg.append("Step2 : Enter UserName : PASS" + "\n");
+				msg.append("Step3 : Enter Password : PASS" + "\n");
+			} catch (Exception loggedin) {
+				System.out.println("Already loggedin");
+			}
 
 		}
-		Thread.sleep(2000);
-		driver.findElement(By.id("Header_fdx_main_cmdMenuLogin")).click();
-		System.out.println("Login done");
-		msg.append("Step4 : Application Login Successfully : PASS" + "\n");
-		driver.getTitle();
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"fdx-o-grid\"]")));
+		try {
+			Thread.sleep(2000);
+			driver.findElement(By.id("Header_fdx_main_cmdMenuLogin")).click();
+			System.out.println("Login done");
+			msg.append("Step4 : Application Login Successfully : PASS" + "\n");
+			driver.getTitle();
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"fdx-o-grid\"]")));
+		} catch (Exception loggedin) {
+			System.out.println("Already loggedin");
+		}
 	}
 
 	@AfterSuite
