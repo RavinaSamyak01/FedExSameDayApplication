@@ -3,13 +3,13 @@
 <suite parallel="none" name="Failed suite [Default suite]">
   <test parallel="none" name="Default test(failed)">
     <classes>
-      <class name="com.fdxMasterScreens.AddressBook">
+      <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
+          <include name="shipmentCreation"/>
           <include name="startUp"/>
           <include name="end"/>
-          <include name="addrBook"/>
         </methods>
-      </class> <!-- com.fdxMasterScreens.AddressBook -->
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

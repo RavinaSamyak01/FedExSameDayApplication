@@ -479,6 +479,8 @@ public class ShipmentCreation extends BaseInit {
 
 					}
 
+					Result = "FAIL";
+
 				} catch (Exception ACRestriction) {
 					System.out.println("Account is Active");
 					wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
@@ -560,6 +562,7 @@ public class ShipmentCreation extends BaseInit {
 						setData("CheetahProcess", "Sheet1", i, 2, VoucherNum);
 						System.out.println("Shipment Tracking No==" + VoucherNum);
 						System.out.println("set the Tracking No");
+
 					}
 
 				}

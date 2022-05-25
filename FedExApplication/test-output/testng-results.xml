@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="1" passed="0" failed="1" skipped="0">
+<testng-results total="5" passed="4" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-05-24T10:40:52Z" name="Default suite" finished-at="2022-05-24T10:42:30Z" duration-ms="98330">
+  <suite started-at="2022-05-25T03:47:22Z" name="FedExApplication" finished-at="2022-05-25T04:59:47Z" duration-ms="4344457">
     <groups>
     </groups>
-    <test started-at="2022-05-24T10:40:52Z" name="Default test" finished-at="2022-05-24T10:42:30Z" duration-ms="98330">
-      <class name="shipmentFedExWebSite.ShipmentCreation">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-05-24T16:10:28Z" name="startUp" finished-at="2022-05-24T16:10:52Z" duration-ms="23954" status="PASS">
+    <test started-at="2022-05-25T03:47:22Z" name="Rate Verification" finished-at="2022-05-25T04:19:56Z" duration-ms="1953871">
+      <class name="rateScreenFedEx.RateVerification">
+        <test-method signature="prService()[pri:0, instance:rateScreenFedEx.RateVerification@7d61eb55]" started-at="2022-05-25T09:17:22Z" name="prService" finished-at="2022-05-25T09:49:56Z" duration-ms="1953846" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- startUp -->
-        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-05-24T16:10:52Z" name="shipmentCreation" finished-at="2022-05-24T16:12:30Z" duration-ms="98308" status="FAIL">
+        </test-method> <!-- prService -->
+      </class> <!-- rateScreenFedEx.RateVerification -->
+    </test> <!-- Rate Verification -->
+    <test started-at="2022-05-25T04:19:56Z" name="Shipment Creation" finished-at="2022-05-25T04:51:06Z" duration-ms="1869790">
+      <class name="shipmentFedExWebSite.ShipmentCreation">
+        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@dc9876b]" started-at="2022-05-25T09:49:56Z" name="shipmentCreation" finished-at="2022-05-25T10:21:06Z" duration-ms="1869786" status="FAIL">
           <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "String.equalsIgnoreCase(String)" because "Result" is null]]>
-            </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "String.equalsIgnoreCase(String)" because "Result" is null
+              <![CDATA[java.lang.NullPointerException
 	at shipmentFedExWebSite.ShipmentCreation.shipmentCreation(ShipmentCreation.java:596)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
 	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
 	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
@@ -40,20 +41,47 @@
 	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
 	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
 	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+	at org.testng.TestNG.privateMain(TestNG.java:1364)
+	at org.testng.TestNG.main(TestNG.java:1333)
 ]]>
             </full-stacktrace>
           </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- shipmentCreation -->
-        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-05-24T16:12:30Z" name="end" finished-at="2022-05-24T16:12:31Z" duration-ms="345" status="PASS">
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+    </test> <!-- Shipment Creation -->
+    <test started-at="2022-05-25T04:51:06Z" name="Master Screens" finished-at="2022-05-25T04:54:11Z" duration-ms="185108">
+      <class name="com.fdxMasterScreens.BaseClass">
+        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@2dc9b0f5]" started-at="2022-05-25T10:21:06Z" name="baseMethods" finished-at="2022-05-25T10:24:11Z" duration-ms="185106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- baseMethods -->
+      </class> <!-- com.fdxMasterScreens.BaseClass -->
+    </test> <!-- Master Screens -->
+    <test started-at="2022-05-25T04:54:11Z" name="Crud Operations" finished-at="2022-05-25T04:58:25Z" duration-ms="253636">
+      <class name="shipmentFedExWebSite.CrudOperation">
+        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@27912e3]" started-at="2022-05-25T10:24:11Z" name="crudOperations" finished-at="2022-05-25T10:28:25Z" duration-ms="253634" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- crudOperations -->
+      </class> <!-- shipmentFedExWebSite.CrudOperation -->
+    </test> <!-- Crud Operations -->
+    <test started-at="2022-05-25T04:58:25Z" name="Broken Links" finished-at="2022-05-25T04:59:47Z" duration-ms="81983">
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-05-25T09:16:52Z" name="startUp" finished-at="2022-05-25T09:17:22Z" duration-ms="30077" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startUp -->
+        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-05-25T10:28:25Z" name="brokenLinks" finished-at="2022-05-25T10:29:47Z" duration-ms="81982" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- brokenLinks -->
+        <test-method is-config="true" signature="end()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-05-25T10:29:47Z" name="end" finished-at="2022-05-25T10:29:48Z" duration-ms="1240" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
-      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+    </test> <!-- Broken Links -->
+  </suite> <!-- FedExApplication -->
 </testng-results>

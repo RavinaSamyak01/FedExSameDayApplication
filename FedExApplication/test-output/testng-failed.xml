@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite parallel="none" name="Failed suite [Default suite]">
-  <test parallel="none" name="Default test(failed)">
+<suite parallel="none" name="Failed suite [FedExApplication]">
+  <test parallel="none" name="Shipment Creation(failed)">
     <classes>
       <class name="shipmentFedExWebSite.ShipmentCreation">
         <methods>
           <include name="shipmentCreation"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <methods>
           <include name="startUp"/>
           <include name="end"/>
         </methods>
-      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Shipment Creation(failed) -->
+</suite> <!-- Failed suite [FedExApplication] -->
