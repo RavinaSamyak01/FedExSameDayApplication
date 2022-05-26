@@ -14,9 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import basePackage.BaseInit;
-
-public class ActivityReport extends BaseInit {
+public class ActivityReport extends BaseClass {
 
 	@Test
 	public static void actReport() throws IOException, InterruptedException {

@@ -14,9 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import basePackage.BaseInit;
-
-public class AddressBook extends BaseInit {
+public class AddressBook extends BaseClass {
 
 	@Test
 	public static void addrBook() throws Exception {
