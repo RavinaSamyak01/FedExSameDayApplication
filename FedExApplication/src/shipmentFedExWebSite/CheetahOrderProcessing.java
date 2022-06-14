@@ -32,6 +32,9 @@ public class CheetahOrderProcessing extends BaseInit {
 		} else if (Env.equalsIgnoreCase("STG")) {
 			BaseURL = storage.getProperty("STGURLCheetahOrder");
 
+		} else if (Env.equalsIgnoreCase("DEV")) {
+			BaseURL = storage.getProperty("DEVURLCheetahOrder");
+
 		}
 		driver.get(BaseURL);
 		Thread.sleep(4000);

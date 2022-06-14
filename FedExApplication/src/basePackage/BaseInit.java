@@ -163,7 +163,7 @@ public class BaseInit {
 		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("RateVerification")) {
 			FilePath = storage.getProperty("STG_RateVerificationFile");
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("RateVerification")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_RateVerificationFile");
 		}
 
 		// --Shipment Creation File
@@ -172,7 +172,7 @@ public class BaseInit {
 		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("ShipmentCreation")) {
 			FilePath = storage.getProperty("STG_ShipmentCreationFile");
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("ShipmentCreation")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_ShipmentCreationFile");
 		}
 
 		// --Crud Operation File
@@ -181,7 +181,7 @@ public class BaseInit {
 		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("CrudOperation")) {
 			FilePath = storage.getProperty("STG_CrudOperationFile");
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CrudOperation")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_CrudOperationFile");
 		}
 		// --Cheetah Process File
 		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("CheetahProcess")) {
@@ -189,7 +189,7 @@ public class BaseInit {
 		} else if (Env.equalsIgnoreCase("STG") && FileName.contains("CheetahProcess")) {
 			FilePath = storage.getProperty("STG_CheetahProcessFile");
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CheetahProcess")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_CheetahProcessFile");
 		}
 
 		File src = new File(FilePath);
@@ -217,7 +217,7 @@ public class BaseInit {
 			FilePath = storage.getProperty("STG_RateVerificationFile");
 			System.out.println("File==" + FilePath);
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("RateVerification")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_RateVerificationFile");
 		}
 
 		// --Shipment Creation File
@@ -228,7 +228,7 @@ public class BaseInit {
 			FilePath = storage.getProperty("STG_ShipmentCreationFile");
 			System.out.println("File==" + FilePath);
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("ShipmentCreation")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_ShipmentCreationFile");
 		}
 
 		// --Crud Operation File
@@ -240,7 +240,7 @@ public class BaseInit {
 			System.out.println("File==" + FilePath);
 
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CrudOperation")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_CrudOperationFile");
 		}
 		// --Cheetah Process File
 		else if (Env.equalsIgnoreCase("Pre-Prod") && FileName.contains("CheetahProcess")) {
@@ -252,7 +252,7 @@ public class BaseInit {
 			System.out.println("File==" + FilePath);
 
 		} else if (Env.equalsIgnoreCase("DEV") && FileName.contains("CheetahProcess")) {
-			FilePath = storage.getProperty("DEVFile");
+			FilePath = storage.getProperty("DEV_CheetahProcessFile");
 		}
 
 		File src = new File(FilePath);

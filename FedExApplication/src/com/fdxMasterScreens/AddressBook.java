@@ -109,6 +109,13 @@ public class AddressBook extends BaseClass {
 			String PreProdTab = PartialPath + "Import_Tab_PreProd.txt";
 			String PreProdVerBar = PartialPath + "Import_Verticle Bar_PreProd.txt";
 
+			// --DEV File
+			String DEVAddressImport = PartialPath + "AddressImport_DEV.txt";
+			String DEVComma = PartialPath + "Import_Comma_DEV.txt";
+			String DEVSemiCol = PartialPath + "Import_Semicolon_DEV.txt";
+			String DEVTab = PartialPath + "Import_Tab_DEV.txt";
+			String DEVVerBar = PartialPath + "Import_Verticle Bar_DEV.txt";
+
 			if (i == 0) {
 				driver.findElement(By.linkText("Import")).click();
 				waitForVisibilityOfElement(By.id("currentForm"), 5);
@@ -120,6 +127,9 @@ public class AddressBook extends BaseClass {
 
 				} else if (Env.contains("Pre-Prod")) {
 					driver.findElement(By.id("fileUpload")).sendKeys(PreProdAddressImport);
+
+				} else if (Env.contains("DEV")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(DEVAddressImport);
 
 				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
@@ -147,6 +157,9 @@ public class AddressBook extends BaseClass {
 
 				} else if (Env.contains("Pre-Prod")) {
 					driver.findElement(By.id("fileUpload")).sendKeys(PreProdComma);
+
+				} else if (Env.contains("DEV")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(DEVComma);
 
 				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
@@ -178,6 +191,9 @@ public class AddressBook extends BaseClass {
 				} else if (Env.contains("Pre-Prod")) {
 					driver.findElement(By.id("fileUpload")).sendKeys(PreProdSemiCol);
 
+				} else if (Env.contains("DEV")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(DEVSemiCol);
+
 				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
@@ -203,6 +219,9 @@ public class AddressBook extends BaseClass {
 				} else if (Env.contains("Pre-Prod")) {
 					driver.findElement(By.id("fileUpload")).sendKeys(PreProdVerBar);
 
+				} else if (Env.contains("DEV")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(DEVVerBar);
+
 				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
 				Select opt1 = new Select(ele4);
@@ -227,6 +246,9 @@ public class AddressBook extends BaseClass {
 
 				} else if (Env.contains("Pre-Prod")) {
 					driver.findElement(By.id("fileUpload")).sendKeys(PreProdTab);
+
+				} else if (Env.contains("DEV")) {
+					driver.findElement(By.id("fileUpload")).sendKeys(DEVTab);
 
 				}
 				WebElement ele4 = driver.findElement(By.id("ddlClearAddr"));
