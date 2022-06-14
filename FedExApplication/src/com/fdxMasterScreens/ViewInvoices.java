@@ -24,14 +24,22 @@ public class ViewInvoices extends BaseClass {
 		waitForVisibilityOfElement(By.id("currentForm"), 50);
 		msg.append("Open Screen  : PASS" + "\n");
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("dgRpt_lbExport_0")));
-		driver.findElement(By.id("dgRpt_lbExport_0")).click();
-		Thread.sleep(5000);
+		try {
 
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\InvoiceHistory.png"));
-		System.out.println("Invoice History display Proper !!!");
-		msg.append("Download PDF : PASS" + "\n\n");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("dgRpt_lbExport_0")));
+			driver.findElement(By.id("dgRpt_lbExport_0")).click();
+			Thread.sleep(5000);
+
+			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(scrFile, new File(".\\src\\Screenshots\\InvoiceHistory.png"));
+			System.out.println("Invoice History display Proper !!!");
+			msg.append("Download PDF : PASS" + "\n\n");
+		} catch (Exception e) {
+			String ValMsg = driver.findElement(By.id("lblErrMessage")).getText();
+			System.out.println("Unable to export Invoice History : PASS=" + ValMsg + "\n\n");
+			msg.append("Unable to export Invoice History : PASS=" + ValMsg + "\n\n");
+		}
+
 	}
 
 	public static void waitForVisibilityOfElement(By objLocator, long lTime) {

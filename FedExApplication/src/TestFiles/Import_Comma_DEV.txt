@@ -1,5 +1,12 @@
-College of American Pathologists,325 Waukegan Rd,NORTHFIELD,IL,60093,847-832-7799
-BMO Harris Bank,3063 Dundee Road,NORTHBROOK,IL,60062,(847) 291-4500
-FIS GLOBAL,270 REMINGTON BLVD,BOLINGBROOK,IL,60440,(847) 291-4500
-DARKSTORE INC.,19826 Russell Road,KENT,WA,98032,628-264-8474
-Yohji Kusakabe,408 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836
+College of American Pathologis,325 Waukegan Rd,NORTHFIELD,IL,60093,847-832-7799,Automation,123,R@gmail.com,Ravina,AUtomation Testing,2
+BMO Harris Bank,3063 Dundee Road,NORTHBROOK,IL,60062,(847) 291-4500,Automation,123,R@gmail.com,Ravina,AUtomation Testing,13
+FIS GLOBAL,270 REMINGTON BLVD,BOLIOOK,IL,60440,(847) 291-4500,Automation,123,R@gmail.com,Ravina,AUtomation Testing,3
+DARKSTORE INC.,19826 Russell Road,KENT,WA,98032,628-264-8474,Automation,123,R@gmail.com,Ravina,AUtomation Testing,4
+Yohqji Kusakabe,4008 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,5
+Yohjai Kusakabe,4108 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,6
+Yohjsi Kusakabe,4028 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,7
+Yohdji Kusakabe,4308 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,8
+Yohfji Kusakabe,4048 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,9
+Yohgji Kusakabe,4058 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,10
+Yohhji Kusakabe,4608 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,11
+Yohjji Kusakabe,4708 Aurora Ave N Unit. 607,SEATTLE,WA,98109,347-920-8836,Automation,123,R@gmail.com,Ravina,AUtomation Testing,12

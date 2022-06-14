@@ -30,11 +30,11 @@ public class BaseClass extends BaseInit {
 		// --My Preferences=Done
 		MyPreferences.myPref();
 
-		// --My Profile=Done
-		MyProfile.myProfile();
-
 		// --Address Book=Done
 		AddressBook.addrBook();
+
+		// --My Profile=Done
+		MyProfile.myProfile();
 
 		// --Activity Report=Done, not found tracking number
 		ActivityReport.actReport();

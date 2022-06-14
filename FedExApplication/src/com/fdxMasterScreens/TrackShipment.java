@@ -69,6 +69,7 @@ public class TrackShipment extends BaseClass {
 				File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(scrFile, new File(".\\src\\TestFiles\\Multiple_ShipmentTracking_1.png"));
 
+				waitForVisibilityOfElement(By.id("dgItin_shipNum_0"), 5);
 				driver.findElement(By.id("dgItin_shipNum_0")).click();
 				waitForVisibilityOfElement(By.xpath("//*[@id=\"pnlDetails\"]//table[3]"), 5);
 

@@ -47,15 +47,20 @@ public class CustomDataDownload extends BaseClass {
 		driver.findElement(By.id("txtPUEndDate")).sendKeys("02/04/2020");
 
 		WebElement acct = driver.findElement(By.id("lbAccount"));
-		Select s1 = new Select(acct);
-		s1.deselectByVisibleText("(******136) CREATIVE ARTISTS AGENCY");
+		// Select s1 = new Select(acct);
+		// s1.deselectByVisibleText("(******136) CREATIVE ARTISTS AGENCY");
 
 		try {
 			Select s2 = new Select(acct);
 			s2.selectByVisibleText("(******229) TEST Cheers");
 		} catch (Exception Ac) {
-			Select s2 = new Select(acct);
-			s2.selectByVisibleText("(******229) ASHLEEPIERCE");
+			try {
+				Select s2 = new Select(acct);
+				s2.selectByVisibleText("(******229) ASHLEEPIERCE");
+			} catch (Exception e) {
+				Select s2 = new Select(acct);
+				s2.selectByVisibleText("(******005) Cheers Test Mode Name");
+			}
 		}
 
 		WebElement fields = driver.findElement(By.id("lbAvailable"));
@@ -105,15 +110,20 @@ public class CustomDataDownload extends BaseClass {
 		driver.findElement(By.id("txtPUEndDate")).sendKeys("02/04/2020");
 
 		WebElement acct = driver.findElement(By.id("lbAccount"));
-		Select s1 = new Select(acct);
-		s1.deselectByVisibleText("(******136) CREATIVE ARTISTS AGENCY");
+		//Select s1 = new Select(acct);
+		//s1.deselectByVisibleText("(******136) CREATIVE ARTISTS AGENCY");
 
 		try {
-		Select s2 = new Select(acct);
-		s2.selectByVisibleText("(******229) TEST Cheers");
-		}catch(Exception e) {
 			Select s2 = new Select(acct);
-			s2.selectByVisibleText("(******229) ASHLEEPIERCE");
+			s2.selectByVisibleText("(******229) TEST Cheers");
+		} catch (Exception e) {
+			try {
+				Select s2 = new Select(acct);
+				s2.selectByVisibleText("(******229) ASHLEEPIERCE");
+			} catch (Exception e1) {
+				Select s2 = new Select(acct);
+				s2.selectByVisibleText("(******005) Cheers Test Mode Name");
+			}
 		}
 		Thread.sleep(3000);
 		WebElement fields = driver.findElement(By.id("lbAvailable"));

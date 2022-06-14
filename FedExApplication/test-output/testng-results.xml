@@ -1,169 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="5" passed="3" failed="2" skipped="0">
+<testng-results total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-14T03:47:37Z" name="FedExApplication" finished-at="2022-06-14T04:51:17Z" duration-ms="3820259">
+  <suite started-at="2022-06-14T11:48:46Z" name="Default suite" finished-at="2022-06-14T11:54:16Z" duration-ms="330012">
     <groups>
     </groups>
-    <test started-at="2022-06-14T03:47:37Z" name="Rate Verification" finished-at="2022-06-14T04:19:23Z" duration-ms="1905783">
-      <class name="rateScreenFedEx.RateVerification">
-        <test-method signature="prService()[pri:0, instance:rateScreenFedEx.RateVerification@7d61eb55]" started-at="2022-06-14T09:17:37Z" name="prService" finished-at="2022-06-14T09:49:23Z" duration-ms="1905766" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- prService -->
-      </class> <!-- rateScreenFedEx.RateVerification -->
-    </test> <!-- Rate Verification -->
-    <test started-at="2022-06-14T04:19:23Z" name="Shipment Creation" finished-at="2022-06-14T04:50:25Z" duration-ms="1862731">
-      <class name="shipmentFedExWebSite.ShipmentCreation">
-        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@dc9876b]" started-at="2022-06-14T09:49:23Z" name="shipmentCreation" finished-at="2022-06-14T10:20:25Z" duration-ms="1862727" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- shipmentCreation -->
-      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
-    </test> <!-- Shipment Creation -->
-    <test started-at="2022-06-14T04:50:25Z" name="Master Screens" finished-at="2022-06-14T04:51:15Z" duration-ms="50117">
-      <class name="com.fdxMasterScreens.BaseClass">
-        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@2dc9b0f5]" started-at="2022-06-14T10:20:25Z" name="baseMethods" finished-at="2022-06-14T10:21:15Z" duration-ms="50111" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //*[@title="FedEx Home"] (tried for 50 second(s) with 500 milliseconds interval)]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //*[@title="FedEx Home"] (tried for 50 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:81)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:271)
-	at com.fdxMasterScreens.TrackShipment.trckShipment(TrackShipment.java:28)
-	at com.fdxMasterScreens.BaseClass.baseMethods(BaseClass.java:25)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.TestNG.privateMain(TestNG.java:1364)
-	at org.testng.TestNG.main(TestNG.java:1333)
-Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.xpath: //*[@title="FedEx Home"]
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
-System info: host: 'SIPL92', ip: '10.212.130.196', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: driver.version: unknown
-	at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
-	at java.base/java.util.Optional.orElseThrow(Optional.java:408)
-	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:248)
-	... 25 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- baseMethods -->
-      </class> <!-- com.fdxMasterScreens.BaseClass -->
-    </test> <!-- Master Screens -->
-    <test started-at="2022-06-14T04:51:16Z" name="Crud Operations" finished-at="2022-06-14T04:51:16Z" duration-ms="54">
-      <class name="shipmentFedExWebSite.CrudOperation">
-        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@27912e3]" started-at="2022-06-14T10:21:16Z" name="crudOperations" finished-at="2022-06-14T10:21:16Z" duration-ms="52" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"link text","selector":"Shipping"}
-  (Session info: chrome=102.0.5005.63)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
-System info: host: 'SIPL92', ip: '10.212.130.196', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.63, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\WINDOWS\TEMP\scoped_dir7...}, goog:chromeOptions: {debuggerAddress: localhost:61189}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: b27ec45f1fe96b04a3ad5cf67e02fa78
-*** Element info: {Using=link text, value=Shipping}]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"link text","selector":"Shipping"}
-  (Session info: chrome=102.0.5005.63)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
-System info: host: 'SIPL92', ip: '10.212.130.196', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.63, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\WINDOWS\TEMP\scoped_dir7...}, goog:chromeOptions: {debuggerAddress: localhost:61189}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: b27ec45f1fe96b04a3ad5cf67e02fa78
-*** Element info: {Using=link text, value=Shipping}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByLinkText(RemoteWebDriver.java:376)
-	at org.openqa.selenium.By$ByLinkText.findElement(By.java:220)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
-	at shipmentFedExWebSite.CrudOperation.crudOperations(CrudOperation.java:33)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.TestNG.privateMain(TestNG.java:1364)
-	at org.testng.TestNG.main(TestNG.java:1333)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- crudOperations -->
-      </class> <!-- shipmentFedExWebSite.CrudOperation -->
-    </test> <!-- Crud Operations -->
-    <test started-at="2022-06-14T04:51:16Z" name="Broken Links" finished-at="2022-06-14T04:51:17Z" duration-ms="1467">
-      <class name="com.fdxMasterScreens.BrokenLinks">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-14T09:17:02Z" name="startUp" finished-at="2022-06-14T09:17:37Z" duration-ms="34487" status="PASS">
+    <test started-at="2022-06-14T11:48:46Z" name="Default test" finished-at="2022-06-14T11:54:16Z" duration-ms="330012">
+      <class name="shipmentFedExWebSite.CheetahOrderProcessing">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@62010f5c]" started-at="2022-06-14T17:18:30Z" name="startUp" finished-at="2022-06-14T17:18:46Z" duration-ms="16505" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-14T10:21:16Z" name="brokenLinks" finished-at="2022-06-14T10:21:17Z" duration-ms="1465" status="PASS">
+        <test-method signature="cheetahOrderPro()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@62010f5c]" started-at="2022-06-14T17:18:46Z" name="cheetahOrderPro" finished-at="2022-06-14T17:24:16Z" duration-ms="329994" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- brokenLinks -->
-        <test-method is-config="true" signature="end()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-14T10:21:17Z" name="end" finished-at="2022-06-14T10:21:19Z" duration-ms="1615" status="PASS">
+        </test-method> <!-- cheetahOrderPro -->
+        <test-method is-config="true" signature="end()[pri:0, instance:shipmentFedExWebSite.CheetahOrderProcessing@62010f5c]" started-at="2022-06-14T17:24:16Z" name="end" finished-at="2022-06-14T17:24:16Z" duration-ms="170" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
-    </test> <!-- Broken Links -->
-  </suite> <!-- FedExApplication -->
+      </class> <!-- shipmentFedExWebSite.CheetahOrderProcessing -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

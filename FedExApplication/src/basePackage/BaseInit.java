@@ -154,7 +154,6 @@ public class BaseInit {
 	public static void setData(String FileName, String sheetName, int row, int col, String value)
 			throws EncryptedDocumentException, InvalidFormatException, IOException {
 		String Env = storage.getProperty("Env");
-		System.out.println("Env==" + Env);
 		String FilePath = null;
 
 		// --Rate Verification File
@@ -206,7 +205,6 @@ public class BaseInit {
 	public static String getData(String FileName, String sheetName, int row, int col)
 			throws EncryptedDocumentException, InvalidFormatException, IOException {
 		String Env = storage.getProperty("Env");
-		System.out.println("Env==" + Env);
 		String FilePath = null;
 
 		// --Rate Verification File
