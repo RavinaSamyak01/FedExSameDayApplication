@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
@@ -28,6 +30,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import rateScreenFedEx.RateVerification;
 
 public class BaseInit {
 	public static WebDriver driver;
@@ -137,11 +140,44 @@ public class BaseInit {
 			Thread.sleep(2000);
 			driver.findElement(By.id("Header_fdx_main_cmdMenuLogin")).click();
 			System.out.println("Login done");
-			msg.append("Step4 : Application Login Successfully : PASS" + "\n");
 			driver.getTitle();
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@class=\"fdx-o-grid\"]")));
+			msg.append("Step4 : Application Login Successfully : PASS" + "\n");
+			Env = storage.getProperty("Env");
+			String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+			try {
+				// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+				// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+				Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+						msg.toString(), "");
+			} catch (Exception ex) {
+				Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		} catch (Exception loggedin) {
-			System.out.println("Already loggedin");
+			try {
+				driver.findElement(By.id("Header_fdx_main_liLogin")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_lblloginmmsg")));
+				String ValMsg = driver.findElement(By.id("Header_fdx_main_lblloginmmsg")).getText();
+				msg.append("Step4 : Application Login Successfully : FAIL, " + ValMsg + "\n");
+
+				// --End the suit
+				end();
+				// Send Email
+
+				Env = storage.getProperty("Env");
+				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+				try {
+					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+							msg.toString(), "");
+				} catch (Exception ex) {
+					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+				}
+
+			} catch (Exception frg) {
+				System.out.println("Already loggedin");
+			}
 		}
 	}
 
