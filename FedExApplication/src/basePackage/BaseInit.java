@@ -70,7 +70,7 @@ public class BaseInit {
 
 	}
 
-	public void login() throws InterruptedException {
+	public void login() throws InterruptedException, IOException {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 
 		String Env = storage.getProperty("Env");
@@ -93,9 +93,27 @@ public class BaseInit {
 				msg.append("Step2 : Enter UserName : PASS" + "\n");
 				msg.append("Step3 : Enter Password : PASS" + "\n");
 			} catch (Exception loggedin) {
-				System.out.println("Already loggedin");
+
+				msg.append("URL is not working==FAIL");
+				getScreenshot(driver, "LoginIssue");
+				driver.quit();
+				Env = storage.getProperty("Env");
+				String File = ".\\src\\Screenshots\\LoginIssue.png";
+				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+
+				try {
+					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+							msg.toString(), File);
+				} catch (Exception ex) {
+					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+				}
 			}
-		} else if (Env.equalsIgnoreCase("STG")) {
+
+		} else if (Env.equalsIgnoreCase("STG"))
+
+		{
 			String URL = storage.getProperty("STGURL");
 			driver.get(URL);
 			msg.append("Step1 : Enter URL : PASS" + "\n");
@@ -112,7 +130,22 @@ public class BaseInit {
 				msg.append("Step2 : Enter UserName : PASS" + "\n");
 				msg.append("Step3 : Enter Password : PASS" + "\n");
 			} catch (Exception loggedin) {
-				System.out.println("Already loggedin");
+
+				msg.append("URL is not working==FAIL");
+				getScreenshot(driver, "LoginIssue");
+				driver.quit();
+				Env = storage.getProperty("Env");
+				String File = ".\\src\\Screenshots\\LoginIssue.png";
+				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+
+				try {
+					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+							msg.toString(), File);
+				} catch (Exception ex) {
+					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+				}
 			}
 
 		} else if (Env.equalsIgnoreCase("DEV")) {
@@ -132,7 +165,22 @@ public class BaseInit {
 				msg.append("Step2 : Enter UserName : PASS" + "\n");
 				msg.append("Step3 : Enter Password : PASS" + "\n");
 			} catch (Exception loggedin) {
-				System.out.println("Already loggedin");
+
+				msg.append("URL is not working==FAIL");
+				getScreenshot(driver, "LoginIssue");
+				driver.quit();
+				Env = storage.getProperty("Env");
+				String File = ".\\src\\Screenshots\\LoginIssue.png";
+				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+
+				try {
+					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+							msg.toString(), File);
+				} catch (Exception ex) {
+					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+				}
 			}
 
 		}

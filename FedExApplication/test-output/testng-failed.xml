@@ -1,15 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite parallel="none" name="Failed suite [Default suite]">
-  <test parallel="none" name="Default test(failed)">
+<suite parallel="none" name="Failed suite [FedExApplication]">
+  <test parallel="none" name="Rate Verification(failed)">
     <classes>
-      <class name="com.fdxMasterScreens.AddressBook">
+      <class name="rateScreenFedEx.RateVerification">
+        <methods>
+          <include name="prService"/>
+        </methods>
+      </class> <!-- rateScreenFedEx.RateVerification -->
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <methods>
+          <include name="startUp"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+    </classes>
+  </test> <!-- Rate Verification(failed) -->
+  <test parallel="none" name="Shipment Creation(failed)">
+    <classes>
+      <class name="shipmentFedExWebSite.ShipmentCreation">
+        <methods>
+          <include name="shipmentCreation"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <methods>
+          <include name="startUp"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+    </classes>
+  </test> <!-- Shipment Creation(failed) -->
+  <test parallel="none" name="Master Screens(failed)">
+    <classes>
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <methods>
+          <include name="startUp"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+      <class name="com.fdxMasterScreens.BaseClass">
         <methods>
           <include name="baseMethods"/>
-          <include name="startUp"/>
-          <include name="end"/>
         </methods>
-      </class> <!-- com.fdxMasterScreens.AddressBook -->
+      </class> <!-- com.fdxMasterScreens.BaseClass -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Master Screens(failed) -->
+  <test parallel="none" name="Crud Operations(failed)">
+    <classes>
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <methods>
+          <include name="startUp"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+      <class name="shipmentFedExWebSite.CrudOperation">
+        <methods>
+          <include name="crudOperations"/>
+        </methods>
+      </class> <!-- shipmentFedExWebSite.CrudOperation -->
+    </classes>
+  </test> <!-- Crud Operations(failed) -->
+  <test parallel="none" name="Broken Links(failed)">
+    <classes>
+      <class name="com.fdxMasterScreens.BrokenLinks">
+        <methods>
+          <include name="startUp"/>
+          <include name="brokenLinks"/>
+        </methods>
+      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+    </classes>
+  </test> <!-- Broken Links(failed) -->
+</suite> <!-- Failed suite [FedExApplication] -->
