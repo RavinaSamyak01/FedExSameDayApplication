@@ -45,8 +45,8 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		// options.addArguments("--headless");
-		options.addArguments("--incognito");
+		//options.addArguments("--headless");
+		//options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
 		options.addArguments("--proxy-bypass-list=*");

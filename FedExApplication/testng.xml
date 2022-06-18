@@ -1,7 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="FedExApplication">
 
-
+	<!--<test thread-count="5" name="Rate Verification">
+		<classes>
+			<class name="rateScreenFedEx.RateVerification"></class>
+		</classes>
+	</test> -->
 	<test thread-count="5" name="Rate Verification">
 		<classes>
 			<class name="rateScreenFedEx.RateVerification"></class>

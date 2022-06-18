@@ -231,6 +231,56 @@ public class ShipmentCreation extends BaseInit {
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
 				Thread.sleep(2000);
 
+				try {
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblErrSignatureType")));
+					String signVal = driver.findElement(By.id("lblErrSignatureType")).getText();
+					System.out.println("validation is displayed==" + signVal);
+
+					// --select signature
+					Select sign = new Select(driver.findElement(By.id("ddlSignatureType")));
+					sign.selectByValue("ISR");
+					Thread.sleep(2000);
+					System.out.println("Signature selected");
+
+					Cal = driver.findElement(By.id("lnkCalculate"));
+					// Click on calculate link
+					act.moveToElement(Cal).click().perform();
+					Thread.sleep(2000);
+					wait.until(
+							ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
+					Thread.sleep(2000);
+
+					try {
+						wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lblPackageType")));
+						String ContVal = driver.findElement(By.id("lblPackageType")).getText();
+						System.out.println("validation is displayed==" + ContVal);
+
+						// --Enter contents
+						WebElement contents = driver.findElement(By.id("txt_content"));
+						jse.executeScript("arguments[0].scrollIntoView();", contents);
+						act.moveToElement(contents).build().perform();
+						contents.sendKeys("AUtomation COntents");
+						Thread.sleep(2000);
+						System.out.println("Contents entered");
+
+						jse.executeScript("window.scrollBy(0,-850)", "");
+						Thread.sleep(2000);
+						Cal = driver.findElement(By.id("lnkCalculate"));
+						// Click on calculate link
+						act.moveToElement(Cal).click().perform();
+						Thread.sleep(2000);
+						wait.until(ExpectedConditions
+								.visibilityOfAllElementsLocatedBy(By.id("divAvailableServicesInternal")));
+						Thread.sleep(2000);
+
+					} catch (Exception econt) {
+
+					}
+
+				} catch (Exception e) {
+
+				}
+
 				// Service
 
 				// If match with PR, below code will execute
