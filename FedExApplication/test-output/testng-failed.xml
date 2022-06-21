@@ -3,13 +3,13 @@
 <suite parallel="none" name="Failed suite [Default suite]">
   <test parallel="none" name="Default test(failed)">
     <classes>
-      <class name="com.fdxMasterScreens.BrokenLinks">
+      <class name="com.fdxMasterScreens.BaseClass">
         <methods>
+          <include name="baseMethods"/>
           <include name="startUp"/>
           <include name="end"/>
-          <include name="brokenLinks"/>
         </methods>
-      </class> <!-- com.fdxMasterScreens.BrokenLinks -->
+      </class> <!-- com.fdxMasterScreens.BaseClass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

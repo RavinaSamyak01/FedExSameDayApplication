@@ -999,9 +999,9 @@ public class CheetahOrderProcessing extends BaseInit {
 		driver.findElement(By.id("MainContent_btnSubmit")).click();
 		System.out.println("Delivery Status Update Done !!");
 		// --Wait for status
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
 		WebElement RespStatus = driver.findElement(By.id("MainContent_lblRespStatus"));
 		act.moveToElement(RespStatus).build().perform();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("MainContent_lblRespStatus")));
 		if (RespStatus.isDisplayed()) {
 			String ResponseStatus = RespStatus.getText();
 			System.out.println("Response Message==" + ResponseStatus + "\n");

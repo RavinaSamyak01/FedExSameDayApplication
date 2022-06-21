@@ -51,9 +51,16 @@ public class ActivityReport extends BaseClass {
 				Select opt = new Select(el);
 				opt.selectByVisibleText("TEST Cheers - # ******113");
 			} catch (Exception e) {
+				try {
 				WebElement el = driver.findElement(By.id("ddAcctNum"));
 				Select opt = new Select(el);
 				opt.selectByVisibleText("Cheers Test Mode Name - # ******005");
+				}catch(Exception ee) {
+					WebElement el = driver.findElement(By.id("ddAcctNum"));
+					Select opt = new Select(el);
+					opt.selectByValue("5");
+				
+				}
 			}
 		}
 
