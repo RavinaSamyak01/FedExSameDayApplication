@@ -45,8 +45,8 @@ public class BaseInit {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		//options.addArguments("--headless");
-		//options.addArguments("--incognito");
+		// options.addArguments("--headless");
+		// options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
 		options.addArguments("--proxy-bypass-list=*");
@@ -93,21 +93,25 @@ public class BaseInit {
 				msg.append("Step2 : Enter UserName : PASS" + "\n");
 				msg.append("Step3 : Enter Password : PASS" + "\n");
 			} catch (Exception loggedin) {
-
-				msg.append("URL is not working==FAIL");
-				getScreenshot(driver, "LoginIssue");
-				driver.quit();
-				Env = storage.getProperty("Env");
-				String File = ".\\src\\Screenshots\\LoginIssue.png";
-				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
-
 				try {
-					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
-					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
-				} catch (Exception ex) {
-					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fx-global-header")));
+					msg.append("URL is working==PASS");
+				} catch (Exception loginpage) {
+					msg.append("URL is not working==FAIL");
+					getScreenshot(driver, "LoginIssue");
+					driver.quit();
+					Env = storage.getProperty("Env");
+					String File = ".\\src\\Screenshots\\LoginIssue.png";
+					String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+
+					try {
+						// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+						// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+						Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+								msg.toString(), File);
+					} catch (Exception ex) {
+						Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+					}
 				}
 			}
 
@@ -130,21 +134,25 @@ public class BaseInit {
 				msg.append("Step2 : Enter UserName : PASS" + "\n");
 				msg.append("Step3 : Enter Password : PASS" + "\n");
 			} catch (Exception loggedin) {
-
-				msg.append("URL is not working==FAIL");
-				getScreenshot(driver, "LoginIssue");
-				driver.quit();
-				Env = storage.getProperty("Env");
-				String File = ".\\src\\Screenshots\\LoginIssue.png";
-				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
-
 				try {
-					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
-					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
-				} catch (Exception ex) {
-					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fx-global-header")));
+					msg.append("URL is working==PASS");
+				} catch (Exception loginpage) {
+					msg.append("URL is not working==FAIL");
+					getScreenshot(driver, "LoginIssue");
+					driver.quit();
+					Env = storage.getProperty("Env");
+					String File = ".\\src\\Screenshots\\LoginIssue.png";
+					String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+
+					try {
+						// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+						// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+						Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+								msg.toString(), File);
+					} catch (Exception ex) {
+						Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+					}
 				}
 			}
 
@@ -165,22 +173,27 @@ public class BaseInit {
 				msg.append("Step2 : Enter UserName : PASS" + "\n");
 				msg.append("Step3 : Enter Password : PASS" + "\n");
 			} catch (Exception loggedin) {
-
-				msg.append("URL is not working==FAIL");
-				getScreenshot(driver, "LoginIssue");
-				driver.quit();
-				Env = storage.getProperty("Env");
-				String File = ".\\src\\Screenshots\\LoginIssue.png";
-				String subject = "Selenium Automation Script: " + Env + " FedEx Login";
-
 				try {
-					// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
-					// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
-				} catch (Exception ex) {
-					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fx-global-header")));
+					msg.append("URL is working==PASS");
+				} catch (Exception loginpage) {
+					msg.append("URL is not working==FAIL");
+					getScreenshot(driver, "LoginIssue");
+					driver.quit();
+					Env = storage.getProperty("Env");
+					String File = ".\\src\\Screenshots\\LoginIssue.png";
+					String subject = "Selenium Automation Script: " + Env + " FedEx Login";
+
+					try {
+						// asharma@samyak.com,sdas@samyak.com,pgandhi@samyak.com,byagnik@samyak.com,pdoshi@samyak.com
+						// ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com
+						Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
+								msg.toString(), File);
+					} catch (Exception ex) {
+						Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
+					}
 				}
+
 			}
 
 		}
@@ -203,6 +216,10 @@ public class BaseInit {
 			}
 		} catch (Exception loggedin) {
 			try {
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fx-global-header")));
+				msg.append("User is already loggedin");
+
+			} catch (Exception frg) {
 				driver.findElement(By.id("Header_fdx_main_liLogin")).click();
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Header_fdx_main_lblloginmmsg")));
 				String ValMsg = driver.findElement(By.id("Header_fdx_main_lblloginmmsg")).getText();
@@ -222,9 +239,6 @@ public class BaseInit {
 				} catch (Exception ex) {
 					Logger.getLogger(RateVerification.class.getName()).log(Level.SEVERE, null, ex);
 				}
-
-			} catch (Exception frg) {
-				System.out.println("Already loggedin");
 			}
 		}
 	}

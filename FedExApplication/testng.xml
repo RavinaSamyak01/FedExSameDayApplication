@@ -5,12 +5,14 @@
 		<classes>
 			<class name="rateScreenFedEx.RateVerification"></class>
 		</classes>
-	</test> -->
+	</test> 
+	
 	<test thread-count="5" name="Rate Verification">
 		<classes>
 			<class name="rateScreenFedEx.RateVerification"></class>
 		</classes>
 	</test>
+	-->
 
 	<test thread-count="5" name="Shipment Creation">
 		<classes>

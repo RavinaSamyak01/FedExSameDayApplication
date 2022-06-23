@@ -32,7 +32,7 @@ public class ShipmentCreation extends BaseInit {
 		try {
 			// 26
 
-			for (int i = 1; i < 26; i++) {
+			for (int i = 25; i < 26; i++) {
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				// --click on shipping menu
 				driver.findElement(By.linkText("Shipping")).click(); // Click on ship screen
