@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="4" passed="4" failed="0" skipped="0">
+<testng-results total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-23T09:24:04Z" name="FedExApplication" finished-at="2022-06-23T09:39:25Z" duration-ms="920439">
+  <suite started-at="2022-06-23T09:54:54Z" name="FedExApplication" finished-at="2022-06-23T10:40:23Z" duration-ms="2728547">
     <groups>
     </groups>
-    <test started-at="2022-06-23T09:24:04Z" name="Shipment Creation" finished-at="2022-06-23T09:28:02Z" duration-ms="237866">
+    <test started-at="2022-06-23T09:54:54Z" name="Rate Verification" finished-at="2022-06-23T10:27:12Z" duration-ms="1937963">
+      <class name="rateScreenFedEx.RateVerification">
+        <test-method signature="prService()[pri:0, instance:rateScreenFedEx.RateVerification@7d61eb55]" started-at="2022-06-23T15:24:54Z" name="prService" finished-at="2022-06-23T15:57:12Z" duration-ms="1937947" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- prService -->
+      </class> <!-- rateScreenFedEx.RateVerification -->
+    </test> <!-- Rate Verification -->
+    <test started-at="2022-06-23T10:27:12Z" name="Shipment Creation" finished-at="2022-06-23T10:30:49Z" duration-ms="216346">
       <class name="shipmentFedExWebSite.ShipmentCreation">
-        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@56673b2c]" started-at="2022-06-23T14:54:04Z" name="shipmentCreation" finished-at="2022-06-23T14:58:02Z" duration-ms="237813" status="PASS">
+        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@dc9876b]" started-at="2022-06-23T15:57:12Z" name="shipmentCreation" finished-at="2022-06-23T16:00:49Z" duration-ms="216345" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- shipmentCreation -->
       </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </test> <!-- Shipment Creation -->
-    <test started-at="2022-06-23T09:28:02Z" name="Master Screens" finished-at="2022-06-23T09:34:15Z" duration-ms="372489">
+    <test started-at="2022-06-23T10:30:49Z" name="Master Screens" finished-at="2022-06-23T10:34:26Z" duration-ms="217011">
       <class name="com.fdxMasterScreens.BaseClass">
-        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@1c93f6e1]" started-at="2022-06-23T14:58:02Z" name="baseMethods" finished-at="2022-06-23T15:04:15Z" duration-ms="372484" status="PASS">
+        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@2dc9b0f5]" started-at="2022-06-23T16:00:49Z" name="baseMethods" finished-at="2022-06-23T16:04:26Z" duration-ms="217010" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- baseMethods -->
       </class> <!-- com.fdxMasterScreens.BaseClass -->
     </test> <!-- Master Screens -->
-    <test started-at="2022-06-23T09:34:15Z" name="Crud Operations" finished-at="2022-06-23T09:38:16Z" duration-ms="240914">
+    <test started-at="2022-06-23T10:34:26Z" name="Crud Operations" finished-at="2022-06-23T10:39:13Z" duration-ms="287332">
       <class name="shipmentFedExWebSite.CrudOperation">
-        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@2fd953a6]" started-at="2022-06-23T15:04:15Z" name="crudOperations" finished-at="2022-06-23T15:08:16Z" duration-ms="240909" status="PASS">
+        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@27912e3]" started-at="2022-06-23T16:04:26Z" name="crudOperations" finished-at="2022-06-23T16:09:13Z" duration-ms="287331" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- crudOperations -->
       </class> <!-- shipmentFedExWebSite.CrudOperation -->
     </test> <!-- Crud Operations -->
-    <test started-at="2022-06-23T09:38:16Z" name="Broken Links" finished-at="2022-06-23T09:39:25Z" duration-ms="69130">
+    <test started-at="2022-06-23T10:39:13Z" name="Broken Links" finished-at="2022-06-23T10:40:23Z" duration-ms="69839">
       <class name="com.fdxMasterScreens.BrokenLinks">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@35432107]" started-at="2022-06-23T14:53:48Z" name="startUp" finished-at="2022-06-23T14:54:04Z" duration-ms="16325" status="PASS">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-23T15:24:36Z" name="startUp" finished-at="2022-06-23T15:24:54Z" duration-ms="18533" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@35432107]" started-at="2022-06-23T15:08:16Z" name="brokenLinks" finished-at="2022-06-23T15:09:25Z" duration-ms="69126" status="PASS">
+        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-23T16:09:13Z" name="brokenLinks" finished-at="2022-06-23T16:10:23Z" duration-ms="69839" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- brokenLinks -->
-        <test-method is-config="true" signature="end()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@35432107]" started-at="2022-06-23T15:09:25Z" name="end" finished-at="2022-06-23T15:09:26Z" duration-ms="714" status="PASS">
+        <test-method is-config="true" signature="end()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-23T16:10:23Z" name="end" finished-at="2022-06-23T16:10:24Z" duration-ms="1255" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->

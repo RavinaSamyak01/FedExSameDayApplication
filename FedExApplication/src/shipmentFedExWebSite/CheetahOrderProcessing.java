@@ -43,7 +43,7 @@ public class CheetahOrderProcessing extends BaseInit {
 		// Read data from Excel
 
 		// 22
-		for (int i = 21; i < 22; i++) {
+		for (int i = 1; i < 22; i++) {
 
 			if (i == 1) // Normal Order Processing
 			{
