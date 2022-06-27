@@ -1,53 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="5" passed="5" failed="0" skipped="0">
+<testng-results total="5" passed="4" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-23T09:54:54Z" name="FedExApplication" finished-at="2022-06-23T10:40:23Z" duration-ms="2728547">
+  <suite started-at="2022-06-27T03:47:39Z" name="FedExApplication" finished-at="2022-06-27T05:34:43Z" duration-ms="6423610">
     <groups>
     </groups>
-    <test started-at="2022-06-23T09:54:54Z" name="Rate Verification" finished-at="2022-06-23T10:27:12Z" duration-ms="1937963">
+    <test started-at="2022-06-27T03:47:39Z" name="Rate Verification" finished-at="2022-06-27T04:19:21Z" duration-ms="1902133">
       <class name="rateScreenFedEx.RateVerification">
-        <test-method signature="prService()[pri:0, instance:rateScreenFedEx.RateVerification@7d61eb55]" started-at="2022-06-23T15:24:54Z" name="prService" finished-at="2022-06-23T15:57:12Z" duration-ms="1937947" status="PASS">
+        <test-method signature="prService()[pri:0, instance:rateScreenFedEx.RateVerification@7d61eb55]" started-at="2022-06-27T09:17:39Z" name="prService" finished-at="2022-06-27T09:49:21Z" duration-ms="1902098" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prService -->
       </class> <!-- rateScreenFedEx.RateVerification -->
     </test> <!-- Rate Verification -->
-    <test started-at="2022-06-23T10:27:12Z" name="Shipment Creation" finished-at="2022-06-23T10:30:49Z" duration-ms="216346">
+    <test started-at="2022-06-27T04:19:21Z" name="Shipment Creation" finished-at="2022-06-27T05:28:49Z" duration-ms="4167390">
       <class name="shipmentFedExWebSite.ShipmentCreation">
-        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@dc9876b]" started-at="2022-06-23T15:57:12Z" name="shipmentCreation" finished-at="2022-06-23T16:00:49Z" duration-ms="216345" status="PASS">
+        <test-method signature="shipmentCreation()[pri:0, instance:shipmentFedExWebSite.ShipmentCreation@dc9876b]" started-at="2022-06-27T09:49:21Z" name="shipmentCreation" finished-at="2022-06-27T10:58:49Z" duration-ms="4167386" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- shipmentCreation -->
       </class> <!-- shipmentFedExWebSite.ShipmentCreation -->
     </test> <!-- Shipment Creation -->
-    <test started-at="2022-06-23T10:30:49Z" name="Master Screens" finished-at="2022-06-23T10:34:26Z" duration-ms="217011">
+    <test started-at="2022-06-27T05:28:49Z" name="Master Screens" finished-at="2022-06-27T05:28:51Z" duration-ms="2426">
       <class name="com.fdxMasterScreens.BaseClass">
-        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@2dc9b0f5]" started-at="2022-06-23T16:00:49Z" name="baseMethods" finished-at="2022-06-23T16:04:26Z" duration-ms="217010" status="PASS">
+        <test-method signature="baseMethods()[pri:0, instance:com.fdxMasterScreens.BaseClass@2dc9b0f5]" started-at="2022-06-27T10:58:49Z" name="baseMethods" finished-at="2022-06-27T10:58:51Z" duration-ms="2424" status="FAIL">
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[unknown error: unexpected command response
+  (Session info: chrome=103.0.5060.53)
+Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
+System info: host: 'SIPL92', ip: '10.212.130.232', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.53, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\WINDOWS\TEMP\scoped_dir2...}, goog:chromeOptions: {debuggerAddress: localhost:65256}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: b9274359a9befc2e9bd70b38c890ec76]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: unknown error: unexpected command response
+  (Session info: chrome=103.0.5060.53)
+Build info: version: '3.13.0', revision: '2f0d292', time: '2018-06-25T15:32:14.902Z'
+System info: host: 'SIPL92', ip: '10.212.130.232', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.53, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\WINDOWS\TEMP\scoped_dir2...}, goog:chromeOptions: {debuggerAddress: localhost:65256}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: b9274359a9befc2e9bd70b38c890ec76
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at com.fdxMasterScreens.TrackShipment.trckShipment(TrackShipment.java:36)
+	at com.fdxMasterScreens.BaseClass.baseMethods(BaseClass.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
+	at org.testng.TestRunner.privateRun(TestRunner.java:767)
+	at org.testng.TestRunner.run(TestRunner.java:617)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
+	at org.testng.TestNG.run(TestNG.java:1057)
+	at org.testng.TestNG.privateMain(TestNG.java:1364)
+	at org.testng.TestNG.main(TestNG.java:1333)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- baseMethods -->
       </class> <!-- com.fdxMasterScreens.BaseClass -->
     </test> <!-- Master Screens -->
-    <test started-at="2022-06-23T10:34:26Z" name="Crud Operations" finished-at="2022-06-23T10:39:13Z" duration-ms="287332">
+    <test started-at="2022-06-27T05:28:51Z" name="Crud Operations" finished-at="2022-06-27T05:33:14Z" duration-ms="262967">
       <class name="shipmentFedExWebSite.CrudOperation">
-        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@27912e3]" started-at="2022-06-23T16:04:26Z" name="crudOperations" finished-at="2022-06-23T16:09:13Z" duration-ms="287331" status="PASS">
+        <test-method signature="crudOperations()[pri:0, instance:shipmentFedExWebSite.CrudOperation@27912e3]" started-at="2022-06-27T10:58:51Z" name="crudOperations" finished-at="2022-06-27T11:03:14Z" duration-ms="262966" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- crudOperations -->
       </class> <!-- shipmentFedExWebSite.CrudOperation -->
     </test> <!-- Crud Operations -->
-    <test started-at="2022-06-23T10:39:13Z" name="Broken Links" finished-at="2022-06-23T10:40:23Z" duration-ms="69839">
+    <test started-at="2022-06-27T05:33:14Z" name="Broken Links" finished-at="2022-06-27T05:34:43Z" duration-ms="88551">
       <class name="com.fdxMasterScreens.BrokenLinks">
-        <test-method is-config="true" signature="startUp()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-23T15:24:36Z" name="startUp" finished-at="2022-06-23T15:24:54Z" duration-ms="18533" status="PASS">
+        <test-method is-config="true" signature="startUp()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-27T09:17:07Z" name="startUp" finished-at="2022-06-27T09:17:39Z" duration-ms="32388" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startUp -->
-        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-23T16:09:13Z" name="brokenLinks" finished-at="2022-06-23T16:10:23Z" duration-ms="69839" status="PASS">
+        <test-method signature="brokenLinks()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-27T11:03:14Z" name="brokenLinks" finished-at="2022-06-27T11:04:43Z" duration-ms="88543" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- brokenLinks -->
-        <test-method is-config="true" signature="end()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-23T16:10:23Z" name="end" finished-at="2022-06-23T16:10:24Z" duration-ms="1255" status="PASS">
+        <test-method is-config="true" signature="end()[pri:0, instance:com.fdxMasterScreens.BrokenLinks@13bc8645]" started-at="2022-06-27T11:04:43Z" name="end" finished-at="2022-06-27T11:04:48Z" duration-ms="5228" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- end -->

@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-FedExApplication" class="navigator-link">
-              <span class="suite-name border-passed">FedExApplication</span>
+              <span class="suite-name border-failed">FedExApplication</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,7 +90,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">5 methods,   5 passed</span>
+                    <span class="method-stats">5 methods, 1 failed,   4 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-FedExApplication" class="hide-methods failed suite-FedExApplication"> (hide)</a> <!-- hide-methods failed suite-FedExApplication -->
+                      <a href="#" panel-name="suite-FedExApplication" class="show-methods failed suite-FedExApplication"> (show)</a> <!-- show-methods failed suite-FedExApplication -->
+                    </span>
+                    <div class="method-list-content failed suite-FedExApplication">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BaseClass" class="method navigator-link" hash-for-method="baseMethods">baseMethods</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-FedExApplication -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -99,11 +113,6 @@
                       <a href="#" panel-name="suite-FedExApplication" class="show-methods passed suite-FedExApplication"> (show)</a> <!-- show-methods passed suite-FedExApplication -->
                     </span>
                     <div class="method-list-content passed suite-FedExApplication">
-                      <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BaseClass" class="method navigator-link" hash-for-method="baseMethods">baseMethods</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-FedExApplication" title="com.fdxMasterScreens.BrokenLinks" class="method navigator-link" hash-for-method="brokenLinks">brokenLinks</a> <!-- method navigator-link -->
@@ -136,6 +145,40 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-FedExApplication" class="panel FedExApplication">
+          <div class="suite-FedExApplication-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.fdxMasterScreens.BaseClass</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="baseMethods">
+                  </a> <!-- baseMethods -->
+                  <span class="method-name">baseMethods</span>
+                  <div class="stack-trace">org.openqa.selenium.WebDriverException: unknown error: unexpected command response
+  (Session info: chrome=103.0.5060.53)
+Build info: version: &apos;3.13.0&apos;, revision: &apos;2f0d292&apos;, time: &apos;2018-06-25T15:32:14.902Z&apos;
+System info: host: &apos;SIPL92&apos;, ip: &apos;10.212.130.232&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.13&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 103.0.5060.53, chrome: {chromedriverVersion: 103.0.5060.53 (a1711811edd7..., userDataDir: C:\WINDOWS\TEMP\scoped_dir2...}, goog:chromeOptions: {debuggerAddress: localhost:65256}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: b9274359a9befc2e9bd70b38c890ec76
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at com.fdxMasterScreens.TrackShipment.trckShipment(TrackShipment.java:36)
+	at com.fdxMasterScreens.BaseClass.baseMethods(BaseClass.java:25)
+... Removed 27 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-FedExApplication-class-failed -->
           <div class="suite-FedExApplication-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -177,21 +220,6 @@
                   <a name="brokenLinks">
                   </a> <!-- brokenLinks -->
                   <span class="method-name">brokenLinks</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-FedExApplication-class-passed -->
-          <div class="suite-FedExApplication-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">com.fdxMasterScreens.BaseClass</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="baseMethods">
-                  </a> <!-- baseMethods -->
-                  <span class="method-name">baseMethods</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -297,30 +325,30 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(5);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'prService')
-data.setCell(0, 2, 'rateScreenFedEx.RateVerification')
-data.setCell(0, 3, 1937947);
+data.setCell(0, 1, 'shipmentCreation')
+data.setCell(0, 2, 'shipmentFedExWebSite.ShipmentCreation')
+data.setCell(0, 3, 4167386);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'crudOperations')
-data.setCell(1, 2, 'shipmentFedExWebSite.CrudOperation')
-data.setCell(1, 3, 287331);
+data.setCell(1, 1, 'prService')
+data.setCell(1, 2, 'rateScreenFedEx.RateVerification')
+data.setCell(1, 3, 1902098);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'baseMethods')
-data.setCell(2, 2, 'com.fdxMasterScreens.BaseClass')
-data.setCell(2, 3, 217010);
+data.setCell(2, 1, 'crudOperations')
+data.setCell(2, 2, 'shipmentFedExWebSite.CrudOperation')
+data.setCell(2, 3, 262966);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'shipmentCreation')
-data.setCell(3, 2, 'shipmentFedExWebSite.ShipmentCreation')
-data.setCell(3, 3, 216345);
+data.setCell(3, 1, 'brokenLinks')
+data.setCell(3, 2, 'com.fdxMasterScreens.BrokenLinks')
+data.setCell(3, 3, 88543);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'brokenLinks')
-data.setCell(4, 2, 'com.fdxMasterScreens.BrokenLinks')
-data.setCell(4, 3, 69839);
+data.setCell(4, 1, 'baseMethods')
+data.setCell(4, 2, 'com.fdxMasterScreens.BaseClass')
+data.setCell(4, 3, 2424);
 window.suiteTableData['FedExApplication']= { tableData: data, tableDiv: 'times-div-FedExApplication'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 45 minutes</span>
+              <span class="suite-total-time">Total running time: 1 hours</span>
               <div id="times-div-FedExApplication">
               </div> <!-- times-div-FedExApplication -->
             </div> <!-- times-div -->
@@ -356,39 +384,41 @@ return data;
               <div class="chronological-class-name">rateScreenFedEx.RateVerification</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">prService</span>
-                <span class="method-start">18547 ms</span>
+                <span class="method-start">32410 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">shipmentFedExWebSite.ShipmentCreation</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">shipmentCreation</span>
-                <span class="method-start">1956532 ms</span>
+                <span class="method-start">1934580 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.fdxMasterScreens.BaseClass</div> <!-- chronological-class-name -->
               <div class="test-method">
+                <img src="failed.png">
+                </img>
                 <span class="method-name">baseMethods</span>
-                <span class="method-start">2172887 ms</span>
+                <span class="method-start">6101978 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">shipmentFedExWebSite.CrudOperation</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">crudOperations</span>
-                <span class="method-start">2389904 ms</span>
+                <span class="method-start">6104429 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.fdxMasterScreens.BrokenLinks</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">brokenLinks</span>
-                <span class="method-start">2677242 ms</span>
+                <span class="method-start">6367456 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">end</span>
-                <span class="method-start">2747090 ms</span>
+                <span class="method-start">6456013 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
